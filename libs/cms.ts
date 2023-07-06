@@ -34,8 +34,8 @@ export async function request<T = any>({
     {
       method: "POST",
       headers: {
-        ...(draft &&
-          payloadToken && { Authorization: `JWT ${payloadToken?.value}` }),
+        // ...(draft &&
+        //   payloadToken && { Authorization: `JWT ${payloadToken?.value}` }),
         "Content-Type": "application/json",
       },
       next: {
