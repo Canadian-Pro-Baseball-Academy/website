@@ -41,7 +41,9 @@ export async function GET(
   if (!userReq.ok || !userRes?.user) {
     draftMode().disable();
     return new Response(
-      `No User: You are not allowed to preview this page.  Token: ${payloadToken}, User: ${userRes}`,
+      `No User: You are not allowed to preview this page.  Token: ${payloadToken}, User: ${JSON.stringify(
+        userRes
+      )}`,
       {
         status: 403,
       }
