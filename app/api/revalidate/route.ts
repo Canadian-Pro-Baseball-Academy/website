@@ -11,6 +11,7 @@ export async function GET(request: NextRequest): Promise<unknown> {
       revalidated: false,
       now: Date.now(),
       test: secret,
+      otherSecret: process.env.PAYLOAD_PUBLIC_REVALIDATION_KEY,
     });
   }
 
