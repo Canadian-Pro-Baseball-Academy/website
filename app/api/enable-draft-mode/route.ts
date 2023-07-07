@@ -32,6 +32,7 @@ export async function GET(
       headers: {
         Authorization: `JWT ${payloadToken}`,
       },
+      credentials: "include",
     }
   );
 
@@ -39,9 +40,12 @@ export async function GET(
 
   if (!userReq.ok || !userRes?.user) {
     draftMode().disable();
-    return new Response("No User: You are not allowed to preview this page", {
-      status: 403,
-    });
+    return new Response(
+      `No User: You are not allowed to preview this page.  Token: ${payloadToken}, User: ${userRes}`,
+      {
+        status: 403,
+      }
+    );
   }
 
   if (secret !== process.env.PAYLOAD_PUBLIC_DRAFT_SECRET) {
