@@ -3,7 +3,7 @@ import { cookies, draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { PAGE, PAGES } from "@/graphql/pages";
-import { request } from "@/libs/cms";
+import { request } from "@/lib/cms";
 
 import { Page as PageType } from "@/payload-types";
 

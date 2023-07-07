@@ -20,27 +20,29 @@ export async function GET(
   }
 
   // TODO: Enable authentication for preview mode
-  // if (!payloadToken) {
-  //   new Response("You are not allowed to preview this page", { status: 403 });
-  // }
+  if (!payloadToken) {
+    new Response("No Token: You are not allowed to preview this page", {
+      status: 403,
+    });
+  }
 
-  // const userReq = await fetch(
-  //   `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/users/me`,
-  //   {
-  //     headers: {
-  //       Authorization: `JWT ${payloadToken}`,
-  //     },
-  //   }
-  // );
+  const userReq = await fetch(
+    `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/users/me`,
+    {
+      headers: {
+        Authorization: `JWT ${payloadToken}`,
+      },
+    }
+  );
 
-  // const userRes = await userReq.json();
+  const userRes = await userReq.json();
 
-  // if (!userReq.ok || !userRes?.user) {
-  //   draftMode().disable();
-  //   return new Response("You are not allowed to preview this page", {
-  //     status: 403,
-  //   });
-  // }
+  if (!userReq.ok || !userRes?.user) {
+    draftMode().disable();
+    return new Response("No User: You are not allowed to preview this page", {
+      status: 403,
+    });
+  }
 
   if (secret !== process.env.PAYLOAD_PUBLIC_DRAFT_SECRET) {
     return new Response("Invalid token", { status: 401 });
