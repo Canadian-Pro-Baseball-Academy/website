@@ -16,6 +16,7 @@ type RequestOptions = {
    * * number - (in seconds) Specify the resource should have a cache lifetime of at most n seconds.
    */
   revalidate?: number | false;
+  tags?: string[];
 };
 
 export async function request<T = any>({
@@ -27,7 +28,13 @@ export async function request<T = any>({
   draft = false,
 }: IRequest): Promise<T> {
   const payloadToken = token || null;
-  const revalidate = options?.revalidate ?? 0;
+  const next = {
+    ...(options?.tags
+      ? { tags: options.tags }
+      : {
+          revalidate: options?.revalidate,
+        }),
+  };
 
   const { data, errors } = await fetch(
     `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/graphql?${collection}`,
@@ -39,7 +46,8 @@ export async function request<T = any>({
         "Content-Type": "application/json",
       },
       next: {
-        revalidate,
+        revalidate: 60 * 60 * 24,
+        tags: ["pages"],
       },
       body: JSON.stringify({
         query: query,

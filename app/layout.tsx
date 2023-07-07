@@ -1,6 +1,6 @@
-import { AdminBar } from "@/components/admin-bar";
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
+import { PreviewBar } from "@/components/preview-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AdminBar />
+        <PreviewBar />
         {children}
       </body>
     </html>
