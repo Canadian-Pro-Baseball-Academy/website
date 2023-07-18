@@ -1,3 +1,6 @@
+import { LINK_FIELDS } from "./links";
+import { MEDIA_FIELDS } from "./media";
+
 export const PAGES = `
   query Pages {
     Pages(limit: 300) {
@@ -19,6 +22,15 @@ export const PAGE = `
         id
         title
         hero {
+            type
+            richText
+            links {
+              link ${LINK_FIELDS()}
+            }
+            media ${MEDIA_FIELDS}
+            values {
+              value
+            }
             previewTest
         }
         breadcrumbs {
