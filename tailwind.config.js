@@ -54,6 +54,7 @@ module.exports = {
       height: {
         "2/3-screen": "66vh",
         "3/4-screen": "75vh",
+        "4/5-screen": "80vh",
       },
       borderRadius: {
         lg: "var(--radius)",
