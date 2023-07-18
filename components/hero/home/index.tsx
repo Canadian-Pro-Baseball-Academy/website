@@ -1,7 +1,9 @@
 import { Media } from "@/components/media";
+import { RichText } from "@/components/rich-text";
 import { cn } from "@/lib/utils";
 import { Page } from "@/payload-types";
 import React from "react";
+import { Balancer } from "react-wrap-balancer";
 
 export const HomeHero: React.FC<Page["hero"]> = ({
   richText,
@@ -34,8 +36,21 @@ export const HomeHero: React.FC<Page["hero"]> = ({
         </div>
       </div>
 
-      {/* Hero Content */}
-      <div></div>
+      {/* Hero Content Wrap*/}
+      <div className={cn("relative z-[2]")}>
+        {/* Hero Content */}
+        <div
+          className={cn(
+            "flex flex-col h-3/4-screen justify-center text-background",
+            "mx-20 w-3/5"
+          )}
+        >
+          <RichText className={cn("[&>h1]:text-7xl")} content={richText} />
+        </div>
+      </div>
     </section>
   );
 };
+{
+  /* */
+}
