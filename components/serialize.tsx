@@ -2,6 +2,7 @@ import React from "react";
 import escapeHTML from "escape-html";
 import { cn } from "@/lib/utils";
 import { Balancer } from "react-wrap-balancer";
+import { Highlight } from "./highlight";
 
 export type Node = {
   type: string;
@@ -54,14 +55,17 @@ export const Serialize: React.FC<{
 
           if (node.underline) {
             text = (
-              <span style={{ textDecoration: "underline" }} key={i}>
+              <span
+                className="underline underline-offset-8 decoration-2 decoration-accent text-orange-100"
+                key={i}
+              >
                 {text}
               </span>
             );
           }
 
           if (node.highlight) {
-            text = <mark key={i}>{text}</mark>;
+            text = <Highlight key={i} {...node} />;
           }
 
           if (node.strikethrough) {

@@ -13,7 +13,7 @@ const fetchPage = async (
   incomingSlugSegments?: string[]
 ): Promise<PageType | null> => {
   const { isEnabled } = draftMode();
-  const token = cookies().get("payload-token");
+  // const token = cookies().get("payload-token");
 
   const slugSegments = incomingSlugSegments || ["home"];
   const slug = slugSegments.at(-1);
@@ -23,7 +23,7 @@ const fetchPage = async (
     collection,
     query: PAGE,
     variables: { slug },
-    token: token,
+    // token: token,
     draft: isEnabled,
   });
 

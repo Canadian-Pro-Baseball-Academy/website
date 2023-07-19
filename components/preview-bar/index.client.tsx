@@ -11,13 +11,13 @@ interface IPreviewBarProps {
 const PreviewBarClient = ({ preview = false }: IPreviewBarProps) => {
   return (
     <div
-      className={cn("fixed bottom-0 left-0 ml-6 mb-6", {
+      className={cn("fixed bottom-0 left-0 ml-6 mb-6 z-10", {
         hidden: !preview,
       })}
     >
       <button
         className={cn(
-          buttonVariants({ variant: "default", size: "lg" }),
+          buttonVariants({ variant: "primary", size: "lg" }),
           "shadow-md"
         )}
         onClick={async () => {
