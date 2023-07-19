@@ -59,6 +59,10 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      screens: {
+        "3xl": "1920px",
+        "4xl": "2250px",
+      },
       height: {
         "2/3-screen": "66vh",
         "3/4-screen": "75vh",

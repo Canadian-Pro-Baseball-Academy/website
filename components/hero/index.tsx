@@ -2,12 +2,13 @@ import React from "react";
 
 import { Page } from "@/payload-types";
 import { HomeHero } from "./home";
+import { RegistrationHero } from "./registration";
 
 const heroes = {
   default: HomeHero,
   contentMedia: HomeHero,
   form: HomeHero,
-  registration: HomeHero,
+  registration: RegistrationHero,
   home: HomeHero,
 };
 
