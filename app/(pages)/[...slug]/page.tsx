@@ -6,12 +6,14 @@ import { PAGE, PAGES } from "@/graphql/pages";
 import { request } from "@/lib/cms";
 
 import { Page as PageType } from "@/payload-types";
+import ApiTest from "@/app/api-test";
+import { Hero } from "@/components/hero";
 
 const fetchPage = async (
   incomingSlugSegments?: string[]
 ): Promise<PageType | null> => {
   const { isEnabled } = draftMode();
-  const token = cookies().get("payload-token");
+  // const token = cookies().get("payload-token");
 
   const slugSegments = incomingSlugSegments || ["home"];
   const slug = slugSegments.at(-1);
@@ -21,7 +23,7 @@ const fetchPage = async (
     collection,
     query: PAGE,
     variables: { slug },
-    token: token,
+    // token: token,
     draft: isEnabled,
   });
 
@@ -44,10 +46,12 @@ const Page = async ({ params: { slug } }: { params: { slug: string[] } }) => {
   if (!page) return notFound();
 
   return (
-    <div>
+    <React.Fragment>
+      <ApiTest data={page} />
+      <Hero page={page} />
       <p>{page.title}</p>
       <h1>{page.hero?.previewTest}</h1>
-    </div>
+    </React.Fragment>
   );
 };
 
