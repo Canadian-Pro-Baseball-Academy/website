@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { PayloadLink } from "@/components/cms-link";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const GetRegistrationForm = (id: number) => {
   return useQuery({
@@ -61,7 +62,7 @@ export const FormCard: React.FC<RegistrationForm> = ({
 }) => {
   const { data, isLoading } = GetRegistrationForm(formId);
 
-  if (isLoading || !data) return <div>Loading...</div>;
+  if (isLoading || !data) return <FormCardSkeleton />;
 
   return (
     <div className="h-full min-h-[5rem] w-full shadow-md bg-background px-6 py-4">
@@ -132,6 +133,43 @@ export const FormCard: React.FC<RegistrationForm> = ({
           </ul>
         </div>
       )}
+    </div>
+  );
+};
+
+const FormCardSkeleton: React.FC = () => {
+  return (
+    <div className="h-full min-h-[5rem] w-full shadow-md bg-background px-6 py-4">
+      <Skeleton className="h-7" />
+      <Skeleton className="h-5 w-40 mt-1" />
+      <div className="mt-4">
+        <Skeleton className="h-6 mt-1" />
+        <Skeleton className="h-6 mt-1" />
+        <Skeleton className="h-6 mt-1" />
+      </div>
+
+      <Separator className="my-4" orientation="horizontal" />
+
+      {/* Registration Info */}
+      <div>
+        <Skeleton className="h-6 mt-1" />
+        <Skeleton className="h-6 mt-1" />
+      </div>
+      <div className="flex gap-4 mt-4">
+        <Skeleton className="h-6 w-40" />
+        <Skeleton className="h-6 w-40" />
+      </div>
+      {/* Buttons */}
+      <div className="mt-6">
+        <ul className="flex gap-2">
+          <li>
+            <Skeleton className="h-10 w-36" />
+          </li>
+          <li>
+            <Skeleton className="h-10 w-36" />
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
