@@ -68,7 +68,8 @@ export const HomeHero: React.FC<Page["hero"]> = ({
         </div>
       </div>
 
-      {Array.isArray(values) && (
+      {/* Values Marquee */}
+      {/* {Array.isArray(values) && (
         <Marquee gradient={false} speed={70} className="py-6 bg-muted">
           {values.map(({ value }, i) => (
             <span
@@ -82,7 +83,7 @@ export const HomeHero: React.FC<Page["hero"]> = ({
             </span>
           ))}
         </Marquee>
-      )}
+      )} */}
     </section>
   );
 };
