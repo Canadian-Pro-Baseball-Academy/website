@@ -48,7 +48,8 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
           <div
             className={cn(
               "flex flex-col h-3/4-screen justify-center text-background",
-              "w-3/5"
+              "w-3/5",
+              "2xl:-mx-32 3xl:-mx-48"
             )}
           >
             <RichText

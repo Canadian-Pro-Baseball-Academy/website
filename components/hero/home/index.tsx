@@ -8,6 +8,7 @@ import Marquee from "react-fast-marquee";
 import { PayloadLink } from "@/components/cms-link";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
+import { Gutter } from "@/components/gutter";
 
 export const HomeHero: React.FC<Page["hero"]> = ({
   richText,
@@ -43,29 +44,32 @@ export const HomeHero: React.FC<Page["hero"]> = ({
       {/* Hero Content Wrap*/}
       <div className={cn("relative z-[2]")}>
         {/* Hero Content */}
-        <div
-          className={cn(
-            "flex flex-col h-3/4-screen justify-center text-background",
-            "mx-20 w-3/5"
-          )}
-        >
-          <RichText
-            className={cn("[&>h1]:text-7xl [&>p]:max-w-[65ch] mt-4")}
-            content={richText}
-          />
-          {/* Buttons */}
-          {Array.isArray(links) && (
-            <div className="mt-8">
-              <ul className="flex gap-4">
-                {links.map(({ link }, i) => (
-                  <li key={i}>
-                    <PayloadLink {...link} size="lg" />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
+        <Gutter>
+          <div
+            className={cn(
+              "flex flex-col h-3/4-screen justify-center text-background",
+              "w-3/5",
+              "2xl:-mx-32 3xl:-mx-48"
+            )}
+          >
+            <RichText
+              className={cn("[&>h1]:text-7xl [&>p]:max-w-[65ch] mt-4")}
+              content={richText}
+            />
+            {/* Buttons */}
+            {Array.isArray(links) && (
+              <div className="mt-8">
+                <ul className="flex gap-4">
+                  {links.map(({ link }, i) => (
+                    <li key={i}>
+                      <PayloadLink {...link} size="lg" />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </Gutter>
       </div>
 
       {/* Values Marquee */}

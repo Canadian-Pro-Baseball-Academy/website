@@ -4,10 +4,11 @@ import { Page } from "@/payload-types";
 import { HomeHero } from "./home";
 import { RegistrationHero } from "./registration";
 import { DefaultHero } from "./default";
+import { ContentMediaHero } from "./content-media";
 
 const heroes = {
   default: DefaultHero,
-  contentMedia: DefaultHero,
+  contentMedia: ContentMediaHero,
   form: DefaultHero,
   registration: RegistrationHero,
   home: HomeHero,
