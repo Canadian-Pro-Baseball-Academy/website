@@ -3,11 +3,13 @@ import React from "react";
 import { Page } from "@/payload-types";
 import { HomeHero } from "./home";
 import { RegistrationHero } from "./registration";
+import { DefaultHero } from "./default";
+import { ContentMediaHero } from "./content-media";
 
 const heroes = {
-  default: HomeHero,
-  contentMedia: HomeHero,
-  form: HomeHero,
+  default: DefaultHero,
+  contentMedia: ContentMediaHero,
+  form: DefaultHero,
   registration: RegistrationHero,
   home: HomeHero,
 };
