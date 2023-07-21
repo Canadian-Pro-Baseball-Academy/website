@@ -26,6 +26,7 @@ export type PayloadLinkType = {
   reference?: Reference;
   url?: string;
   label?: string;
+  description?: string;
   appearance?:
     | "primary"
     | "secondary"
@@ -87,6 +88,7 @@ export const PayloadLink: React.FC<PayloadLinkType> = ({
   newTab,
   reference,
   label,
+  description,
   appearance,
   size = "default",
   children,
@@ -147,6 +149,12 @@ export const PayloadLink: React.FC<PayloadLinkType> = ({
         >
           {label && label}
           {children && children}
+
+          {description && (
+            <p className="pt-2 text-sm leading-tight text-muted-foreground">
+              {description}
+            </p>
+          )}
         </Link>
       );
     }
@@ -170,6 +178,7 @@ export const PayloadLink: React.FC<PayloadLinkType> = ({
     href,
     appearance,
     label,
+    description,
     size,
     onMouseEnter,
     onMouseLeave,

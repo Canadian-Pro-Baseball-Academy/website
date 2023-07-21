@@ -19,7 +19,7 @@ export const HEADER = `
                 menuHighlightMedia ${MEDIA_FIELDS}
                 highlightLink: link ${LINK_FIELDS({
                   disableAppearance: true,
-                  disableLabel: true,
+                  enableDescription: true,
                 })}
               }
               ... on MenuLink {
@@ -28,17 +28,17 @@ export const HEADER = `
                 blockType
                 link ${LINK_FIELDS({
                   disableAppearance: true,
-                  disableLabel: true,
+                  enableDescription: true,
                 })}
               }
               ... on MenuColumn {
                 id
                 blockName
                 blockType
+                name
                 links {
                   link ${LINK_FIELDS({
                     disableAppearance: true,
-                    disableLabel: true,
                   })}
                 }
               }

@@ -16,7 +16,7 @@ export interface Config {
     redirects: Redirect;
   };
   globals: {
-    'site-settings': SiteSetting;
+    "site-settings": SiteSetting;
     footer: Footer;
     header: Header;
   };
@@ -47,7 +47,7 @@ export interface Coach {
   }[];
   updatedAt: string;
   createdAt: string;
-  _status?: 'draft' | 'published';
+  _status?: "draft" | "published";
 }
 export interface Media {
   id: string;
@@ -66,26 +66,26 @@ export interface Media {
 export interface Page {
   id: string;
   hero: {
-    type: 'default' | 'contentMedia' | 'form' | 'home' | 'registration';
+    type: "default" | "contentMedia" | "form" | "home" | "registration";
     richText?: {
       [k: string]: unknown;
     }[];
     links?: {
       link: {
-        type?: 'reference' | 'custom';
+        type?: "reference" | "custom";
         newTab?: boolean;
         reference:
           | {
               value: string | Page;
-              relationTo: 'pages';
+              relationTo: "pages";
             }
           | {
               value: string | Team;
-              relationTo: 'teams';
+              relationTo: "teams";
             };
         url: string;
         label: string;
-        appearance?: 'primary' | 'secondary';
+        appearance?: "primary" | "secondary";
       };
       id?: string;
     }[];
@@ -113,7 +113,7 @@ export interface Page {
   }[];
   updatedAt: string;
   createdAt: string;
-  _status?: 'draft' | 'published';
+  _status?: "draft" | "published";
 }
 export interface Team {
   id: string;
@@ -126,29 +126,29 @@ export interface Team {
     lastName: string;
     number?: string;
     positions?: (
-      | 'pitcher'
-      | 'catcher'
-      | 'firstBase'
-      | 'secondBase'
-      | 'thirdBase'
-      | 'shortstop'
-      | 'middleInfield'
-      | 'cornerInfield'
-      | 'infield'
-      | 'outfield'
-      | 'utility'
+      | "pitcher"
+      | "catcher"
+      | "firstBase"
+      | "secondBase"
+      | "thirdBase"
+      | "shortstop"
+      | "middleInfield"
+      | "cornerInfield"
+      | "infield"
+      | "outfield"
+      | "utility"
     )[];
     homeTown?: string;
     id?: string;
   }[];
   updatedAt: string;
   createdAt: string;
-  _status?: 'draft' | 'published';
+  _status?: "draft" | "published";
 }
 export interface User {
   id: string;
   name?: string;
-  roles?: ('admin' | 'editor')[];
+  roles?: ("admin" | "editor")[];
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -164,10 +164,10 @@ export interface Redirect {
   id: string;
   from: string;
   to: {
-    type?: 'reference' | 'custom';
+    type?: "reference" | "custom";
     reference: {
       value: string | Page;
-      relationTo: 'pages';
+      relationTo: "pages";
     };
     url: string;
   };
@@ -204,16 +204,16 @@ export interface Footer {
     label?: string;
     navItems?: {
       link: {
-        type?: 'reference' | 'custom';
+        type?: "reference" | "custom";
         newTab?: boolean;
         reference:
           | {
               value: string | Page;
-              relationTo: 'pages';
+              relationTo: "pages";
             }
           | {
               value: string | Team;
-              relationTo: 'teams';
+              relationTo: "teams";
             };
         url: string;
         label: string;
@@ -233,20 +233,20 @@ export interface Header {
     }[];
   };
   mainMenu: {
-    items?: {
-      type?: 'single' | 'dropdown';
+    items: {
+      type?: "single" | "dropdown";
       label: string;
       link?: {
-        type?: 'reference' | 'custom';
+        type?: "reference" | "custom";
         newTab?: boolean;
         reference:
           | {
               value: string | Page;
-              relationTo: 'pages';
+              relationTo: "pages";
             }
           | {
               value: string | Team;
-              relationTo: 'teams';
+              relationTo: "teams";
             };
         url: string;
       };
@@ -255,16 +255,16 @@ export interface Header {
           | {
               menuHighlightMedia?: string | Media;
               link: {
-                type?: 'reference' | 'custom';
+                type?: "reference" | "custom";
                 newTab?: boolean;
                 reference:
                   | {
                       value: string | Page;
-                      relationTo: 'pages';
+                      relationTo: "pages";
                     }
                   | {
                       value: string | Team;
-                      relationTo: 'teams';
+                      relationTo: "teams";
                     };
                 url: string;
                 label: string;
@@ -272,20 +272,20 @@ export interface Header {
               };
               id?: string;
               blockName?: string;
-              blockType: 'menu-highlight';
+              blockType: "menu-highlight";
             }
           | {
               link: {
-                type?: 'reference' | 'custom';
+                type?: "reference" | "custom";
                 newTab?: boolean;
                 reference:
                   | {
                       value: string | Page;
-                      relationTo: 'pages';
+                      relationTo: "pages";
                     }
                   | {
                       value: string | Team;
-                      relationTo: 'teams';
+                      relationTo: "teams";
                     };
                 url: string;
                 label: string;
@@ -293,22 +293,22 @@ export interface Header {
               };
               id?: string;
               blockName?: string;
-              blockType: 'menu-link';
+              blockType: "menu-link";
             }
           | {
               name?: string;
               links?: {
                 link: {
-                  type?: 'reference' | 'custom';
+                  type?: "reference" | "custom";
                   newTab?: boolean;
                   reference:
                     | {
                         value: string | Page;
-                        relationTo: 'pages';
+                        relationTo: "pages";
                       }
                     | {
                         value: string | Team;
-                        relationTo: 'teams';
+                        relationTo: "teams";
                       };
                   url: string;
                   label: string;
@@ -317,7 +317,7 @@ export interface Header {
               }[];
               id?: string;
               blockName?: string;
-              blockType: 'menu-column';
+              blockType: "menu-column";
             }
         )[];
       };
