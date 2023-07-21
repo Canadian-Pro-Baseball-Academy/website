@@ -31,14 +31,6 @@ export const PAGE = `
             values {
               value
             }
-            forms {
-              title
-              description
-              formId
-              links {
-                link ${LINK_FIELDS()}
-              }
-            }
             previewTest
         }
         breadcrumbs {

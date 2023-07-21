@@ -205,7 +205,7 @@ export const Serialize: React.FC<{
             return (
               <p
                 key={i}
-                className="[&:not(:first-child)]:mt-4 text-lg font-medium"
+                className="[&:not(:first-child)]:mt-4 text-lg font-medium font-sans"
               >
                 <Serialize
                   content={node.children}
@@ -217,7 +217,7 @@ export const Serialize: React.FC<{
 
           default:
             return (
-              <p key={i}>
+              <p key={i} className="font-sans">
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
