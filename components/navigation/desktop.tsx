@@ -8,13 +8,14 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Dropdown } from "./dropdown";
-import { Single } from "./single";
+import { DesktopDropdown } from "./dropdown";
+import { DesktopSingle } from "./single";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const menuItems = {
-  single: Single,
-  dropdown: Dropdown,
+  single: DesktopSingle,
+  dropdown: DesktopDropdown,
 };
 
 export const MainNavLeft: React.FC<Header["mainMenu"]> = ({ items }) => {
@@ -50,7 +51,11 @@ export const MainNavRight = () => (
       <NavigationMenuItem>
         <Link href="/docs" legacyBehavior passHref>
           <NavigationMenuLink
-            className={(navigationMenuTriggerStyle(), buttonVariants())}
+            className={cn(
+              navigationMenuTriggerStyle(),
+              buttonVariants(),
+              "font-semibold"
+            )}
           >
             Join the Herd
           </NavigationMenuLink>

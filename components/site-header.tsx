@@ -6,7 +6,8 @@ import Link from "next/link";
 import { useScrollPosition } from "@/hooks/useScrollPosition";
 import { cn } from "@/lib/utils";
 import { Header } from "@/payload-types";
-import { MainNavLeft, MainNavRight } from "./main-nav";
+import { MainNavLeft, MainNavRight } from "./navigation/desktop";
+import { MobileNav } from "./navigation/mobile";
 
 export const SiteHeader: React.FC<Header> = ({ mainMenu, topBar }) => {
   const scrollPosition = useScrollPosition();
@@ -31,7 +32,9 @@ export const SiteHeader: React.FC<Header> = ({ mainMenu, topBar }) => {
       <div className="flex items-center gap-10 px-8 pl-2">
         <MainNavRight />
         {/* <SecondaryNav /> */}
-        {/* <MobileNav header={header} ages={ages} /> */}
+        <div className="lg:hidden">
+          <MobileNav {...mainMenu} />
+        </div>
       </div>
     </header>
   );
