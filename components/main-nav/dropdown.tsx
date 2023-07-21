@@ -23,7 +23,7 @@ const HighlightItem: React.FC<HighlightItem> = ({ highlightLink }) => {
     <li className="row-span-3 col-span-6">
       <NavigationMenuLink asChild>
         <PayloadLink
-          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+          className="font-semibold flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
           {...highlightLink}
         />
       </NavigationMenuLink>

@@ -7,6 +7,7 @@ import { draftMode } from "next/headers";
 import { request } from "@/lib/cms";
 import { HEADER } from "@/graphql/header";
 import { Header } from "@/payload-types";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
 
 export const metadata = {
   title: "Create Next App",
@@ -48,6 +49,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <SiteHeader {...header.Header} />
             <main className="flex-1">{children}</main>
           </div>
+          <TailwindIndicator />
           <PreviewBar />
         </body>
       </html>
