@@ -82,109 +82,115 @@ const generateHref = (args: GenerateSlugType) => {
   return "";
 };
 
-export const PayloadLink: React.FC<PayloadLinkType> = ({
-  type,
-  url,
-  newTab,
-  reference,
-  label,
-  description,
-  appearance,
-  size = "default",
-  children,
-  className,
-  onMouseEnter,
-  onMouseLeave,
-  fullWidth = false,
-  mobileFullWidth = false,
-}) => {
-  let href = generateHref({ type, url, reference });
+export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
+  (
+    {
+      type,
+      url,
+      newTab,
+      reference,
+      label,
+      description,
+      appearance,
+      size = "default",
+      children,
+      className,
+      onMouseEnter,
+      onMouseLeave,
+      fullWidth = false,
+      mobileFullWidth = false,
+    },
+    ref
+  ) => {
+    let href = generateHref({ type, url, reference });
 
-  if (!href) {
-    return (
-      <span
-        className={cn(
-          buttonVariants({ variant: appearance, size: size }),
-          className
-        )}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-      >
-        {label}
-        {children}
-      </span>
-    );
-  }
-
-  if (!appearance) {
-    const hrefIsLocal = ["tel:", "mailto:", "/"].some((prefix) =>
-      href.startsWith(prefix)
-    );
-
-    // XXX: This might not work due to env variables
-    if (!hrefIsLocal) {
-      try {
-        const objectURL = new URL(href);
-        if (objectURL.origin === process.env.NEXT_PUBLIC_SITE_URL) {
-          href = objectURL.href.replace(process.env.NEXT_PUBLIC_SITE_URL, "");
-        }
-      } catch (e) {
-        console.error(`Failed to format url: ${href}`, e); // eslint-disable-line no-console
-      }
+    if (!href) {
+      return (
+        <span
+          className={cn(
+            buttonVariants({ variant: appearance, size: size }),
+            className
+          )}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+        >
+          {label}
+          {children}
+        </span>
+      );
     }
 
-    const newTabProps = newTab
-      ? { target: "_blank", rel: "noopener noreferrer" }
-      : {};
+    if (!appearance) {
+      const hrefIsLocal = ["tel:", "mailto:", "/"].some((prefix) =>
+        href.startsWith(prefix)
+      );
 
-    if (href.indexOf("/") === 0) {
+      // XXX: This might not work due to env variables
+      if (!hrefIsLocal) {
+        try {
+          const objectURL = new URL(href);
+          if (objectURL.origin === process.env.NEXT_PUBLIC_SITE_URL) {
+            href = objectURL.href.replace(process.env.NEXT_PUBLIC_SITE_URL, "");
+          }
+        } catch (e) {
+          console.error(`Failed to format url: ${href}`, e); // eslint-disable-line no-console
+        }
+      }
+
+      const newTabProps = newTab
+        ? { target: "_blank", rel: "noopener noreferrer" }
+        : {};
+
+      if (href.indexOf("/") === 0) {
+        return (
+          <Link
+            href={href}
+            {...newTabProps}
+            className={className}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            prefetch={false}
+          >
+            {label && label}
+            {children && children}
+
+            {description && (
+              <p className="pt-2 text-sm leading-tight text-muted-foreground">
+                {description}
+              </p>
+            )}
+          </Link>
+        );
+      }
+
       return (
-        <Link
-          href={href}
+        <a
+          href={url}
           {...newTabProps}
           className={className}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
-          prefetch={false}
         >
           {label && label}
           {children && children}
-
-          {description && (
-            <p className="pt-2 text-sm leading-tight text-muted-foreground">
-              {description}
-            </p>
-          )}
-        </Link>
+        </a>
       );
     }
 
-    return (
-      <a
-        href={url}
-        {...newTabProps}
-        className={className}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-      >
-        {label && label}
-        {children && children}
-      </a>
-    );
+    const buttonProps: ButtonProps = {
+      newTab,
+      href,
+      appearance,
+      label,
+      description,
+      size,
+      onMouseEnter,
+      onMouseLeave,
+      fullWidth,
+      mobileFullWidth,
+    };
+
+    return <Button {...buttonProps} className={className} el="link" />;
   }
-
-  const buttonProps: ButtonProps = {
-    newTab,
-    href,
-    appearance,
-    label,
-    description,
-    size,
-    onMouseEnter,
-    onMouseLeave,
-    fullWidth,
-    mobileFullWidth,
-  };
-
-  return <Button {...buttonProps} className={className} el="link" />;
-};
+);
+PayloadLink.displayName = "PayloadLink";
