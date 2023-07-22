@@ -51,6 +51,7 @@ export type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   newTab?: boolean;
   label?: string;
   icon?: false | "arrow" | "x";
+  description?: string;
   fullWidth?: boolean;
   mobileFullWidth?: boolean;
   type?: LinkType;
@@ -106,7 +107,7 @@ const generateHref = (args: GenerateSlugType): string => {
 };
 
 const ButtonContent: React.FC<ButtonProps> = (props) => {
-  const { icon, label } = props;
+  const { icon, label, description } = props;
 
   const Icon = icon ? icons[icon] : null;
 
@@ -115,6 +116,7 @@ const ButtonContent: React.FC<ButtonProps> = (props) => {
       {label && <span>{label}</span>}
       {Icon && label && <div className="mr-4" />}
       {Icon && <Icon className="w-5 h-5" />}
+      {description && <p>{description}</p>}
     </React.Fragment>
   );
 };

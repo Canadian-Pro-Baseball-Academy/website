@@ -11,14 +11,14 @@ export interface Config {
     coaches: Coach;
     media: Media;
     pages: Page;
-    'registration-forms': RegistrationForm;
     teams: Team;
     users: User;
     redirects: Redirect;
   };
   globals: {
+    "site-settings": SiteSetting;
     footer: Footer;
-    'main-menu': MainMenu;
+    header: Header;
   };
 }
 export interface Coach {
@@ -47,7 +47,7 @@ export interface Coach {
   }[];
   updatedAt: string;
   createdAt: string;
-  _status?: 'draft' | 'published';
+  _status?: "draft" | "published";
 }
 export interface Media {
   id: string;
@@ -65,28 +65,27 @@ export interface Media {
 }
 export interface Page {
   id: string;
-  title: string;
   hero: {
-    type: 'default' | 'contentMedia' | 'form' | 'home' | 'registration';
+    type: "default" | "contentMedia" | "form" | "home" | "registration";
     richText?: {
       [k: string]: unknown;
     }[];
     links?: {
       link: {
-        type?: 'reference' | 'custom';
+        type?: "reference" | "custom";
         newTab?: boolean;
         reference:
           | {
               value: string | Page;
-              relationTo: 'pages';
+              relationTo: "pages";
             }
           | {
               value: string | Team;
-              relationTo: 'teams';
+              relationTo: "teams";
             };
         url: string;
         label: string;
-        appearance?: 'primary' | 'secondary';
+        appearance?: "primary" | "secondary";
       };
       id?: string;
     }[];
@@ -95,9 +94,15 @@ export interface Page {
       value: string;
       id?: string;
     }[];
-    forms?: string[] | RegistrationForm[];
     previewTest?: string;
   };
+  meta?: {
+    title?: string;
+    description?: string;
+    image?: string | Media;
+    tagline?: string;
+  };
+  title: string;
   slug?: string;
   parent?: string | Page;
   breadcrumbs?: {
@@ -108,7 +113,7 @@ export interface Page {
   }[];
   updatedAt: string;
   createdAt: string;
-  _status?: 'draft' | 'published';
+  _status?: "draft" | "published";
 }
 export interface Team {
   id: string;
@@ -121,59 +126,29 @@ export interface Team {
     lastName: string;
     number?: string;
     positions?: (
-      | 'pitcher'
-      | 'catcher'
-      | 'firstBase'
-      | 'secondBase'
-      | 'thirdBase'
-      | 'shortstop'
-      | 'middleInfield'
-      | 'cornerInfield'
-      | 'infield'
-      | 'outfield'
-      | 'utility'
+      | "pitcher"
+      | "catcher"
+      | "firstBase"
+      | "secondBase"
+      | "thirdBase"
+      | "shortstop"
+      | "middleInfield"
+      | "cornerInfield"
+      | "infield"
+      | "outfield"
+      | "utility"
     )[];
     homeTown?: string;
     id?: string;
   }[];
   updatedAt: string;
   createdAt: string;
-  _status?: 'draft' | 'published';
-}
-export interface RegistrationForm {
-  id: string;
-  title: string;
-  formId: number;
-  description?: {
-    [k: string]: unknown;
-  }[];
-  links?: {
-    link: {
-      type?: 'reference' | 'custom';
-      newTab?: boolean;
-      reference:
-        | {
-            value: string | Page;
-            relationTo: 'pages';
-          }
-        | {
-            value: string | Team;
-            relationTo: 'teams';
-          };
-      url: string;
-      label: string;
-      appearance?: 'primary' | 'ghost';
-    };
-    id?: string;
-  }[];
-  updatedAt: string;
-  createdAt: string;
-  _status?: 'draft' | 'published';
+  _status?: "draft" | "published";
 }
 export interface User {
   id: string;
   name?: string;
-  roles?: ('admin' | 'editor')[];
+  roles?: ("admin" | "editor")[];
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -189,17 +164,17 @@ export interface Redirect {
   id: string;
   from: string;
   to: {
-    type?: 'reference' | 'custom';
+    type?: "reference" | "custom";
     reference: {
       value: string | Page;
-      relationTo: 'pages';
+      relationTo: "pages";
     };
     url: string;
   };
   updatedAt: string;
   createdAt: string;
 }
-export interface Footer {
+export interface SiteSetting {
   id: string;
   socialLinks?: {
     facebook?: string;
@@ -207,20 +182,38 @@ export interface Footer {
     twitter?: string;
     github?: string;
   };
+  streetAddress?: string;
+  city?: string;
+  province?: string;
+  postalCode?: string;
+  country?: string;
+  email?: string;
+  phoneNumber?: string;
+  meta?: {
+    title?: string;
+    description?: string;
+    image?: string | Media;
+    tagline?: string;
+  };
+  updatedAt?: string;
+  createdAt?: string;
+}
+export interface Footer {
+  id: string;
   columns?: {
     label?: string;
     navItems?: {
       link: {
-        type?: 'reference' | 'custom';
+        type?: "reference" | "custom";
         newTab?: boolean;
         reference:
           | {
               value: string | Page;
-              relationTo: 'pages';
+              relationTo: "pages";
             }
           | {
               value: string | Team;
-              relationTo: 'teams';
+              relationTo: "teams";
             };
         url: string;
         label: string;
@@ -232,65 +225,105 @@ export interface Footer {
   updatedAt?: string;
   createdAt?: string;
 }
-export interface MainMenu {
+export interface Header {
   id: string;
-  right?: {
-    type?: 'single' | 'dropdown';
-    link?: {
-      type?: 'reference' | 'custom';
-      newTab?: boolean;
-      reference:
-        | {
-            value: string | Page;
-            relationTo: 'pages';
-          }
-        | {
-            value: string | Team;
-            relationTo: 'teams';
-          };
-      url: string;
+  topBar: {
+    richText?: {
+      [k: string]: unknown;
+    }[];
+  };
+  mainMenu: {
+    items: {
+      type?: "single" | "dropdown";
       label: string;
-    };
-    dropdownItems?: {
-      link: {
-        type?: 'reference' | 'custom';
+      link?: {
+        type?: "reference" | "custom";
         newTab?: boolean;
         reference:
           | {
               value: string | Page;
-              relationTo: 'pages';
+              relationTo: "pages";
             }
           | {
               value: string | Team;
-              relationTo: 'teams';
+              relationTo: "teams";
             };
         url: string;
-        label: string;
-        description?: string;
+      };
+      menu?: {
+        blocks?: (
+          | {
+              menuHighlightMedia?: string | Media;
+              link: {
+                type?: "reference" | "custom";
+                newTab?: boolean;
+                reference:
+                  | {
+                      value: string | Page;
+                      relationTo: "pages";
+                    }
+                  | {
+                      value: string | Team;
+                      relationTo: "teams";
+                    };
+                url: string;
+                label: string;
+                description?: string;
+              };
+              id?: string;
+              blockName?: string;
+              blockType: "menu-highlight";
+            }
+          | {
+              link: {
+                type?: "reference" | "custom";
+                newTab?: boolean;
+                reference:
+                  | {
+                      value: string | Page;
+                      relationTo: "pages";
+                    }
+                  | {
+                      value: string | Team;
+                      relationTo: "teams";
+                    };
+                url: string;
+                label: string;
+                description?: string;
+              };
+              id?: string;
+              blockName?: string;
+              blockType: "menu-link";
+            }
+          | {
+              name?: string;
+              links?: {
+                link: {
+                  type?: "reference" | "custom";
+                  newTab?: boolean;
+                  reference:
+                    | {
+                        value: string | Page;
+                        relationTo: "pages";
+                      }
+                    | {
+                        value: string | Team;
+                        relationTo: "teams";
+                      };
+                  url: string;
+                  label: string;
+                };
+                id?: string;
+              }[];
+              id?: string;
+              blockName?: string;
+              blockType: "menu-column";
+            }
+        )[];
       };
       id?: string;
     }[];
-    id?: string;
-  }[];
-  left?: {
-    link: {
-      type?: 'reference' | 'custom';
-      newTab?: boolean;
-      reference:
-        | {
-            value: string | Page;
-            relationTo: 'pages';
-          }
-        | {
-            value: string | Team;
-            relationTo: 'teams';
-          };
-      url: string;
-      label: string;
-      appearance?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link';
-    };
-    id?: string;
-  }[];
+  };
   updatedAt?: string;
   createdAt?: string;
 }
