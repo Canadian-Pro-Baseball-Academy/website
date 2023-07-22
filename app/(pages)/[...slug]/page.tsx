@@ -48,8 +48,6 @@ const Page = async ({ params: { slug } }: { params: { slug: string[] } }) => {
     <React.Fragment>
       <ApiTest data={page} />
       <Hero page={page} />
-      <p>{page.title}</p>
-      <h1>{page.hero?.previewTest}</h1>
     </React.Fragment>
   )
 }
