@@ -50,7 +50,7 @@ export const RosterTable: React.FC<Team> = ({ name, roster }) => {
 
   return (
     <section className="container py-16">
-      <h2 className="font-heading scroll-m-20 font-bold text-3xl tracking-tight transition-colors first:mt-0">
+      <h2 className="scroll-m-20 font-heading text-3xl font-bold tracking-tight transition-colors first:mt-0">
         Team Roster
       </h2>
       <Table className="mt-6">
