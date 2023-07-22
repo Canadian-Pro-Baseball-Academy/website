@@ -150,7 +150,7 @@ export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
             {...newTabProps}
             // TODO: Should be removed, find better way to reset page
             onClick={() => {
-              router.reload()
+              // router.reload()
             }}
             className={className}
             onMouseEnter={onMouseEnter}

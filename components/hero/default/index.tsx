@@ -1,9 +1,5 @@
 import React from "react"
-import Link from "next/link"
 import { Page } from "@/payload-types"
-import { ArrowRightIcon } from "lucide-react"
-import Marquee from "react-fast-marquee"
-import { Balancer } from "react-wrap-balancer"
 
 import { cn } from "@/lib/utils"
 import { PayloadLink } from "@/components/cms-link"
@@ -44,7 +40,7 @@ export const DefaultHero: React.FC<Page["hero"]> = ({
           <Gutter>
             <div
               className={cn(
-                "flex flex-col justify-center py-20 text-background",
+                "flex flex-col justify-center pb-20 pt-40 text-background",
                 "w-3/5",
                 "2xl:-mx-32 3xl:-mx-48"
               )}

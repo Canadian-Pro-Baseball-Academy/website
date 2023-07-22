@@ -48,7 +48,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             fontHeading.variable
           )}
         >
-          <div className="relative mb-96 flex min-h-screen flex-col pb-96">
+          <div className="relative flex min-h-screen flex-col">
             <SiteHeader {...header.Header} />
             <main className="flex-1">{children}</main>
           </div>
