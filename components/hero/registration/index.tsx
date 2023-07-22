@@ -78,10 +78,10 @@
 //   );
 // };
 
-import React from "react";
+import React from "react"
 
 const RegistrationHero = () => {
-  return <div>RegistrationHero</div>;
-};
+  return <div>RegistrationHero</div>
+}
 
-export default RegistrationHero;
+export default RegistrationHero

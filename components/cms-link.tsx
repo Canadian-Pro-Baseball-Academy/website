@@ -1,60 +1,62 @@
-"use client";
+"use client"
 
-import React from "react";
-import Link from "next/link";
+import React from "react"
+import Link from "next/link"
+import router from "next/router"
+import { Page, Team } from "@/payload-types"
 
-import { Page, Team } from "@/payload-types";
-import { cn } from "@/lib/utils";
-import { Button, ButtonProps, buttonVariants } from "./ui/button";
+import { cn } from "@/lib/utils"
+
+import { Button, ButtonProps, buttonVariants } from "./ui/button"
 
 type PageReference = {
-  value: string | Page;
-  relationTo: "pages";
-};
+  value: string | Page
+  relationTo: "pages"
+}
 
 type TeamsReference = {
-  value: string | Team;
-  relationTo: "teams";
-};
+  value: string | Team
+  relationTo: "teams"
+}
 
-export type LinkType = "reference" | "custom";
-export type Reference = PageReference | TeamsReference;
+export type LinkType = "reference" | "custom"
+export type Reference = PageReference | TeamsReference
 
 export type PayloadLinkType = {
-  type?: LinkType;
-  newTab?: boolean;
-  reference?: Reference;
-  url?: string;
-  label?: string;
-  description?: string;
+  type?: LinkType
+  newTab?: boolean
+  reference?: Reference
+  url?: string
+  label?: string
+  description?: string
   appearance?:
     | "primary"
     | "secondary"
     | "destructive"
     | "outline"
     | "ghost"
-    | "link";
-  size?: "sm" | "lg" | "icon" | "default";
-  children?: React.ReactNode;
-  fullWidth?: boolean;
-  mobileFullWidth?: boolean;
-  className?: string;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
-  buttonProps?: any; // TODO: type this
-};
+    | "link"
+  size?: "sm" | "lg" | "icon" | "default"
+  children?: React.ReactNode
+  fullWidth?: boolean
+  mobileFullWidth?: boolean
+  className?: string
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
+  buttonProps?: any // TODO: type this
+}
 
 type GenerateSlugType = {
-  type?: LinkType;
-  url?: string;
-  reference?: Reference;
-};
+  type?: LinkType
+  url?: string
+  reference?: Reference
+}
 
 const generateHref = (args: GenerateSlugType) => {
-  const { reference, url, type } = args;
+  const { reference, url, type } = args
 
   if ((type === "custom" || type === undefined) && url) {
-    return url;
+    return url
   }
 
   if (
@@ -63,24 +65,24 @@ const generateHref = (args: GenerateSlugType) => {
     typeof reference.value !== "string"
   ) {
     if (reference.relationTo === "pages") {
-      const value = reference.value as Page;
-      const breadcrumbs = value?.breadcrumbs;
+      const value = reference.value as Page
+      const breadcrumbs = value?.breadcrumbs
       const hasBreadcrumbs =
-        breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0;
+        breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0
       if (hasBreadcrumbs) {
-        return breadcrumbs?.[breadcrumbs.length - 1]?.url as string;
+        return breadcrumbs?.[breadcrumbs.length - 1]?.url as string
       }
     }
 
     if (reference.relationTo === "teams") {
-      return `/rosters/${reference.value.teamsnapId}`;
+      return `/rosters/${reference.value.teamsnapId}`
     }
 
-    return `/${reference.relationTo}/${reference.value.slug}`;
+    return `/${reference.relationTo}/${reference.value.slug}`
   }
 
-  return "";
-};
+  return ""
+}
 
 export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
   (
@@ -102,7 +104,7 @@ export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
     },
     ref
   ) => {
-    let href = generateHref({ type, url, reference });
+    let href = generateHref({ type, url, reference })
 
     if (!href) {
       return (
@@ -117,35 +119,39 @@ export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
           {label}
           {children}
         </span>
-      );
+      )
     }
 
     if (!appearance) {
       const hrefIsLocal = ["tel:", "mailto:", "/"].some((prefix) =>
         href.startsWith(prefix)
-      );
+      )
 
       // XXX: This might not work due to env variables
       if (!hrefIsLocal) {
         try {
-          const objectURL = new URL(href);
+          const objectURL = new URL(href)
           if (objectURL.origin === process.env.NEXT_PUBLIC_SITE_URL) {
-            href = objectURL.href.replace(process.env.NEXT_PUBLIC_SITE_URL, "");
+            href = objectURL.href.replace(process.env.NEXT_PUBLIC_SITE_URL, "")
           }
         } catch (e) {
-          console.error(`Failed to format url: ${href}`, e); // eslint-disable-line no-console
+          console.error(`Failed to format url: ${href}`, e) // eslint-disable-line no-console
         }
       }
 
       const newTabProps = newTab
         ? { target: "_blank", rel: "noopener noreferrer" }
-        : {};
+        : {}
 
       if (href.indexOf("/") === 0) {
         return (
           <Link
             href={href}
             {...newTabProps}
+            // TODO: Should be removed, find better way to reset page
+            onClick={() => {
+              router.reload()
+            }}
             className={className}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
@@ -160,7 +166,7 @@ export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
               </p>
             )}
           </Link>
-        );
+        )
       }
 
       return (
@@ -174,7 +180,7 @@ export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
           {label && label}
           {children && children}
         </a>
-      );
+      )
     }
 
     const buttonProps: ButtonProps = {
@@ -188,9 +194,9 @@ export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
       onMouseLeave,
       fullWidth,
       mobileFullWidth,
-    };
+    }
 
-    return <Button {...buttonProps} className={className} el="link" />;
+    return <Button {...buttonProps} className={className} el="link" />
   }
-);
-PayloadLink.displayName = "PayloadLink";
+)
+PayloadLink.displayName = "PayloadLink"

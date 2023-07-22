@@ -1,17 +1,19 @@
-"use client";
+"use client"
 
-import React from "react";
-import { buttonVariants } from "../ui/button";
-import { cn } from "@/lib/utils";
+import React from "react"
+
+import { cn } from "@/lib/utils"
+
+import { buttonVariants } from "../ui/button"
 
 interface IPreviewBarProps {
-  preview: boolean;
+  preview: boolean
 }
 
 const PreviewBarClient = ({ preview = false }: IPreviewBarProps) => {
   return (
     <div
-      className={cn("fixed bottom-0 left-0 ml-6 mb-6 z-10", {
+      className={cn("fixed bottom-0 left-0 z-10 mb-6 ml-6", {
         hidden: !preview,
       })}
     >
@@ -21,14 +23,14 @@ const PreviewBarClient = ({ preview = false }: IPreviewBarProps) => {
           "shadow-md"
         )}
         onClick={async () => {
-          await fetch("/api/disable-draft-mode");
-          window.location.reload();
+          await fetch("/api/disable-draft-mode")
+          window.location.reload()
         }}
       >
         Exit Preview
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default PreviewBarClient;
+export default PreviewBarClient

@@ -1,25 +1,29 @@
-"use client";
+"use client"
 
-import React from "react";
-import { Icons } from "./icons";
-import Link from "next/link";
-import { useScrollPosition } from "@/hooks/useScrollPosition";
-import { cn } from "@/lib/utils";
-import { Header } from "@/payload-types";
-import { MainNavLeft, MainNavRight } from "./navigation/desktop";
-import { MobileNav } from "./navigation/mobile";
+import React from "react"
+import Link from "next/link"
+import { Header } from "@/payload-types"
+
+import { cn } from "@/lib/utils"
+import { useScrollPosition } from "@/hooks/useScrollPosition"
+
+import { Gutter } from "./gutter"
+import { Icons } from "./icons"
+import { MainNavLeft, MainNavRight } from "./navigation/desktop"
+import { MobileNav } from "./navigation/mobile"
 
 export const SiteHeader: React.FC<Header> = ({ mainMenu, topBar }) => {
-  const scrollPosition = useScrollPosition();
+  const scrollPosition = useScrollPosition()
 
   return (
     <header
       className={cn(
-        "fixed top-0 z-40 flex w-full justify-between bg-transparent transition-colors duration-300 py-2",
+        "fixed top-0 z-40 flex w-full justify-between bg-transparent py-2 transition-colors duration-300",
+        "px-5 md:px-10 lg:px-20 2xl:px-32 3xl:px-48",
         scrollPosition > 50 ? "bg-shaded/90 backdrop-blur-md" : "bg-transparent"
       )}
     >
-      <div className="flex items-center gap-4 px-8 pr-2 xl:gap-10">
+      <div className="flex items-center gap-4 xl:gap-10">
         <Link href="/" className="flex items-center gap-2">
           <Icons.logo className="h-16 w-16" />
           <div className="text-background lg:hidden xl:block">
@@ -29,7 +33,7 @@ export const SiteHeader: React.FC<Header> = ({ mainMenu, topBar }) => {
         </Link>
         <MainNavLeft {...mainMenu} />
       </div>
-      <div className="flex items-center gap-10 px-8 pl-2">
+      <div className="flex items-center gap-10">
         <MainNavRight />
         {/* <SecondaryNav /> */}
         <div className="lg:hidden">
@@ -37,5 +41,5 @@ export const SiteHeader: React.FC<Header> = ({ mainMenu, topBar }) => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}

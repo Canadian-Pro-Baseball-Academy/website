@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
+import { Page } from "@/payload-types"
 
-import { Page } from "@/payload-types";
-import { HomeHero } from "./home";
-import { DefaultHero } from "./default";
-import { ContentMediaHero } from "./content-media";
+import { ContentMediaHero } from "./content-media"
+import { DefaultHero } from "./default"
+import { HomeHero } from "./home"
 
 const heroes = {
   default: DefaultHero,
@@ -11,10 +11,10 @@ const heroes = {
   form: DefaultHero,
   registration: HomeHero,
   home: HomeHero,
-};
+}
 
 export const Hero: React.FC<{
-  page: Page;
+  page: Page
 }> = (props) => {
   const {
     page: {
@@ -22,13 +22,13 @@ export const Hero: React.FC<{
       breadcrumbs,
       hero: { type },
     },
-  } = props;
+  } = props
 
-  const HeroToRender = heroes[type] as any;
+  const HeroToRender = heroes[type] as any
 
   if (HeroToRender) {
-    return <HeroToRender {...hero} breadcrumbs={breadcrumbs} />;
+    return <HeroToRender {...hero} breadcrumbs={breadcrumbs} />
   }
 
-  return null;
-};
+  return null
+}

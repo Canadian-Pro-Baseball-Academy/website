@@ -1,22 +1,22 @@
-import { draftMode } from "next/headers";
-import { redirect } from "next/navigation";
+import { draftMode } from "next/headers"
+import { redirect } from "next/navigation"
 
 export async function GET(
   req: Request & {
     cookies: {
       get: (name: string) => {
-        value: string;
-      };
-    };
+        value: string
+      }
+    }
   }
 ): Promise<Response> {
-  const payloadToken = req.cookies.get("payload-token")?.value;
-  const { searchParams } = new URL(req.url);
-  const slug = searchParams.get("redirect");
-  const secret = searchParams.get("secret");
+  const payloadToken = req.cookies.get("payload-token")?.value
+  const { searchParams } = new URL(req.url)
+  const slug = searchParams.get("redirect")
+  const secret = searchParams.get("secret")
 
   if (!slug) {
-    return new Response("No URL provided", { status: 404 });
+    return new Response("No URL provided", { status: 404 })
   }
 
   // TODO: Enable authentication for preview mode
@@ -51,10 +51,10 @@ export async function GET(
   // }
 
   if (secret !== process.env.PAYLOAD_PUBLIC_DRAFT_SECRET) {
-    return new Response("Invalid token", { status: 401 });
+    return new Response("Invalid token", { status: 401 })
   }
 
-  draftMode().enable();
+  draftMode().enable()
 
-  redirect(slug);
+  redirect(slug)
 }

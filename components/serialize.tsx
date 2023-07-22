@@ -1,40 +1,42 @@
-import React from "react";
-import escapeHTML from "escape-html";
-import { cn } from "@/lib/utils";
-import { Balancer } from "react-wrap-balancer";
-import { Highlight } from "./highlight";
+import React from "react"
+import escapeHTML from "escape-html"
+import { Balancer } from "react-wrap-balancer"
+
+import { cn } from "@/lib/utils"
+
+import { Highlight } from "./highlight"
 
 export type Node = {
-  type: string;
+  type: string
   value?: {
-    url: string;
-    alt: string;
-  };
-  children?: Node[];
-  url?: string;
-  [key: string]: unknown;
-  newTab?: boolean;
-};
+    url: string
+    alt: string
+  }
+  children?: Node[]
+  url?: string
+  [key: string]: unknown
+  newTab?: boolean
+}
 
 export type CustomRenderers = {
   [key: string]: (args: {
-    node: Node;
-    Serialize: SerializeFunction;
-    index: number;
-  }) => JSX.Element; // eslint-disable-line
-};
+    node: Node
+    Serialize: SerializeFunction
+    index: number
+  }) => JSX.Element // eslint-disable-line
+}
 
 type SerializeFunction = React.FC<{
-  content?: Node[];
-  customRenderers?: CustomRenderers;
-}>;
+  content?: Node[]
+  customRenderers?: CustomRenderers
+}>
 
 const isText = (value: any): boolean =>
-  typeof value === "object" && value !== null && typeof value.text === "string";
+  typeof value === "object" && value !== null && typeof value.text === "string"
 
 export const Serialize: React.FC<{
-  content?: Node[];
-  customRenderers?: CustomRenderers;
+  content?: Node[]
+  customRenderers?: CustomRenderers
 }> = ({ content, customRenderers }) => {
   return (
     <React.Fragment>
@@ -43,29 +45,29 @@ export const Serialize: React.FC<{
           let text = (
             // @ts-ignore
             <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
-          );
+          )
 
           if (node.bold) {
-            text = <strong key={i}>{text}</strong>;
+            text = <strong key={i}>{text}</strong>
           }
 
           if (node.italic) {
-            text = <em key={i}>{text}</em>;
+            text = <em key={i}>{text}</em>
           }
 
           if (node.underline) {
             text = (
               <span
-                className="underline underline-offset-8 decoration-2 decoration-accent text-orange-100"
+                className="text-orange-100 underline decoration-accent decoration-2 underline-offset-8"
                 key={i}
               >
                 {text}
               </span>
-            );
+            )
           }
 
           if (node.highlight) {
-            text = <Highlight key={i} {...node} />;
+            text = <Highlight key={i} {...node} />
           }
 
           if (node.strikethrough) {
@@ -73,30 +75,30 @@ export const Serialize: React.FC<{
               <span style={{ textDecoration: "line-through" }} key={i}>
                 {text}
               </span>
-            );
+            )
           }
 
-          return <React.Fragment key={i}>{text}</React.Fragment>;
+          return <React.Fragment key={i}>{text}</React.Fragment>
         }
 
-        if (!node) return null;
+        if (!node) return null
 
         if (
           customRenderers &&
           customRenderers[node.type] &&
           typeof customRenderers[node.type] === "function"
         ) {
-          return customRenderers[node.type]({ node, Serialize, index: i });
+          return customRenderers[node.type]({ node, Serialize, index: i })
         }
 
         switch (node.type) {
           case "br":
-            return <br key={i} />;
+            return <br key={i} />
           case "h1":
             return (
               <h1
                 key={i}
-                className="font-heading scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
+                className="scroll-m-20 font-heading text-4xl font-extrabold tracking-tight lg:text-5xl"
               >
                 <Balancer>
                   <Serialize
@@ -105,7 +107,7 @@ export const Serialize: React.FC<{
                   />
                 </Balancer>
               </h1>
-            );
+            )
           case "h2":
             return (
               <h2 key={i}>
@@ -114,7 +116,7 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </h2>
-            );
+            )
           case "h3":
             return (
               <h3 key={i}>
@@ -123,7 +125,7 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </h3>
-            );
+            )
           case "h4":
             return (
               <h4 key={i}>
@@ -132,7 +134,7 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </h4>
-            );
+            )
           case "h5":
             return (
               <h5 key={i}>
@@ -141,7 +143,7 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </h5>
-            );
+            )
           case "h6":
             return (
               <h6 key={i}>
@@ -150,7 +152,7 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </h6>
-            );
+            )
           case "quote":
             return (
               <blockquote key={i}>
@@ -159,7 +161,7 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </blockquote>
-            );
+            )
           case "ul":
             return (
               <ul key={i}>
@@ -168,7 +170,7 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </ul>
-            );
+            )
           case "ol":
             return (
               <ol key={i}>
@@ -177,7 +179,7 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </ol>
-            );
+            )
           case "li":
             return (
               <li key={i}>
@@ -186,7 +188,7 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </li>
-            );
+            )
 
           case "kicker":
             return (
@@ -199,20 +201,20 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </p>
-            );
+            )
 
           case "large-body": {
             return (
               <p
                 key={i}
-                className="[&:not(:first-child)]:mt-4 text-lg font-medium font-sans"
+                className="font-sans text-lg font-medium [&:not(:first-child)]:mt-4"
               >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
                 />
               </p>
-            );
+            )
           }
 
           default:
@@ -223,9 +225,9 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </p>
-            );
+            )
         }
       })}
     </React.Fragment>
-  );
-};
+  )
+}

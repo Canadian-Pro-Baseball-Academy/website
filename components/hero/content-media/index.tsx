@@ -1,10 +1,11 @@
-import { PayloadLink } from "@/components/cms-link";
-import { Gutter } from "@/components/gutter";
-import { Media } from "@/components/media";
-import { RichText } from "@/components/rich-text";
-import { cn } from "@/lib/utils";
-import { Page } from "@/payload-types";
-import React from "react";
+import React from "react"
+import { Page } from "@/payload-types"
+
+import { cn } from "@/lib/utils"
+import { PayloadLink } from "@/components/cms-link"
+import { Gutter } from "@/components/gutter"
+import { Media } from "@/components/media"
+import { RichText } from "@/components/rich-text"
 
 export const ContentMediaHero: React.FC<Page["hero"]> = ({
   richText,
@@ -47,5 +48,5 @@ export const ContentMediaHero: React.FC<Page["hero"]> = ({
         </div>
       </Gutter>
     </section>
-  );
-};
+  )
+}

@@ -1,14 +1,15 @@
-import { Media } from "@/components/media";
-import { RichText } from "@/components/rich-text";
-import { cn } from "@/lib/utils";
-import { Page } from "@/payload-types";
-import React from "react";
-import { Balancer } from "react-wrap-balancer";
-import Marquee from "react-fast-marquee";
-import { PayloadLink } from "@/components/cms-link";
-import { ArrowRightIcon } from "lucide-react";
-import Link from "next/link";
-import { Gutter } from "@/components/gutter";
+import React from "react"
+import Link from "next/link"
+import { Page } from "@/payload-types"
+import { ArrowRightIcon } from "lucide-react"
+import Marquee from "react-fast-marquee"
+import { Balancer } from "react-wrap-balancer"
+
+import { cn } from "@/lib/utils"
+import { PayloadLink } from "@/components/cms-link"
+import { Gutter } from "@/components/gutter"
+import { Media } from "@/components/media"
+import { RichText } from "@/components/rich-text"
 
 export const HomeHero: React.FC<Page["hero"]> = ({
   richText,
@@ -23,7 +24,7 @@ export const HomeHero: React.FC<Page["hero"]> = ({
         {/* Media Component */}
         <div
           className={cn(
-            "absolute z-[1] inset-0 overflow-hidden h-3/4-screen",
+            "absolute inset-0 z-[1] h-3/4-screen overflow-hidden",
             "after:absolute after:inset-0 after:z-[1] after:bg-primary/75"
           )}
         >
@@ -33,7 +34,7 @@ export const HomeHero: React.FC<Page["hero"]> = ({
               fill
               resource={media}
               className={cn(
-                "relative pointer-events-none h-3/4-screen saturate-0"
+                "pointer-events-none relative h-3/4-screen saturate-0"
               )}
               style={{ objectFit: "cover" }}
             />
@@ -47,13 +48,13 @@ export const HomeHero: React.FC<Page["hero"]> = ({
         <Gutter>
           <div
             className={cn(
-              "flex flex-col h-3/4-screen justify-center text-background",
+              "flex h-3/4-screen flex-col justify-center text-background",
               "w-3/5",
               "2xl:-mx-32 3xl:-mx-48"
             )}
           >
             <RichText
-              className={cn("[&>h1]:text-7xl [&>p]:max-w-[65ch] mt-4")}
+              className={cn("mt-4 [&>h1]:text-7xl [&>p]:max-w-[65ch]")}
               content={richText}
             />
             {/* Buttons */}
@@ -89,5 +90,5 @@ export const HomeHero: React.FC<Page["hero"]> = ({
         </Marquee>
       )} */}
     </section>
-  );
-};
+  )
+}

@@ -1,5 +1,5 @@
-import { LINK_FIELDS } from "./links";
-import { MEDIA_FIELDS } from "./media";
+import { LINK_FIELDS } from "./links"
+import { MEDIA_FIELDS } from "./media"
 
 export const HEADER = `
   query Header {
@@ -48,4 +48,4 @@ export const HEADER = `
       }
     }
   }
-`;
+`

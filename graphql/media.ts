@@ -16,4 +16,4 @@ export const MEDIA_FIELDS = `{
       width
       height
     }
-  }`;
+  }`

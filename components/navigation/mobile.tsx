@@ -1,7 +1,13 @@
-"use client";
+"use client"
 
-import { Header } from "@/payload-types";
-import React from "react";
+import React from "react"
+import Link from "next/link"
+import { Header } from "@/payload-types"
+
+import { cn } from "@/lib/utils"
+import { Accordion } from "@/components/ui/accordion"
+import { buttonVariants } from "@/components/ui/button"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   Sheet,
   SheetClose,
@@ -9,22 +15,18 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { Icons } from "../icons";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Accordion } from "@/components/ui/accordion";
-import { MobileDropdown } from "./dropdown";
-import { NavigationMenu } from "../ui/navigation-menu";
-import { MobileSingle } from "./single";
+} from "@/components/ui/sheet"
+
+import { Icons } from "../icons"
+import { NavigationMenu } from "../ui/navigation-menu"
+import { MobileDropdown } from "./dropdown"
+import { MobileSingle } from "./single"
 
 export const MobileNav: React.FC<Header["mainMenu"]> = ({ items }) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
 
-  const accordianItems = items.filter((item) => item.type === "dropdown");
-  const singleItems = items.filter((item) => item.type === "single");
+  const accordianItems = items.filter((item) => item.type === "dropdown")
+  const singleItems = items.filter((item) => item.type === "single")
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -34,7 +36,7 @@ export const MobileNav: React.FC<Header["mainMenu"]> = ({ items }) => {
         <Icons.menu className="h-6 w-6 text-background" />
         <span className="sr-only">Menu</span>
       </SheetTrigger>
-      <SheetContent side="top" className="flex flex-col pt-0 h-4/5">
+      <SheetContent side="top" className="flex h-4/5 flex-col pt-0">
         {/* Mobile Header */}
         <SheetHeader className="flex flex-row items-center justify-between gap-4 py-2 xl:gap-10">
           <Link href="/" className="flex items-center gap-2">
@@ -56,26 +58,26 @@ export const MobileNav: React.FC<Header["mainMenu"]> = ({ items }) => {
         </SheetHeader>
 
         <ScrollArea className="flex-1">
-          <NavigationMenu className="w-full block max-w-full">
+          <NavigationMenu className="block w-full max-w-full">
             <Accordion type="multiple">
               {accordianItems.map((item, index) => {
-                return <MobileDropdown key={index} {...item} />;
+                return <MobileDropdown key={index} {...item} />
               })}
             </Accordion>
             <ul>
               {singleItems.map((item, index) => {
-                return <MobileSingle key={index} {...item} />;
+                return <MobileSingle key={index} {...item} />
               })}
             </ul>
           </NavigationMenu>
         </ScrollArea>
 
-        <SheetFooter className="flex items-center justify-end py-2 gap-2">
+        <SheetFooter className="flex items-center justify-end gap-2 py-2">
           <Link
             href="/schedule"
             className={buttonVariants({ variant: "ghost", size: "lg" })}
             onClick={() => {
-              setOpen?.(false);
+              setOpen?.(false)
             }}
           >
             Game Schedule
@@ -84,7 +86,7 @@ export const MobileNav: React.FC<Header["mainMenu"]> = ({ items }) => {
             href="/schedule"
             className={buttonVariants({ variant: "primary", size: "lg" })}
             onClick={() => {
-              setOpen?.(false);
+              setOpen?.(false)
             }}
           >
             Join the Herd
@@ -92,5 +94,5 @@ export const MobileNav: React.FC<Header["mainMenu"]> = ({ items }) => {
         </SheetFooter>
       </SheetContent>
     </Sheet>
-  );
-};
+  )
+}
