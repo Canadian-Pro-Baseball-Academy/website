@@ -1,18 +1,19 @@
-import { Header } from "@/payload-types";
-import React from "react";
+import React from "react"
+import { Header } from "@/payload-types"
+
+import { cn } from "@/lib/utils"
 import {
   NavigationMenuItem,
   NavigationMenuLink,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { PayloadLink } from "@/components/cms-link";
-import { cn } from "@/lib/utils";
+} from "@/components/ui/navigation-menu"
+import { PayloadLink } from "@/components/cms-link"
 
 export const DesktopSingle: React.FC<Header["mainMenu"]["items"][0]> = ({
   label,
   link,
 }) => {
-  if (!link) return null;
+  if (!link) return null
 
   return (
     <NavigationMenuItem>
@@ -22,14 +23,14 @@ export const DesktopSingle: React.FC<Header["mainMenu"]["items"][0]> = ({
         </PayloadLink>
       </NavigationMenuLink>
     </NavigationMenuItem>
-  );
-};
+  )
+}
 
 export const MobileSingle: React.FC<Header["mainMenu"]["items"][0]> = ({
   label,
   link,
 }) => {
-  if (!link) return null;
+  if (!link) return null
 
   return (
     <NavigationMenuItem>
@@ -45,5 +46,5 @@ export const MobileSingle: React.FC<Header["mainMenu"]["items"][0]> = ({
         </PayloadLink>
       </NavigationMenuLink>
     </NavigationMenuItem>
-  );
-};
+  )
+}

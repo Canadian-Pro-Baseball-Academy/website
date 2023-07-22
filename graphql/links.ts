@@ -1,7 +1,7 @@
 interface Args {
-  disableLabel?: true;
-  disableAppearance?: true;
-  enableDescription?: true;
+  disableLabel?: true
+  disableAppearance?: true
+  enableDescription?: true
 }
 
 export const LINK_FIELDS = ({
@@ -28,4 +28,4 @@ export const LINK_FIELDS = ({
         }
       }
     }
-  }`;
+  }`

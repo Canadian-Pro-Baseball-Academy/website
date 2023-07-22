@@ -1,13 +1,14 @@
-import { cn } from "@/lib/utils";
-import React from "react";
+import React from "react"
+
+import { cn } from "@/lib/utils"
 
 type IGutter = {
-  children: React.ReactNode;
-  className?: string;
-  disableMobile?: boolean;
-  leftGutter?: boolean;
-  rightGutter?: boolean;
-};
+  children: React.ReactNode
+  className?: string
+  disableMobile?: boolean
+  leftGutter?: boolean
+  rightGutter?: boolean
+}
 
 export const Gutter: React.FC<IGutter> = ({
   children,
@@ -26,5 +27,5 @@ export const Gutter: React.FC<IGutter> = ({
     >
       {children}
     </div>
-  );
-};
+  )
+}

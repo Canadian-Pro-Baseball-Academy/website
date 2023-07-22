@@ -1,13 +1,14 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react"
+import Link from "next/link"
+import { Page } from "@/payload-types"
+import { cva, type VariantProps } from "class-variance-authority"
 
-import { cn } from "@/lib/utils";
-import { LinkType, Reference } from "../cms-link";
-import { Icons } from "../icons";
-import { Page } from "@/payload-types";
-import Link from "next/link";
+import { cn } from "@/lib/utils"
+
+import { LinkType, Reference } from "../cms-link"
+import { Icons } from "../icons"
 
 export const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -36,7 +37,7 @@ export const buttonVariants = cva(
       size: "default",
     },
   }
-);
+)
 
 export type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   appearance?:
@@ -45,40 +46,40 @@ export type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
     | "destructive"
     | "outline"
     | "ghost"
-    | "link";
-  el?: "button" | "link" | "a" | "div";
-  href?: string;
-  newTab?: boolean;
-  label?: string;
-  icon?: false | "arrow" | "x";
-  description?: string;
-  fullWidth?: boolean;
-  mobileFullWidth?: boolean;
-  type?: LinkType;
-  reference?: Reference;
-  htmlButtonType?: "button" | "submit";
-  size?: "sm" | "lg" | "icon" | "default";
-  disabled?: boolean;
-  disableLineBlip?: boolean;
-  url?: string;
-};
+    | "link"
+  el?: "button" | "link" | "a" | "div"
+  href?: string
+  newTab?: boolean
+  label?: string
+  icon?: false | "arrow" | "x"
+  description?: string
+  fullWidth?: boolean
+  mobileFullWidth?: boolean
+  type?: LinkType
+  reference?: Reference
+  htmlButtonType?: "button" | "submit"
+  size?: "sm" | "lg" | "icon" | "default"
+  disabled?: boolean
+  disableLineBlip?: boolean
+  url?: string
+}
 
 const icons = {
   arrow: Icons.arrow,
   x: Icons.close,
-};
+}
 
 type GenerateSlugType = {
-  type?: LinkType;
-  url?: string;
-  reference?: Reference;
-};
+  type?: LinkType
+  url?: string
+  reference?: Reference
+}
 
 const generateHref = (args: GenerateSlugType): string => {
-  const { reference, url, type } = args;
+  const { reference, url, type } = args
 
   if ((type === "custom" || type === undefined) && url) {
-    return url;
+    return url
   }
 
   if (
@@ -87,47 +88,47 @@ const generateHref = (args: GenerateSlugType): string => {
     typeof reference.value !== "string"
   ) {
     if (reference.relationTo === "pages") {
-      const value = reference.value as Page;
-      const breadcrumbs = value?.breadcrumbs;
+      const value = reference.value as Page
+      const breadcrumbs = value?.breadcrumbs
       const hasBreadcrumbs =
-        breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0;
+        breadcrumbs && Array.isArray(breadcrumbs) && breadcrumbs.length > 0
       if (hasBreadcrumbs) {
-        return breadcrumbs?.[breadcrumbs.length]?.url as string;
+        return breadcrumbs?.[breadcrumbs.length]?.url as string
       }
     }
 
     if (reference.relationTo === "teams") {
-      return `/teams/${reference.value.teamsnapId}`;
+      return `/teams/${reference.value.teamsnapId}`
     }
 
-    return `/${reference.relationTo}/${reference.value.slug}`;
+    return `/${reference.relationTo}/${reference.value.slug}`
   }
 
-  return "";
-};
+  return ""
+}
 
 const ButtonContent: React.FC<ButtonProps> = (props) => {
-  const { icon, label, description } = props;
+  const { icon, label, description } = props
 
-  const Icon = icon ? icons[icon] : null;
+  const Icon = icon ? icons[icon] : null
 
   return (
     <React.Fragment>
       {label && <span>{label}</span>}
       {Icon && label && <div className="mr-4" />}
-      {Icon && <Icon className="w-5 h-5" />}
+      {Icon && <Icon className="h-5 w-5" />}
       {description && <p>{description}</p>}
     </React.Fragment>
-  );
-};
+  )
+}
 
 const elements: {
-  [key: string]: React.ElementType;
+  [key: string]: React.ElementType
 } = {
   a: "a",
   button: "button",
   div: "div",
-};
+}
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -144,13 +145,13 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       href: hrefFromProps,
       url,
-    } = props;
+    } = props
 
-    const href = hrefFromProps || generateHref({ type, reference, url });
+    const href = hrefFromProps || generateHref({ type, reference, url })
 
     const newTabProps = newTab
       ? { target: "_blank", rel: "noopener noreferrer" }
-      : {};
+      : {}
 
     if (el === "link") {
       return (
@@ -165,10 +166,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <ButtonContent {...props} />
           </a>
         </Link>
-      );
+      )
     }
 
-    const Element = elements[el];
+    const Element = elements[el]
 
     if (Element) {
       return (
@@ -186,10 +187,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         >
           <ButtonContent {...props} />
         </Element>
-      );
+      )
     }
 
-    return null;
+    return null
   }
-);
-Button.displayName = "Button";
+)
+Button.displayName = "Button"

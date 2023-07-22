@@ -1,7 +1,7 @@
-import React from "react";
+import React from "react"
 
 const TextPage = () => {
-  return <div>TextPage</div>;
-};
+  return <div>TextPage</div>
+}
 
-export default TextPage;
+export default TextPage
