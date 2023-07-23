@@ -100,7 +100,7 @@ export interface Page {
     title?: string
     description?: string
     image?: string | Media
-    tagline?: string
+    keywords?: string
   }
   title: string
   slug?: string
@@ -193,7 +193,7 @@ export interface SiteSetting {
     title?: string
     description?: string
     image?: string | Media
-    tagline?: string
+    keywords?: string
   }
   updatedAt?: string
   createdAt?: string
