@@ -78,7 +78,7 @@ export async function generateMetadata({
     typeof page?.meta?.image === "object" &&
     page?.meta?.image !== null &&
     "url" in page?.meta?.image &&
-    `${process.env.NEXT_PUBLIC_CMS_URL}${page.meta.image.url}`
+    `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/media/${page.meta.image.filename}`
 
   const metadata = await mergeMetadata({
     title: page?.meta?.title,

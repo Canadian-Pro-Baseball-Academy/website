@@ -28,7 +28,7 @@ const defaultSEO = async (): Promise<Metadata> => {
     description: meta?.description,
     keywords:
       meta?.keywords ||
-      "Baseball training, Calgary Bisons, Baseball, Youth athletics, Youth Athletics Calgary, Character Development, Sports, Alberta Baseball, Elite Baseball",
+      "calgary bisons baseball, calgary alberta, youth athletics, elite sports programs, baseball training, character development, athletic growth, life skills training, youth baseball league, baseball tryouts, teamwork and leadership, athlete development program, competitive sports training, year-round camps, coaching excellence, sportsmanship, player profiles, team roster, exceptional athletes, sports team, player statistics, talent showcase, dedication, passion for the game, calgary athletes",
     applicationName: "The Calgary Bisons Website",
     authors: [{ name: "Matt Dunn" }],
     creator: "Matt Dunn",
