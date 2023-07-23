@@ -1,12 +1,13 @@
 import React from "react"
-import { cookies, draftMode } from "next/headers"
+import { Metadata } from "next"
+import { draftMode } from "next/headers"
 import { notFound } from "next/navigation"
 import { PAGE, PAGES } from "@/graphql/pages"
 import { Page as PageType } from "@/payload-types"
 
 import { request } from "@/lib/cms"
 import { Hero } from "@/components/hero"
-import ApiTest from "@/app/api-test"
+import { mergeMetadata } from "@/components/seo"
 
 const fetchPage = async (
   incomingSlugSegments?: string[]
@@ -46,7 +47,6 @@ const Page = async ({ params: { slug } }: { params: { slug: string[] } }) => {
 
   return (
     <React.Fragment>
-      <ApiTest data={page} />
       <Hero page={page} />
     </React.Fragment>
   )
@@ -65,4 +65,35 @@ export async function generateStaticParams() {
       ?.replace(/^\/|\/$/g, "")
       ?.split("/"),
   }))
+}
+
+export async function generateMetadata({
+  params: { slug },
+}: {
+  params: { slug: string[] }
+}): Promise<Metadata> {
+  const page = await fetchPage(slug)
+
+  const ogImage =
+    typeof page?.meta?.image === "object" &&
+    page?.meta?.image !== null &&
+    "url" in page?.meta?.image &&
+    `${process.env.NEXT_PUBLIC_CMS_URL}${page.meta.image.url}`
+
+  const metadata = await mergeMetadata({
+    title: page?.meta?.title,
+    description: page?.meta?.description,
+    keywords: page?.meta?.keywords,
+    openGraph: {
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+            },
+          ]
+        : undefined,
+    },
+  })
+
+  return metadata
 }

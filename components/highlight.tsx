@@ -25,7 +25,7 @@ export const Highlight: React.FC<{
                 key={index}
                 className={cn(
                   "relative inline-flex will-change-[color]",
-                  "before:pointer-events-none before:absolute before:bottom-0 before:left-1/2 before:h-1/2 before:w-full before:-translate-x-1/2 before:bg-accent before:opacity-70 before:will-change-[width]"
+                  "before:pointer-events-none before:absolute before:bottom-0 before:left-1/2 before:h-1/2 before:w-[calc(100%+0.25em)] before:-translate-x-1/2 before:bg-accent before:will-change-[width]"
                 )}
               >
                 <span className="relative z-[1] text-orange-100">

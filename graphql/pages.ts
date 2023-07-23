@@ -33,6 +33,12 @@ export const PAGE = `
             }
             previewTest
         }
+        meta {
+          title
+          description
+          image ${MEDIA_FIELDS}
+          keywords
+        }
         breadcrumbs {
           url
           label
