@@ -44,7 +44,7 @@ export const MainNavRight = () => (
   <NavigationMenu className="hidden lg:block">
     <NavigationMenuList>
       <NavigationMenuItem>
-        <Link href="/docs" legacyBehavior passHref>
+        <Link href="/game-schedule" legacyBehavior passHref>
           <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             Game Schedule
           </NavigationMenuLink>

@@ -4,6 +4,7 @@ export const ROSTERS = `
   query Teams {
     Teams(limit: 15) {
       docs {
+        name
         teamsnapId
       }
     }
