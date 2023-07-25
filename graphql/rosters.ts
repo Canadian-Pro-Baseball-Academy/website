@@ -6,6 +6,7 @@ export const ROSTERS = `
       docs {
         name
         teamsnapId
+        webCalendar
       }
     }
   }

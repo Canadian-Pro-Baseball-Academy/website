@@ -8,11 +8,22 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query"
+import { flexRender } from "@tanstack/react-table"
 import axios from "axios"
 import { format, parseISO, startOfDay } from "date-fns"
 
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
 import { DataTable } from "./data-table"
 import { columns, Event } from "./data-table/columns"
+import { TableSkeleton } from "./data-table/skeleton"
 
 async function cleanData(data: any): Promise<Event[]> {
   const events = await Promise.all(
@@ -45,6 +56,7 @@ async function cleanData(data: any): Promise<Event[]> {
 
       const time = format(parseISO(dateTimeObject.value as string), "h:mm bbb")
 
+      // TODO: Find an easier way to attach locations, maybe have them stored in a cache
       let locationData = await axios.get(
         `https://api.teamsnap.com/v3/locations/${locationIdObject.value}`,
         {
@@ -119,16 +131,12 @@ const GameScheduleDataTable = () => {
         .then(async (res) => await cleanData(res.data)),
   })
 
-  if (!data || isLoading) return "Loading..."
+  if (!id) return null
+
+  if (!data || isLoading) return <TableSkeleton />
 
   //@ts-ignore
   if (error) return "An error has occurred: " + error.message
 
-  console.log(data)
-
-  return (
-    <section className="container">
-      <DataTable columns={columns} data={data} />
-    </section>
-  )
+  return <DataTable columns={columns} data={data} />
 }

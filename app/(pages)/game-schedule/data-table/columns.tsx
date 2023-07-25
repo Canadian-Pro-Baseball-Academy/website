@@ -1,9 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table"
-import { format, isFuture, parseISO } from "date-fns"
-import parse from "date-fns/parse"
+import { format, isFuture } from "date-fns"
 
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
 
 import { DataTableColumnHeader } from "./date-table-column-header"
 
@@ -96,7 +94,7 @@ export const columns: ColumnDef<Event>[] = [
         return <div className="text-muted-foreground">N/A</div>
 
       return (
-        <div className="flex space-x-2 items-center">
+        <div className="flex items-center space-x-2">
           {parseInt(runsFor) < parseInt(runsAgainst) ? (
             <span className="font-black text-muted-foreground/50">L</span>
           ) : (

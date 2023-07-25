@@ -12,7 +12,7 @@ export const TeamButtons: React.FC<{ teams: Team[] }> = ({ teams }) => {
   const selectedTeam = useGameScheduleStore((state) => state.team)
 
   return (
-    <div className="flex items-center justify-center gap-2 flex-wrap py-8">
+    <div className="flex flex-wrap items-center justify-center gap-2 py-8">
       {teams.map((team, index) => {
         return (
           <button
@@ -24,7 +24,11 @@ export const TeamButtons: React.FC<{ teams: Team[] }> = ({ teams }) => {
               })
             )}
             onClick={() =>
-              setSelectedTeam({ id: team.teamsnapId, name: team.name })
+              setSelectedTeam({
+                id: team.teamsnapId,
+                name: team.name,
+                webCalendar: team?.webCalendar,
+              })
             }
           >
             {team.name}

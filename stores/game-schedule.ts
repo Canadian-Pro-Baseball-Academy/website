@@ -4,8 +4,9 @@ interface ISelectedTeam {
   team: {
     id: string
     name: string
+    webCalendar?: string
   }
-  setTeam: (team: { id: string; name: string }) => void
+  setTeam: (team: { id: string; name: string; webCalendar?: string }) => void
 }
 
 const createSelectTeamSlice: StateCreator<
@@ -14,7 +15,7 @@ const createSelectTeamSlice: StateCreator<
   [],
   ISelectedTeam
 > = (set) => ({
-  team: { id: "8495770", name: "" },
+  team: { id: "", name: "", webCalendar: "" },
   setTeam: (team) => {
     set({ team: team })
   },

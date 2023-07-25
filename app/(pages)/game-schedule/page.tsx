@@ -29,7 +29,10 @@ const GameSchedulePage = async () => {
       <section className="pb-12">
         <Gutter>
           <TeamButtons teams={teams} />
-          <GameScheduleProvider />
+          <div className="container">
+            {/* https://api.teamsnap.com/v3/teams_results/8495762 */}
+            <GameScheduleProvider />
+          </div>
         </Gutter>
       </section>
     </React.Fragment>
