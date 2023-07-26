@@ -6,41 +6,11 @@ import { ROSTER, ROSTERS } from "@/graphql/rosters"
 import { Page, Team as TeamType } from "@/payload-types"
 
 import { request } from "@/lib/cms"
+import { GenerateHeroData } from "@/lib/utils"
 import { DefaultHero } from "@/components/hero/default"
 import { RosterTable } from "@/components/roster-table"
 import { mergeMetadata } from "@/components/seo"
 import ApiTest from "@/app/api-test"
-
-function GenerateHeroData(header: string): Page["hero"] {
-  return {
-    type: "default",
-    richText: [
-      {
-        children: [
-          {
-            text: header,
-          },
-        ],
-        type: "h1",
-      },
-    ],
-    media: {
-      id: "",
-      createdAt: "",
-      updatedAt: "",
-      mimeType: "image/jpeg",
-      alt: "The 18U Calgary Bisons play under the lights at Gulls Stadium in Silvan Lake, AB.",
-      blurURL: "",
-      filename: "gulls-stadium.jpeg",
-      filesize: 106118,
-      url: "https://calgarybisons.payloadcms.app/media/gulls-stadium.jpeg",
-      width: 720,
-      height: 527,
-      darkModeFallback: "",
-    },
-    links: [],
-  }
-}
 
 const fetchTeam = async (slug?: string): Promise<TeamType | null> => {
   const { isEnabled } = draftMode()
