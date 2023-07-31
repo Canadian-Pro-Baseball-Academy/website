@@ -24,7 +24,7 @@ export function DataTablePagination<TData>({
   table,
 }: DataTablePaginationProps<TData>) {
   return (
-    <div className="flex items-center justify-between px-2 float-right md:float-none">
+    <div className="float-right flex items-center justify-between px-2 md:float-none">
       <div className="hidden flex-1 text-sm text-muted-foreground md:block">
         Showing rows{" "}
         {table.getState().pagination.pageSize *
@@ -40,7 +40,7 @@ export function DataTablePagination<TData>({
         of {table.getFilteredRowModel().rows.length}.
       </div>
       <div className="flex items-center space-x-6 lg:space-x-8">
-        <div className="hidden sm:flex items-center space-x-2">
+        <div className="hidden items-center space-x-2 sm:flex">
           <p className="text-sm font-medium">Rows per page</p>
           <Select
             value={`${table.getState().pagination.pageSize}`}
