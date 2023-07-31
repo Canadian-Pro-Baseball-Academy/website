@@ -1,4 +1,5 @@
 import React from "react"
+import { Metadata } from "next"
 import { COACHES } from "@/graphql/coaches"
 import { PageSetting } from "@/payload-types"
 
@@ -6,6 +7,7 @@ import { request } from "@/lib/cms"
 import { CoachCard, CoachCardMini } from "@/components/coach-card"
 import { Gutter } from "@/components/gutter"
 import { DefaultHero } from "@/components/hero/default"
+import { mergeMetadata } from "@/components/seo"
 import ApiTest from "@/app/api-test"
 
 const CoachingStaffPage = async () => {
@@ -51,3 +53,13 @@ const CoachingStaffPage = async () => {
 }
 
 export default CoachingStaffPage
+
+export async function generateMetadata(): Promise<Metadata> {
+  const metadata = await mergeMetadata({
+    title: "Coaching Staff | Calgary Bisons Baseball",
+    description:
+      "Meet our exceptional coaching staff, guiding athletes to greatness with expertise and passion. Discover the mentors behind our exeptional teams.",
+  })
+
+  return metadata
+}

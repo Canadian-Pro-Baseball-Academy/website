@@ -42,7 +42,7 @@ export function DataTableToolbar<TData>({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span className="hidden mr-2 sm:block">Download Calendar</span>
+            <span className="mr-2 hidden sm:block">Download Calendar</span>
             <CalendarDaysIcon className="h-4 w-4" />
           </a>
         </div>
