@@ -3,9 +3,10 @@ import { COACHES } from "@/graphql/coaches"
 import { PageSetting } from "@/payload-types"
 
 import { request } from "@/lib/cms"
-import { CoachCard } from "@/components/coach-card"
+import { CoachCard, CoachCardMini } from "@/components/coach-card"
 import { Gutter } from "@/components/gutter"
 import { DefaultHero } from "@/components/hero/default"
+import ApiTest from "@/app/api-test"
 
 const CoachingStaffPage = async () => {
   const {
@@ -20,12 +21,24 @@ const CoachingStaffPage = async () => {
   return (
     <React.Fragment>
       <DefaultHero {...page.hero} />
+      <ApiTest data={page} />
       <Gutter>
-        {page.coaches && page.coaches.coachesOrder && (
+        {page.coaches && page.coaches.mainCoaches && (
           <div className="grid grid-cols-2 py-8">
-            {page.coaches.coachesOrder.map((coach, index) => {
+            {page.coaches.mainCoaches.map((coach, index) => {
               if (typeof coach === "object") {
                 return <CoachCard {...coach} index={index} />
+              }
+
+              return null
+            })}
+          </div>
+        )}
+        {page.coaches && page.coaches.subsidaryCoaches && (
+          <div className="flex flex-wrap justify-center py-8">
+            {page.coaches.subsidaryCoaches.map((coach, index) => {
+              if (typeof coach === "object") {
+                return <CoachCardMini {...coach} index={index} />
               }
 
               return null

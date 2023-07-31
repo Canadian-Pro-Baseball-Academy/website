@@ -18,7 +18,7 @@ export const COACHES = `
           previewTest
         }
         coaches {
-          coachesOrder {
+          mainCoaches {
             name
             headshot ${MEDIA_FIELDS}
             role {
@@ -30,6 +30,13 @@ export const COACHES = `
             }
             career {
               achievement
+            }
+          }
+          subsidaryCoaches {
+            name
+            headshot ${MEDIA_FIELDS}
+            role {
+              title
             }
           }
         }

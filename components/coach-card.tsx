@@ -67,6 +67,40 @@ export const CoachCard: React.FC<Coach & { index: number }> = ({
   )
 }
 
+export const CoachCardMini: React.FC<Coach & { index: number }> = ({
+  name,
+  headshot,
+  role,
+  career,
+  index,
+}) => {
+  return (
+    <div className="w-1/5 max-w-1/5 overflow-hidden cursor-pointer group p-4">
+      <div className="relative w-full overflow-hidden">
+        <AspectRatio ratio={1}>
+          {typeof headshot === "object" && headshot !== null && (
+            <Media
+              priority
+              fill
+              resource={headshot}
+              className="h-full w-full bg-muted saturate-0 group-hover:saturate-100 duration-100 transition-all"
+              style={{ objectFit: "contain", height: "100%", width: "100%" }}
+            />
+          )}
+        </AspectRatio>
+      </div>
+      <div className="py-2 ">
+        <h1 className="text-xl font-semibold tracking-tight transition-colors">
+          {name}
+        </h1>
+        <h2 className="text-accent scroll-m-20 font-semibold tracking-tight">
+          {role?.title}
+        </h2>
+      </div>
+    </div>
+  )
+}
+
 export const CoachCardProto: React.FC<Coach> = ({
   name,
   headshot,

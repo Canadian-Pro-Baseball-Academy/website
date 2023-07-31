@@ -365,7 +365,8 @@ export interface PageSetting {
       previewTest?: string;
     };
     coaches?: {
-      coachesOrder?: string[] | Coach[];
+      mainCoaches?: string[] | Coach[];
+      subsidaryCoaches?: string[] | Coach[];
     };
   };
   updatedAt?: string;
