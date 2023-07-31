@@ -19,18 +19,20 @@ export interface Config {
     'site-settings': SiteSetting;
     footer: Footer;
     header: Header;
+    'page-settings': PageSetting;
   };
 }
 export interface Coach {
   id: string;
   name: string;
   headshot: string | Media;
-  Role?: {
+  role?: {
     title?: string;
     roles?: {
       role: string;
       id?: string;
     }[];
+    joinDate?: number;
   };
   socials?: {
     twitter?: string;
@@ -324,6 +326,47 @@ export interface Header {
       };
       id?: string;
     }[];
+  };
+  updatedAt?: string;
+  createdAt?: string;
+}
+export interface PageSetting {
+  id: string;
+  coachingStaff: {
+    hero: {
+      type: 'default' | 'contentMedia' | 'form' | 'home' | 'registration';
+      richText?: {
+        [k: string]: unknown;
+      }[];
+      links?: {
+        link: {
+          type?: 'reference' | 'custom';
+          newTab?: boolean;
+          reference:
+            | {
+                value: string | Page;
+                relationTo: 'pages';
+              }
+            | {
+                value: string | Team;
+                relationTo: 'teams';
+              };
+          url: string;
+          label: string;
+          appearance?: 'primary' | 'secondary';
+        };
+        id?: string;
+      }[];
+      media: string | Media;
+      values?: {
+        value: string;
+        id?: string;
+      }[];
+      previewTest?: string;
+    };
+    coaches?: {
+      coachesOrder?: string[] | Coach[];
+    };
   };
   updatedAt?: string;
   createdAt?: string;
