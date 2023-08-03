@@ -179,6 +179,11 @@ export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
         >
           {label && label}
           {children && children}
+          {description && (
+            <p className="pt-2 text-sm leading-tight text-muted-foreground">
+              {description}
+            </p>
+          )}
         </a>
       )
     }

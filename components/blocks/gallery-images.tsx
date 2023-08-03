@@ -58,7 +58,7 @@ export const GalleryImages: React.FC<Props> = ({ imagesFields }) => {
 
   return (
     <section>
-      <Gutter className="flex gap-2">
+      <Gutter className="flex flex-col gap-0 sm:flex-row sm:gap-2">
         {imageColumns.map((images) => {
           return (
             <div className="grow">

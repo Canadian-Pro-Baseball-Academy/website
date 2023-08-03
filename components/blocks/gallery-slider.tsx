@@ -19,9 +19,9 @@ const OPTIONS: EmblaOptionsType = {
 
 const widths = {
   _1_7778: "flex-[0_0_90%]",
-  _1_5: "flex-[0_0_60%]",
-  _1_3333: "flex-[0_0_50%]",
-  _1: "flex-[0_0_40%]",
+  _1_5: "flex-[0_0_90%] sm:flex-[0_0_60%]",
+  _1_3333: "flex-[0_0_90%] sm:flex-[0_0_50%]",
+  _1: "flex-[0_0_90%] sm:flex-[0_0_40%]",
 }
 
 // TODO: Add Leading Header
@@ -33,7 +33,7 @@ export const GallerySlider: React.FC<Props> = ({ sliderFields }) => {
       {/* Viewport */}
       <div className="cursor-pointer overflow-hidden" ref={emblaRef}>
         {/* Container */}
-        <div className="backface ml-0 flex touch-pan-y">
+        <div className="backface ml-0 mr-5 flex touch-pan-y">
           {slides.map((slide, index) => {
             const image = typeof slide.image === "object" && slide.image
 
@@ -45,7 +45,7 @@ export const GallerySlider: React.FC<Props> = ({ sliderFields }) => {
               <div
                 key={index}
                 className={cn(
-                  "relative ml-4 h-[30vw] min-w-0 overflow-hidden rounded-md",
+                  "relative ml-4 h-[60vw] min-w-0 overflow-hidden rounded-md sm:h-[30vw]",
                   //@ts-ignore
                   widths[aspectRatio]
                 )}

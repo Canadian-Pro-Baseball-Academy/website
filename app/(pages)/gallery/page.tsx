@@ -1,4 +1,5 @@
 import React from "react"
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { GALLERY } from "@/graphql/gallery"
 import { PageSetting } from "@/payload-types"
@@ -6,9 +7,9 @@ import { PageSetting } from "@/payload-types"
 import { request } from "@/lib/cms"
 import { DefaultHero } from "@/components/hero/default"
 import { RenderBlocks } from "@/components/render-blocks"
-import ApiTest from "@/app/api-test"
+import { mergeMetadata } from "@/components/seo"
 
-const RosterPage = async () => {
+const GalleryPage = async () => {
   const {
     PageSetting: { gallery: page },
   } = await request<{
@@ -28,4 +29,14 @@ const RosterPage = async () => {
   )
 }
 
-export default RosterPage
+export default GalleryPage
+
+export async function generateMetadata(): Promise<Metadata> {
+  const metadata = await mergeMetadata({
+    title: "Photo Gallery | Calgary Bisons Baseball",
+    description:
+      "The Calgary Bisons photo gallery! Experience the highlights of our elite program, showcasing talent, dedication, and victories on the field.",
+  })
+
+  return metadata
+}

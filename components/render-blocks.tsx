@@ -26,7 +26,11 @@ export const RenderBlocks: React.FC<Props> = ({ blocks }) => {
 
         const Block = blockComponents[blockType] as any
 
-        return <Block key={index} {...block} />
+        return (
+          <div className="py-8">
+            <Block key={index} {...block} />
+          </div>
+        )
       })}
     </React.Fragment>
   )
