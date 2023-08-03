@@ -54,6 +54,16 @@ export interface Coach {
 export interface Media {
   id: string
   alt: string
+  aspectRatio?:
+    | "1.7778"
+    | "1.3333"
+    | "1.5"
+    | "1"
+    | "1.25"
+    | "3"
+    | "0.6667"
+    | "0.5625"
+    | "2.3333"
   blurURL?: string
   darkModeFallback?: string | Media
   updatedAt: string
@@ -368,6 +378,69 @@ export interface PageSetting {
       mainCoaches?: string[] | Coach[]
       subsidaryCoaches?: string[] | Coach[]
     }
+  }
+  gallery: {
+    hero: {
+      type: "default" | "contentMedia" | "form" | "home" | "registration"
+      richText?: {
+        [k: string]: unknown
+      }[]
+      links?: {
+        link: {
+          type?: "reference" | "custom"
+          newTab?: boolean
+          reference:
+            | {
+                value: string | Page
+                relationTo: "pages"
+              }
+            | {
+                value: string | Team
+                relationTo: "teams"
+              }
+          url: string
+          label: string
+          appearance?: "primary" | "secondary"
+        }
+        id?: string
+      }[]
+      media: string | Media
+      values?: {
+        value: string
+        id?: string
+      }[]
+      previewTest?: string
+    }
+    layout?: (
+      | {
+          sliderFields: {
+            useLeadingHeader?: boolean
+            leadingHeader?: {
+              [k: string]: unknown
+            }[]
+            slides: {
+              image: string | Media
+              id?: string
+            }[]
+          }
+          id?: string
+          blockName?: string
+          blockType: "gallery-slider"
+        }
+      | {
+          imagesFields: {
+            useLeadingHeader?: boolean
+            leadingHeader?: {
+              [k: string]: unknown
+            }[]
+            columns?: "1" | "2" | "3" | "4" | "5"
+            images: string[] | Media[]
+          }
+          id?: string
+          blockName?: string
+          blockType: "gallery-images"
+        }
+    )[]
   }
   updatedAt?: string
   createdAt?: string

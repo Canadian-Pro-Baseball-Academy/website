@@ -2,6 +2,7 @@ export const MEDIA_FIELDS = `{
     mimeType
     alt
     blurURL
+    aspectRatio
     filename
     filesize
     url

@@ -51,7 +51,7 @@ export const MainNavRight = () => (
         </Link>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <Link href="/docs" legacyBehavior passHref>
+        <Link href="/registration" legacyBehavior passHref>
           <NavigationMenuLink
             className={cn(
               navigationMenuTriggerStyle(),

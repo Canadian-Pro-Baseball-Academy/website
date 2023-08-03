@@ -83,7 +83,7 @@ export const MobileNav: React.FC<Header["mainMenu"]> = ({ items }) => {
             Game Schedule
           </Link>
           <Link
-            href="/schedule"
+            href="/registration"
             className={buttonVariants({ variant: "primary", size: "lg" })}
             onClick={() => {
               setOpen?.(false)

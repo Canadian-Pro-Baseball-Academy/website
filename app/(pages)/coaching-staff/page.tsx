@@ -24,12 +24,12 @@ const CoachingStaffPage = async () => {
     <React.Fragment>
       <DefaultHero {...page.hero} />
       <ApiTest data={page} />
-      <Gutter>
+      <Gutter className="container 2xl:px-0 3xl:px-0">
         {page.coaches && page.coaches.mainCoaches && (
-          <div className="grid grid-cols-2 py-8">
+          <div className="grid gap-4 py-8 ">
             {page.coaches.mainCoaches.map((coach, index) => {
               if (typeof coach === "object") {
-                return <CoachCard {...coach} index={index} />
+                return <CoachCard {...coach} />
               }
 
               return null
