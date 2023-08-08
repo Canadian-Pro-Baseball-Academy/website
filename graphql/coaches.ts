@@ -2,9 +2,9 @@ import { LINK_FIELDS } from "./links"
 import { MEDIA_FIELDS } from "./media"
 
 export const COACHES = `
-  query Cocahes {
-    PageSetting {
-      coachingStaff {
+  query Coaches {
+    PageSettings(where: { type: { equals: coaching_staff } }) {
+      docs {
         hero {
           type
           richText
@@ -17,7 +17,7 @@ export const COACHES = `
           }
           previewTest
         }
-        coaches {
+        coachingStaff {
           mainCoaches {
             name
             headshot ${MEDIA_FIELDS}

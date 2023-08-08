@@ -1,33 +1,37 @@
 import React from "react"
 import { Metadata } from "next"
+import { notFound } from "next/navigation"
 import { COACHES } from "@/graphql/coaches"
 import { PageSetting } from "@/payload-types"
 
 import { request } from "@/lib/cms"
 import { CoachCard, CoachCardMini } from "@/components/coach-card"
 import { Gutter } from "@/components/gutter"
+import { Hero } from "@/components/hero"
 import { DefaultHero } from "@/components/hero/default"
 import { mergeMetadata } from "@/components/seo"
 import ApiTest from "@/app/api-test"
 
 const CoachingStaffPage = async () => {
   const {
-    PageSetting: { coachingStaff: page },
-  } = await request<{
-    PageSetting: { coachingStaff: PageSetting["coachingStaff"] }
-  }>({
-    collection: "coaches",
+    PageSettings: { docs: res },
+  } = await request<{ PageSettings: { docs: PageSetting[] } }>({
+    collection: "page-settings=coaching-staff",
     query: COACHES,
   })
 
+  const page = res[0]
+
+  if (!page) return notFound()
+
   return (
     <React.Fragment>
-      <DefaultHero {...page.hero} />
-      <ApiTest data={page} />
+      {/* <DefaultHero {...page.hero} /> */}
+      <Hero page={page} />
       <Gutter className="container 2xl:px-0 3xl:px-0">
-        {page.coaches && page.coaches.mainCoaches && (
+        {page.coachingStaff && page.coachingStaff.mainCoaches && (
           <div className="grid gap-4 py-8 ">
-            {page.coaches.mainCoaches.map((coach, index) => {
+            {page.coachingStaff.mainCoaches.map((coach, index) => {
               if (typeof coach === "object") {
                 return <CoachCard {...coach} />
               }
@@ -36,9 +40,9 @@ const CoachingStaffPage = async () => {
             })}
           </div>
         )}
-        {page.coaches && page.coaches.subsidaryCoaches && (
+        {page.coachingStaff && page.coachingStaff.subsidaryCoaches && (
           <div className="flex flex-wrap justify-center py-8">
-            {page.coaches.subsidaryCoaches.map((coach, index) => {
+            {page.coachingStaff.subsidaryCoaches.map((coach, index) => {
               if (typeof coach === "object") {
                 return <CoachCardMini {...coach} index={index} />
               }

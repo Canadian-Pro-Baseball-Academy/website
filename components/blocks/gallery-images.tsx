@@ -41,7 +41,8 @@ function splitArrayIntoSubarrays(num: number, arr: any) {
   return subarrays
 }
 
-type Layout = Exclude<PageSetting["gallery"]["layout"], undefined>
+type Gallery = Exclude<PageSetting["gallery"], undefined>
+type Layout = Exclude<Gallery["gallery"], undefined>
 type Props = Extract<Layout[0], { blockType: "gallery-images" }>
 
 // TODO: Add leading header
@@ -67,7 +68,7 @@ export const GalleryImages: React.FC<Props> = ({ imagesFields }) => {
 
                 if (!image.aspectRatio) return null
                 return (
-                  <div className="mb-2 overflow-hidden rounded-md">
+                  <div className="relative mb-2 overflow-hidden rounded-md">
                     {/* @ts-ignore */}
                     <AspectRatio ratio={aspectRatios[image.aspectRatio]}>
                       <Media

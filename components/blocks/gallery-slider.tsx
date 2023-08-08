@@ -9,7 +9,8 @@ import { cn } from "@/lib/utils"
 import { Media } from "../media"
 import { AspectRatio } from "../ui/aspect-ratio"
 
-type Layout = Exclude<PageSetting["gallery"]["layout"], undefined>
+type Gallery = Exclude<PageSetting["gallery"], undefined>
+type Layout = Exclude<Gallery["gallery"], undefined>
 type Props = Extract<Layout[0], { blockType: "gallery-slider" }>
 
 const OPTIONS: EmblaOptionsType = {

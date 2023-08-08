@@ -3,41 +3,42 @@ import { MEDIA_FIELDS } from "./media"
 
 export const GALLERY = `
   query Gallery {
-    PageSetting {
-      gallery {
+    PageSettings(where: { type: { equals: gallery } }) {
+      docs {
         hero {
-            type
-            richText
-            links {
-              link ${LINK_FIELDS()}
-            }
-            media ${MEDIA_FIELDS}
-            values {
-              value
-            }
-            previewTest
+          type
+          richText
+          links {
+            link ${LINK_FIELDS()}
+          }
+          media ${MEDIA_FIELDS}
+          values {
+            value
+          }
         }
-        layout {
-          ... on GallerySlider {
-            id
-            blockName
-            blockType
-            sliderFields {
-              leadingHeader
-              slides {
-                id
-                image ${MEDIA_FIELDS}
+        gallery {
+          gallery {
+            ... on GallerySlider {
+              id
+              blockName
+              blockType
+              sliderFields {
+                leadingHeader
+                slides {
+                  id
+                  image ${MEDIA_FIELDS}
+                }
               }
             }
-          }
-          ... on GalleryImages {
-            id
-            blockName
-            blockType 
-            imagesFields {
-              leadingHeader
-              columns
-              images ${MEDIA_FIELDS}
+            ... on GalleryImages {
+              id
+              blockName
+              blockType
+              imagesFields {
+                leadingHeader
+                columns
+                images ${MEDIA_FIELDS}
+              }
             }
           }
         }

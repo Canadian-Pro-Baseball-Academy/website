@@ -61,7 +61,7 @@ export async function request<T = any>({
 
   if (errors) {
     console.error(JSON.stringify(errors)) // eslint-disable-line no-console
-    throw new Error(errors)
+    throw new Error(JSON.stringify(errors))
   }
 
   return data

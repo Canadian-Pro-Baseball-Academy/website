@@ -2,29 +2,33 @@ import React from "react"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { GALLERY } from "@/graphql/gallery"
-import { PageSetting } from "@/payload-types"
+import { PAGE } from "@/graphql/pages"
+import { Page, PageSetting } from "@/payload-types"
 
 import { request } from "@/lib/cms"
+import { Hero } from "@/components/hero"
 import { DefaultHero } from "@/components/hero/default"
 import { RenderBlocks } from "@/components/render-blocks"
 import { mergeMetadata } from "@/components/seo"
+import ApiTest from "@/app/api-test"
 
 const GalleryPage = async () => {
   const {
-    PageSetting: { gallery: page },
-  } = await request<{
-    PageSetting: { gallery: PageSetting["gallery"] }
-  }>({
-    collection: "coaches",
+    PageSettings: { docs: res },
+  } = await request<{ PageSettings: { docs: PageSetting[] } }>({
+    collection: "page-settings=gallery",
     query: GALLERY,
   })
+
+  const page = res[0]
 
   if (!page) return notFound()
 
   return (
     <React.Fragment>
-      <DefaultHero {...page.hero} />
-      <RenderBlocks blocks={page.layout} />
+      <ApiTest data={page} />
+      <Hero page={page} />
+      <RenderBlocks blocks={page.gallery?.gallery} />
     </React.Fragment>
   )
 }
