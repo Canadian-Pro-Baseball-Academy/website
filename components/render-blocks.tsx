@@ -8,8 +8,10 @@ const blockComponents = {
   "gallery-images": GalleryImages,
 }
 
+type Gallery = Exclude<PageSetting["gallery"], undefined>
+
 type Props = {
-  blocks: PageSetting["gallery"]["layout"]
+  blocks: Gallery["gallery"]
 }
 
 export const RenderBlocks: React.FC<Props> = ({ blocks }) => {
