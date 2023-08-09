@@ -1,4 +1,5 @@
 import { LINK_FIELDS } from "./links"
+import { MEDIA_FIELDS } from "./media"
 
 export const MAP = `
   ... on Map {
@@ -11,6 +12,19 @@ export const MAP = `
         zoom
         animation
       }
+    }
+  }
+`
+
+export const GALLERY_IMAGES = `
+  ... on GalleryImages {
+    id
+    blockName
+    blockType
+    imagesFields {
+      leadingHeader
+      columns
+      images ${MEDIA_FIELDS}
     }
   }
 `
@@ -46,6 +60,7 @@ export const CONTENT_GRID = `
         content {
           ${MAP}
           ${CONTENT}
+          ${GALLERY_IMAGES}
         }
       }
     }

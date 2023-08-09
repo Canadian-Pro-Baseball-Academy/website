@@ -1,3 +1,4 @@
+import { GALLERY_IMAGES } from "./blocks"
 import { LINK_FIELDS } from "./links"
 import { MEDIA_FIELDS } from "./media"
 
@@ -30,16 +31,7 @@ export const GALLERY = `
                 }
               }
             }
-            ... on GalleryImages {
-              id
-              blockName
-              blockType
-              imagesFields {
-                leadingHeader
-                columns
-                images ${MEDIA_FIELDS}
-              }
-            }
+            ${GALLERY_IMAGES}
           }
         }
       }

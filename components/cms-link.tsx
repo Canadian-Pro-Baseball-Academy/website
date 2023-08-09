@@ -69,10 +69,7 @@ const generateHref = (args: GenerateSlugType) => {
     reference?.value &&
     typeof reference.value !== "string"
   ) {
-    if (
-      reference.relationTo === "pages" ||
-      reference.relationTo === "page-settings"
-    ) {
+    if (reference.relationTo === "pages") {
       const value = reference.value as Page
       const breadcrumbs = value?.breadcrumbs
       const hasBreadcrumbs =
@@ -80,6 +77,15 @@ const generateHref = (args: GenerateSlugType) => {
       if (hasBreadcrumbs) {
         return breadcrumbs?.[breadcrumbs.length - 1]?.url as string
       }
+    }
+
+    if (
+      reference.relationTo === "page-settings" ||
+      // @ts-ignore
+      reference.relationTo === "page_settings"
+    ) {
+      const value = reference.value as PageSetting
+      return `/${value.slug}`
     }
 
     if (reference.relationTo === "teams") {
