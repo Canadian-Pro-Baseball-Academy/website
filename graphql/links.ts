@@ -26,6 +26,9 @@ export const LINK_FIELDS = ({
         ... on Team {
             teamsnapId
         }
+        ... on PageSetting {
+          slug
+        }
       }
     }
   }`

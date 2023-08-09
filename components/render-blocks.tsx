@@ -2,12 +2,14 @@ import React from "react"
 import { Page, PageSetting } from "@/payload-types"
 
 import { ContentGrid, GalleryImages, GallerySlider } from "./blocks"
+import { Content } from "./blocks/content"
 
 const blockComponents = {
   "gallery-slider": GallerySlider,
   "gallery-images": GalleryImages,
   map: () => <div>Map</div>,
   "content-grid": ContentGrid,
+  content: Content,
 }
 
 type Gallery = Exclude<PageSetting["gallery"], undefined>

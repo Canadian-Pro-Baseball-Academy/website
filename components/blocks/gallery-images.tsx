@@ -1,7 +1,7 @@
 import React from "react"
 import { Media as MediaType, PageSetting } from "@/payload-types"
 
-import { Gutter } from "../gutter"
+import { Gutter as GutterOriginal } from "../gutter"
 import { Media } from "../media"
 import { AspectRatio } from "../ui/aspect-ratio"
 
@@ -46,7 +46,10 @@ type Layout = Exclude<Gallery["gallery"], undefined>
 type Props = Extract<Layout[0], { blockType: "gallery-images" }>
 
 // TODO: Add leading header
-export const GalleryImages: React.FC<Props> = ({ imagesFields }) => {
+export const GalleryImages: React.FC<Props & { disableGutter?: boolean }> = ({
+  imagesFields,
+  disableGutter = false,
+}) => {
   const { leadingHeader, columns, images: imagesFromProps } = imagesFields
 
   if (!columns) return null
@@ -56,6 +59,8 @@ export const GalleryImages: React.FC<Props> = ({ imagesFields }) => {
     flexLayout[columns],
     imagesFromProps
   )
+
+  const Gutter = disableGutter ? "div" : GutterOriginal
 
   return (
     <section>

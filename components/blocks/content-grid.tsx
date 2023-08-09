@@ -5,11 +5,13 @@ import { cn } from "@/lib/utils"
 import { Gutter } from "@/components/gutter"
 
 import { Content } from "./content"
+import { GalleryImages } from "./gallery-images"
 import { Map } from "./map"
 
 const columnComponents = {
   map: Map,
   content: Content,
+  "gallery-images": GalleryImages,
 }
 
 type Layout = Exclude<Page["layout"], undefined>
@@ -25,7 +27,7 @@ export const ContentGrid: React.FC<Props> = ({ contentGridFields }) => {
   if (!hasColumns) return null
 
   return (
-    <Gutter className="flex items-center gap-8">
+    <Gutter className="flex flex-wrap items-center">
       {columns.map(({ width, content }, index) => {
         if (!content) return null
 
@@ -38,14 +40,14 @@ export const ContentGrid: React.FC<Props> = ({ contentGridFields }) => {
         return (
           <div
             key={index}
-            className={cn({
+            className={cn("px-4 pb-16", {
               "w-full": width === "full",
               "w-1/2": width === "half",
               "w-1/3": width === "oneThird",
               "w-2/3": width === "twoThirds",
             })}
           >
-            <Block {...content[0]} />
+            <Block {...content[0]} disableGutter />
           </div>
         )
       })}
