@@ -1,17 +1,20 @@
 import React from "react"
-import { PageSetting } from "@/payload-types"
+import { Page, PageSetting } from "@/payload-types"
 
-import { GalleryImages, GallerySlider } from "./blocks"
+import { ContentGrid, GalleryImages, GallerySlider } from "./blocks"
 
 const blockComponents = {
   "gallery-slider": GallerySlider,
   "gallery-images": GalleryImages,
+  map: () => <div>Map</div>,
+  "content-grid": ContentGrid,
 }
 
 type Gallery = Exclude<PageSetting["gallery"], undefined>
+type PageType = Page["layout"]
 
 type Props = {
-  blocks: Gallery["gallery"]
+  blocks: Gallery["gallery"] | PageType
 }
 
 export const RenderBlocks: React.FC<Props> = ({ blocks }) => {

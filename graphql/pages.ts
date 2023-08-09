@@ -1,3 +1,4 @@
+import { CONTENT_GRID, MAP } from "./blocks"
 import { LINK_FIELDS } from "./links"
 import { MEDIA_FIELDS } from "./media"
 
@@ -32,6 +33,10 @@ export const PAGE = `
               value
             }
             previewTest
+        }
+        layout {
+          ${CONTENT_GRID}
+          ${MAP}
         }
         meta {
           title
