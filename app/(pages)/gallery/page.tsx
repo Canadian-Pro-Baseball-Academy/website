@@ -26,7 +26,7 @@ const GalleryPage = async () => {
 
   return (
     <React.Fragment>
-      <ApiTest data={page} />
+      <ApiTest data={PAGE} />
       <Hero page={page} />
       <RenderBlocks blocks={page.gallery?.gallery} />
     </React.Fragment>

@@ -3,7 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import router from "next/router"
-import { Page, Team } from "@/payload-types"
+import { Page, PageSetting, Team } from "@/payload-types"
 
 import { cn } from "@/lib/utils"
 
@@ -19,8 +19,13 @@ type TeamsReference = {
   relationTo: "teams"
 }
 
+type PageSettingReference = {
+  value: string | PageSetting
+  relationTo: "page-settings"
+}
+
 export type LinkType = "reference" | "custom"
-export type Reference = PageReference | TeamsReference
+export type Reference = PageReference | TeamsReference | PageSettingReference
 
 export type PayloadLinkType = {
   type?: LinkType
@@ -64,7 +69,10 @@ const generateHref = (args: GenerateSlugType) => {
     reference?.value &&
     typeof reference.value !== "string"
   ) {
-    if (reference.relationTo === "pages") {
+    if (
+      reference.relationTo === "pages" ||
+      reference.relationTo === "page-settings"
+    ) {
       const value = reference.value as Page
       const breadcrumbs = value?.breadcrumbs
       const hasBreadcrumbs =

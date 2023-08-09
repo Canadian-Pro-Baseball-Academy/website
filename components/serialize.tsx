@@ -110,7 +110,10 @@ export const Serialize: React.FC<{
             )
           case "h2":
             return (
-              <h2 key={i}>
+              <h2
+                key={i}
+                className="scroll-m-20 text-3xl font-semibold tracking-tight transition-colors first:mt-0"
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -190,7 +193,7 @@ export const Serialize: React.FC<{
               </li>
             )
 
-          case "kicker":
+          case "label":
             return (
               <p
                 key={i}
@@ -219,7 +222,7 @@ export const Serialize: React.FC<{
 
           default:
             return (
-              <p key={i} className="font-sans">
+              <p key={i} className="font-sans [&:not(:first-child)]:mt-4">
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}

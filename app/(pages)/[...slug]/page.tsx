@@ -7,7 +7,9 @@ import { Page as PageType } from "@/payload-types"
 
 import { request } from "@/lib/cms"
 import { Hero } from "@/components/hero"
+import { RenderBlocks } from "@/components/render-blocks"
 import { mergeMetadata } from "@/components/seo"
+import ApiTest from "@/app/api-test"
 
 const fetchPage = async (
   incomingSlugSegments?: string[]
@@ -47,7 +49,9 @@ const Page = async ({ params: { slug } }: { params: { slug: string[] } }) => {
 
   return (
     <React.Fragment>
+      <ApiTest data={page} />
       <Hero page={page} />
+      <RenderBlocks blocks={page.layout} />
     </React.Fragment>
   )
 }
