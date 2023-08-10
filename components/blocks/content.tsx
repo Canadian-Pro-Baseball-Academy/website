@@ -3,65 +3,29 @@ import { Page, PageSetting, Team } from "@/payload-types"
 
 import { RichText } from "../rich-text"
 
-type Props = {
-  contentFields?: {
-    columns?: {
-      width: "oneThird" | "half" | "twoThirds" | "full"
-      alignment: "left" | "center" | "right"
-      richText?: {
-        [k: string]: unknown
-      }[]
-      links?: {
-        link: {
-          type?: "reference" | "custom"
-          newTab?: boolean
-          reference:
-            | {
-                value: string | Page
-                relationTo: "pages"
-              }
-            | {
-                value: string | PageSetting
-                relationTo: "page-settings"
-              }
-            | {
-                value: string | Team
-                relationTo: "teams"
-              }
-          url: string
-          label: string
-          appearance?:
-            | "primary"
-            | "secondary"
-            | "destructive"
-            | "outline"
-            | "ghost"
-            | "link"
-        }
-        id?: string
-      }[]
-      id?: string
-    }[]
-  }
-  id?: string
-  blockName?: string
-  blockType: "content"
-}
+type Layout = Exclude<Page["layout"], undefined>
+type Props = Extract<Layout[0], { blockType: "content" }>
 
 export const Content: React.FC<Props> = ({ contentFields }) => {
-  if (!contentFields || !contentFields.columns) return null
+  if (!contentFields) return null
 
-  const { columns } = contentFields
+  const { columns, singleColumn } = contentFields
 
   return (
     <div>
-      {columns.map((column) => {
-        return (
-          <div>
-            <RichText content={column.richText} />
-          </div>
-        )
-      })}
+      {columns &&
+        columns.map((column) => {
+          return (
+            <div>
+              <RichText content={column.richText} />
+            </div>
+          )
+        })}
+      {singleColumn && (
+        <div>
+          <RichText content={singleColumn.richText} />
+        </div>
+      )}
     </div>
   )
 }

@@ -28,6 +28,11 @@ export const PAGE = `
             links {
               link ${LINK_FIELDS()}
             }
+            forms {
+              title
+              description
+              teamSnapId
+            }
             media ${MEDIA_FIELDS}
             values {
               value
