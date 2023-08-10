@@ -29,20 +29,43 @@ export const GALLERY_IMAGES = `
   }
 `
 
-export const CONTENT = `
+interface ContentProps {
+  displayWidth?: boolean
+  displayAlignment?: boolean
+  singleColumn?: boolean
+}
+
+export const CONTENT = ({
+  displayWidth = true,
+  displayAlignment = true,
+  singleColumn = false,
+}: ContentProps = {}): string => `
 ... on Content {
     id
     blockName
     blockType
     contentFields {
-      columns {
-        width
-        alignment
-        richText
-        links {
-            link ${LINK_FIELDS()}
-        }
+      ${
+        singleColumn
+          ? `singleColumn{
+              ${displayWidth ? "width" : ""}
+              ${displayAlignment ? "alignment" : ""}
+              alignment
+              richText
+              links {
+                link ${LINK_FIELDS()}
+              }
+            }`
+          : `columns {
+              ${displayWidth ? "width" : ""}
+              ${displayAlignment ? "alignment" : ""}
+              richText
+              links {
+                  link ${LINK_FIELDS()}
+              }
+            }`
       }
+      
     }
   }
 `
@@ -55,11 +78,16 @@ export const CONTENT_GRID = `
     contentGridFields {
       useLeadingHeader
       leadingHeader
+      alignment
       columns {
         width
         content {
           ${MAP}
-          ${CONTENT}
+          ${CONTENT({
+            displayWidth: false,
+            displayAlignment: false,
+            singleColumn: true,
+          })}
           ${GALLERY_IMAGES}
         }
       }

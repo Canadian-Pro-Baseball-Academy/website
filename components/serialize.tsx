@@ -122,7 +122,10 @@ export const Serialize: React.FC<{
             )
           case "h3":
             return (
-              <h3 key={i}>
+              <h3
+                key={i}
+                className="scroll-m-20 text-2xl font-semibold tracking-tight"
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -131,7 +134,10 @@ export const Serialize: React.FC<{
             )
           case "h4":
             return (
-              <h4 key={i}>
+              <h4
+                key={i}
+                className="scroll-m-20 text-xl font-semibold tracking-tight"
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -167,7 +173,7 @@ export const Serialize: React.FC<{
             )
           case "ul":
             return (
-              <ul key={i}>
+              <ul key={i} className="list-disc [&:not(:first-child)]:mt-4">
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -176,7 +182,10 @@ export const Serialize: React.FC<{
             )
           case "ol":
             return (
-              <ol key={i}>
+              <ol
+                key={i}
+                className="list-decimal marker:font-bold [&:not(:first-child)]:mt-4"
+              >
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}
@@ -185,7 +194,7 @@ export const Serialize: React.FC<{
             )
           case "li":
             return (
-              <li key={i}>
+              <li key={i} className="ml-5 pb-1 marker:text-muted-foreground/50">
                 <Serialize
                   content={node.children}
                   customRenderers={customRenderers}

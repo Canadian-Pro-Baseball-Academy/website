@@ -13,6 +13,7 @@ export interface Config {
     pages: Page;
     'page-settings': PageSetting;
     teams: Team;
+    'team-snap-forms': TeamSnapForm;
     users: User;
     redirects: Redirect;
   };
@@ -101,14 +102,15 @@ export interface Page {
       value: string;
       id?: string;
     }[];
+    forms?: string[] | TeamSnapForm[];
     previewTest?: string;
   };
   layout?: (
     | {
-        contentFields?: {
+        contentFields: {
           columns?: {
-            width: 'oneThird' | 'half' | 'twoThirds' | 'full';
             alignment: 'left' | 'center' | 'right';
+            width: 'oneThird' | 'half' | 'twoThirds' | 'full';
             richText?: {
               [k: string]: unknown;
             }[];
@@ -137,25 +139,55 @@ export interface Page {
             }[];
             id?: string;
           }[];
+          singleColumn: {
+            alignment: 'left' | 'center' | 'right';
+            width: 'oneThird' | 'half' | 'twoThirds' | 'full';
+            richText?: {
+              [k: string]: unknown;
+            }[];
+            links?: {
+              link: {
+                type?: 'reference' | 'custom';
+                newTab?: boolean;
+                reference:
+                  | {
+                      value: string | Page;
+                      relationTo: 'pages';
+                    }
+                  | {
+                      value: string | PageSetting;
+                      relationTo: 'page-settings';
+                    }
+                  | {
+                      value: string | Team;
+                      relationTo: 'teams';
+                    };
+                url: string;
+                label: string;
+                appearance?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link';
+              };
+              id?: string;
+            }[];
+            id?: string;
+          };
         };
         id?: string;
         blockName?: string;
         blockType: 'content';
       }
     | {
-        contentGridFields?: {
+        contentGridFields: {
           useLeadingHeader?: boolean;
           leadingHeader?: {
             [k: string]: unknown;
           }[];
+          alignment: 'start' | 'center' | 'end';
           columns?: {
             width: 'oneThird' | 'half' | 'twoThirds' | 'full';
             content?: (
               | {
                   contentFields?: {
                     columns?: {
-                      width: 'oneThird' | 'half' | 'twoThirds' | 'full';
-                      alignment: 'left' | 'center' | 'right';
                       richText?: {
                         [k: string]: unknown;
                       }[];
@@ -184,6 +216,35 @@ export interface Page {
                       }[];
                       id?: string;
                     }[];
+                    singleColumn?: {
+                      richText?: {
+                        [k: string]: unknown;
+                      }[];
+                      links?: {
+                        link: {
+                          type?: 'reference' | 'custom';
+                          newTab?: boolean;
+                          reference:
+                            | {
+                                value: string | Page;
+                                relationTo: 'pages';
+                              }
+                            | {
+                                value: string | PageSetting;
+                                relationTo: 'page-settings';
+                              }
+                            | {
+                                value: string | Team;
+                                relationTo: 'teams';
+                              };
+                          url: string;
+                          label: string;
+                          appearance?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link';
+                        };
+                        id?: string;
+                      }[];
+                      id?: string;
+                    };
                   };
                   id?: string;
                   blockName?: string;
@@ -310,6 +371,7 @@ export interface PageSetting {
       value: string;
       id?: string;
     }[];
+    forms?: string[] | TeamSnapForm[];
     previewTest?: string;
   };
   gallery?: {
@@ -394,6 +456,16 @@ export interface Team {
   updatedAt: string;
   createdAt: string;
   _status?: 'draft' | 'published';
+}
+export interface TeamSnapForm {
+  id: string;
+  title: string;
+  teamSnapId: string;
+  description?: {
+    [k: string]: unknown;
+  }[];
+  updatedAt: string;
+  createdAt: string;
 }
 export interface User {
   id: string;

@@ -4,12 +4,13 @@ import { Page } from "@/payload-types"
 import { ContentMediaHero } from "./content-media"
 import { DefaultHero } from "./default"
 import { HomeHero } from "./home"
+import { RegistrationHero } from "./registration"
 
 const heroes = {
   default: DefaultHero,
   contentMedia: ContentMediaHero,
   form: DefaultHero,
-  registration: HomeHero,
+  registration: RegistrationHero,
   home: HomeHero,
 }
 
