@@ -1,22 +1,35 @@
+// @ts-nocheck
+
 import React from "react"
 import { Page, PageSetting } from "@/payload-types"
 
-import { ContentGrid, GalleryImages, GallerySlider } from "./blocks"
+import ApiTest from "@/app/api-test"
+
+import { BackgroundColor } from "./background-color"
+import { ContentGrid, GalleryImages } from "./blocks"
 import { Content } from "./blocks/content"
+import { Map } from "./blocks/map"
+import { VerticalPaddingOptions } from "./vertical-padding"
 
 const blockComponents = {
-  "gallery-slider": GallerySlider,
-  "gallery-images": GalleryImages,
-  map: () => <div>Map</div>,
-  "content-grid": ContentGrid,
+  galleryImages: GalleryImages,
+  map: Map,
+  contentGrid: ContentGrid,
   content: Content,
 }
 
-type Gallery = Exclude<PageSetting["gallery"], undefined>
+const blockTranslation = {
+  "gallery-slider": "slider",
+  "gallery-images": "images",
+  map: "map",
+  "content-grid": "contentGrid",
+  content: "content",
+}
+
 type PageType = Page["layout"]
 
 type Props = {
-  blocks: Gallery["gallery"] | PageType
+  blocks: PageType
 }
 
 export const RenderBlocks: React.FC<Props> = ({ blocks }) => {
@@ -32,11 +45,39 @@ export const RenderBlocks: React.FC<Props> = ({ blocks }) => {
         if (!blockType || !(blockType in blockComponents)) return null
 
         const Block = blockComponents[blockType] as any
+        // Get Background color of block
+        const backgroundColor = block[`${blockType}BackgroundColor`]
+        // Get previous block and next block
+        const prevBlock = blocks[index - 1]
+        const nextBlock = blocks[index + 1]
+
+        const prevBlockBackground =
+          prevBlock?.[`${prevBlock.blockType}BackgroundColor`]
+        const nextBlockBackground =
+          nextBlock?.[`${nextBlock.blockType}BackgroundColor`]
+
+        let paddingTop: VerticalPaddingOptions = "large"
+        let paddingBottom: VerticalPaddingOptions = "large"
+
+        if (backgroundColor === prevBlockBackground) {
+          paddingTop = "medium"
+        }
+
+        if (backgroundColor === nextBlockBackground) {
+          paddingBottom = "medium"
+        }
+
+        if (!Block) return null
 
         return (
-          <div className="py-8">
-            <Block key={index} {...block} />
-          </div>
+          <BackgroundColor
+            key={index}
+            paddingTop={paddingTop}
+            paddingBottom={paddingBottom}
+            color={backgroundColor}
+          >
+            <Block {...block} />
+          </BackgroundColor>
         )
       })}
     </React.Fragment>

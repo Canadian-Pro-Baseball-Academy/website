@@ -49,12 +49,14 @@ export const HomeHero: React.FC<Page["hero"]> = ({
           <div
             className={cn(
               "flex h-3/4-screen flex-col justify-center text-background",
-              "w-3/5",
+              "w-full lg:w-4/5 xl:w-3/5",
               "2xl:-mx-32 3xl:-mx-48"
             )}
           >
             <RichText
-              className={cn("mt-4 [&>h1]:text-7xl [&>p]:max-w-[65ch]")}
+              className={cn(
+                "mt-4 [&>h1]:text-5xl md:[&>h1]:text-7xl [&>p]:max-w-[65ch]"
+              )}
               content={richText}
             />
             {/* Buttons */}

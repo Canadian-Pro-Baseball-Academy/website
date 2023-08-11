@@ -1,11 +1,16 @@
 import { LINK_FIELDS } from "./links"
 import { MEDIA_FIELDS } from "./media"
 
-export const MAP = `
+interface Props {
+  hasBackgroundColor?: boolean
+}
+
+export const MAP = ({ hasBackgroundColor = true }: Props = {}): string => `
   ... on Map {
     id
     blockName
     blockType
+    ${hasBackgroundColor ? "mapBackgroundColor" : ""}
     mapFields {
       map
       options {
@@ -15,12 +20,14 @@ export const MAP = `
     }
   }
 `
-
-export const GALLERY_IMAGES = `
+export const GALLERY_IMAGES = ({
+  hasBackgroundColor = true,
+}: Props = {}): string => `
   ... on GalleryImages {
     id
     blockName
     blockType
+    ${hasBackgroundColor ? "galleryImagesBackgroundColor" : ""}
     imagesFields {
       leadingHeader
       columns
@@ -29,7 +36,7 @@ export const GALLERY_IMAGES = `
   }
 `
 
-interface ContentProps {
+interface ContentProps extends Props {
   displayWidth?: boolean
   displayAlignment?: boolean
   singleColumn?: boolean
@@ -38,12 +45,14 @@ interface ContentProps {
 export const CONTENT = ({
   displayWidth = true,
   displayAlignment = true,
+  hasBackgroundColor = true,
   singleColumn = false,
 }: ContentProps = {}): string => `
 ... on Content {
     id
     blockName
     blockType
+    ${hasBackgroundColor ? "contentBackgroundColor" : ""}
     contentFields {
       ${
         singleColumn
@@ -70,11 +79,14 @@ export const CONTENT = ({
   }
 `
 
-export const CONTENT_GRID = `
+export const CONTENT_GRID = ({
+  hasBackgroundColor = true,
+}: Props = {}): string => `
   ... on ContentGrid {
     id
     blockName
     blockType
+    ${hasBackgroundColor ? "contentGridBackgroundColor" : ""}
     contentGridFields {
       useLeadingHeader
       leadingHeader
@@ -82,13 +94,13 @@ export const CONTENT_GRID = `
       columns {
         width
         content {
-          ${MAP}
+          ${MAP({ hasBackgroundColor: false })}
           ${CONTENT({
             displayWidth: false,
             displayAlignment: false,
             singleColumn: true,
           })}
-          ${GALLERY_IMAGES}
+          ${GALLERY_IMAGES({ hasBackgroundColor: false })}
         }
       }
     }

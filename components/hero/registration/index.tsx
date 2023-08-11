@@ -19,7 +19,7 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
   const queryClient = new QueryClient()
 
   return (
-    <section className="mb-20">
+    <section>
       {/* Hero Image */}
       <div className="relative">
         {/* Media Component */}
@@ -49,13 +49,15 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
           {/* Hero Content */}
           <div
             className={cn(
-              "flex flex-col h-3/4-screen justify-center text-background",
-              "w-3/5",
+              "flex flex-col h-2/3-screen md:h-3/4-screen justify-center text-background",
+              "w-full lg:w-4/5 xl:w-3/5",
               "2xl:-mx-32 3xl:-mx-48"
             )}
           >
             <RichText
-              className={cn("[&>h1]:text-7xl [&>p]:max-w-[65ch] mt-4")}
+              className={cn(
+                "[&>h1]:text-5xl md:[&>h1]:text-7xl [&>p]:max-w-[65ch] mt-4"
+              )}
               content={richText}
             />
           </div>
@@ -66,7 +68,17 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
       {forms && (
         <Gutter>
           <QueryClientProvider client={queryClient}>
-            <div className={cn("relative -mt-20 grid grid-cols-3 gap-6 z-[2]")}>
+            <div
+              className={cn(
+                "relative -mt-20 grid gap-6 z-[2]",
+                "2xl:-mx-32 3xl:-mx-48",
+                {
+                  "md:grid-cols-2": forms.length % 2 === 0,
+                  "lg:grid-cols-3": forms.length % 3 === 0,
+                  "md:grid-cols-2 2xl:grid-cols-4": forms.length % 4 === 0,
+                }
+              )}
+            >
               {forms.map((form, i) => {
                 if (typeof form !== "object" || form === null) return null
 
