@@ -8,7 +8,12 @@ import {
   VerticalPaddingOptions,
 } from "@/components/vertical-padding"
 
-export type BackgroundColor = "primary" | "secondary" | "muted" | "white"
+export type BackgroundColor =
+  | "primary"
+  | "secondary"
+  | "muted"
+  | "shaded"
+  | "white"
 
 export const BackgroundColorContext = createContext<BackgroundColor>("white")
 
@@ -41,6 +46,7 @@ export const BackgroundColor: React.FC<Props> = (props) => {
         "bg-background": color === "white",
         "bg-primary": color === "primary",
         "bg-secondary": color === "secondary",
+        "bg-shaded": color === "shaded",
         "bg-muted": color === "muted",
       })}
     >

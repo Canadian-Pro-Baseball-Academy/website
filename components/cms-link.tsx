@@ -21,7 +21,7 @@ type TeamsReference = {
 
 type PageSettingReference = {
   value: string | PageSetting
-  relationTo: "page-settings"
+  relationTo: "pageSettings"
 }
 
 export type LinkType = "reference" | "custom"
@@ -79,11 +79,7 @@ const generateHref = (args: GenerateSlugType) => {
       }
     }
 
-    if (
-      reference.relationTo === "page-settings" ||
-      // @ts-ignore
-      reference.relationTo === "page_settings"
-    ) {
+    if (reference.relationTo === "pageSettings") {
       const value = reference.value as PageSetting
       return `/${value.slug}`
     }

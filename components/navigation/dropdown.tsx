@@ -20,9 +20,9 @@ import { Icons } from "../icons"
 type Menu = Exclude<Header["mainMenu"]["items"][0]["menu"], undefined>
 type Blocks = Exclude<Menu["blocks"], undefined>
 
-type HighlightItem = Extract<Blocks[0], { blockType: "menu-highlight" }>
-type LinkItem = Extract<Blocks[0], { blockType: "menu-link" }>
-type ColumnItem = Extract<Blocks[0], { blockType: "menu-column" }>
+type HighlightItem = Extract<Blocks[0], { blockType: "menuHighlight" }>
+type LinkItem = Extract<Blocks[0], { blockType: "menuLink" }>
+type ColumnItem = Extract<Blocks[0], { blockType: "menuColumn" }>
 
 // @ts-expect-error
 const HighlightItem: React.FC<HighlightItem> = ({ highlightLink }) => {
@@ -75,9 +75,9 @@ const ColumnItem: React.FC<ColumnItem> = ({ name, links }) => {
 }
 
 const dropdowns = {
-  "menu-highlight": HighlightItem,
-  "menu-link": LinkItem,
-  "menu-column": ColumnItem,
+  menuHighlight: HighlightItem,
+  menuLink: LinkItem,
+  menuColumn: ColumnItem,
 }
 
 export const DesktopDropdown: React.FC<Header["mainMenu"]["items"][0]> = ({

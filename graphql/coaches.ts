@@ -3,7 +3,7 @@ import { MEDIA_FIELDS } from "./media"
 
 export const COACHES = `
   query Coaches {
-    PageSettings(where: { type: { equals: coaching_staff } }) {
+    PageSettings(where: { type: { equals: coachingStaff } }) {
       docs {
         hero {
           type

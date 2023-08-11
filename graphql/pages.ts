@@ -1,4 +1,4 @@
-import { CONTENT, CONTENT_GRID, MAP } from "./blocks"
+import { CONTENT, CONTENT_GRID, GALLERY_IMAGES, MAP } from "./blocks"
 import { LINK_FIELDS } from "./links"
 import { MEDIA_FIELDS } from "./media"
 
@@ -40,9 +40,10 @@ export const PAGE = `
             previewTest
         }
         layout {
-          ${CONTENT_GRID}
-          ${MAP}
+          ${CONTENT_GRID()}
+          ${MAP()}
           ${CONTENT()}
+          ${GALLERY_IMAGES()}
         }
         meta {
           title

@@ -19,7 +19,7 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
   const queryClient = new QueryClient()
 
   return (
-    <section className="mb-20">
+    <section>
       {/* Hero Image */}
       <div className="relative">
         {/* Media Component */}

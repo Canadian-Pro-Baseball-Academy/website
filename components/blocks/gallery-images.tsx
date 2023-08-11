@@ -1,5 +1,5 @@
 import React from "react"
-import { Media as MediaType, PageSetting } from "@/payload-types"
+import { Media as MediaType, Page, PageSetting } from "@/payload-types"
 
 import { Gutter as GutterOriginal } from "../gutter"
 import { Media } from "../media"
@@ -41,9 +41,8 @@ function splitArrayIntoSubarrays(num: number, arr: any) {
   return subarrays
 }
 
-type Gallery = Exclude<PageSetting["gallery"], undefined>
-type Layout = Exclude<Gallery["gallery"], undefined>
-type Props = Extract<Layout[0], { blockType: "gallery-images" }>
+type Layout = Exclude<Page["layout"], undefined>
+type Props = Extract<Layout, { blockType: "galleryImages" }>
 
 // TODO: Add leading header
 export const GalleryImages: React.FC<Props & { disableGutter?: boolean }> = ({

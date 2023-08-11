@@ -12,11 +12,11 @@ import { Map } from "./map"
 const columnComponents = {
   map: Map,
   content: Content,
-  "gallery-images": GalleryImages,
+  galleryImages: GalleryImages,
 }
 
 type Layout = Exclude<Page["layout"], undefined>
-type Props = Extract<Layout[0], { blockType: "content-grid" }>
+type Props = Extract<Layout[0], { blockType: "contentGrid" }>
 
 export const ContentGrid: React.FC<Props> = ({ contentGridFields }) => {
   if (!contentGridFields) return null
