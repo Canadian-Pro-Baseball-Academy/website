@@ -66,7 +66,17 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
       {forms && (
         <Gutter>
           <QueryClientProvider client={queryClient}>
-            <div className={cn("relative -mt-20 grid grid-cols-3 gap-6 z-[2]")}>
+            <div
+              className={cn(
+                "relative -mt-20 grid gap-6 z-[2]",
+                "2xl:-mx-32 3xl:-mx-48",
+                {
+                  "md:grid-cols-2": forms.length % 2 === 0,
+                  "lg:grid-cols-3": forms.length % 3 === 0,
+                  "md:grid-cols-2 2xl:grid-cols-4": forms.length % 4 === 0,
+                }
+              )}
+            >
               {forms.map((form, i) => {
                 if (typeof form !== "object" || form === null) return null
 

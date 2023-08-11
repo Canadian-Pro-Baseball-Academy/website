@@ -56,9 +56,9 @@ export const ContentGrid: React.FC<Props> = ({ contentGridFields }) => {
               key={index}
               className={cn("px-4 pb-16", {
                 "w-full": width === "full",
-                "w-1/2": width === "half",
-                "w-1/3": width === "oneThird",
-                "w-2/3": width === "twoThirds",
+                "w-full md:w-1/2": width === "half",
+                "w-full sm:w-1/2 lg:w-1/3": width === "oneThird",
+                "w-full sm:w-1/2 lg:w-2/3": width === "twoThirds",
               })}
             >
               <Block {...content[0]} disableGutter />
