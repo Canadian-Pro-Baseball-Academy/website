@@ -49,13 +49,15 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
           {/* Hero Content */}
           <div
             className={cn(
-              "flex flex-col h-3/4-screen justify-center text-background",
-              "w-3/5",
+              "flex flex-col h-2/3-screen md:h-3/4-screen justify-center text-background",
+              "w-full lg:w-4/5 xl:w-3/5",
               "2xl:-mx-32 3xl:-mx-48"
             )}
           >
             <RichText
-              className={cn("[&>h1]:text-7xl [&>p]:max-w-[65ch] mt-4")}
+              className={cn(
+                "[&>h1]:text-5xl md:[&>h1]:text-7xl [&>p]:max-w-[65ch] mt-4"
+              )}
               content={richText}
             />
           </div>

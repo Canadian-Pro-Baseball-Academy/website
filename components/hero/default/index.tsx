@@ -41,12 +41,14 @@ export const DefaultHero: React.FC<Page["hero"]> = ({
             <div
               className={cn(
                 "flex flex-col justify-center pb-20 pt-40 text-background",
-                "w-3/5",
+                "w-full lg:w-4/5 xl:w-3/5",
                 "2xl:-mx-32 3xl:-mx-48"
               )}
             >
               <RichText
-                className={cn("mt-4 [&>h1]:text-6xl [&>p]:max-w-[65ch]")}
+                className={cn(
+                  "mt-4 [&>h1]:text-4xl md:[&>h1]:text-6xl [&>p]:max-w-[65ch]"
+                )}
                 content={richText}
               />
               {/* Buttons */}

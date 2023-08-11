@@ -112,7 +112,7 @@ export const Serialize: React.FC<{
             return (
               <h2
                 key={i}
-                className="scroll-m-20 text-3xl font-semibold tracking-tight transition-colors mt-8 first:mt-0"
+                className="scroll-m-20 text-3xl font-semibold tracking-tight transition-colors mt-4 first:mt-0"
               >
                 <Serialize
                   content={node.children}
@@ -206,7 +206,9 @@ export const Serialize: React.FC<{
             return (
               <p
                 key={i}
-                className={cn("text-sm font-semibold text-muted-foreground")}
+                className={cn(
+                  "text-sm font-semibold text-muted-foreground first:-mb-3"
+                )}
               >
                 <Serialize
                   content={node.children}
