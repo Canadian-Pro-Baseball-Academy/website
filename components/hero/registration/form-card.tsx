@@ -66,20 +66,20 @@ export const FormCard: React.FC<TeamSnapForm> = ({
   if (isLoading || !data) return <FormCardSkeleton />
 
   return (
-    <div className="h-full min-h-[5rem] w-full shadow-md bg-background px-6 py-4">
-      <h1 className="font-heading scroll-m-20 text-xl font-semibold tracking-tight">
+    <div className="h-full min-h-[5rem] w-full bg-background px-6 py-4 shadow-md">
+      <h1 className="scroll-m-20 font-heading text-xl font-semibold tracking-tight">
         {title}
       </h1>
 
       <div
         className={cn(
-          "flex gap-2 items-center mt-1",
+          "mt-1 flex items-center gap-2",
           data.isOpen ? "text-green-500" : "text-red-500"
         )}
       >
         <div
           className={cn(
-            "w-2 h-2 rounded-full font-semibold",
+            "h-2 w-2 rounded-full font-semibold",
             data.isOpen ? "bg-green-500" : "bg-red-500"
           )}
         />{" "}
@@ -87,7 +87,7 @@ export const FormCard: React.FC<TeamSnapForm> = ({
       </div>
 
       <RichText
-        className="mt-4 text-muted-foreground line-clamp-4"
+        className="mt-4 line-clamp-4 text-muted-foreground"
         content={description}
       />
 
@@ -111,7 +111,7 @@ export const FormCard: React.FC<TeamSnapForm> = ({
         </p>
       </div>
       {parseInt(data.participantLimit) !== 0 && (
-        <div className="flex gap-4 mt-4">
+        <div className="mt-4 flex gap-4">
           <p>
             <span className="font-semibold">{data.participantCount}</span> spots
             taken
@@ -145,23 +145,23 @@ export const FormCard: React.FC<TeamSnapForm> = ({
 
 const FormCardSkeleton: React.FC = () => {
   return (
-    <div className="h-full min-h-[5rem] w-full shadow-md bg-background px-6 py-4">
+    <div className="h-full min-h-[5rem] w-full bg-background px-6 py-4 shadow-md">
       <Skeleton className="h-7" />
-      <Skeleton className="h-5 w-40 mt-1" />
+      <Skeleton className="mt-1 h-5 w-40" />
       <div className="mt-4">
-        <Skeleton className="h-6 mt-1" />
-        <Skeleton className="h-6 mt-1" />
-        <Skeleton className="h-6 mt-1" />
+        <Skeleton className="mt-1 h-6" />
+        <Skeleton className="mt-1 h-6" />
+        <Skeleton className="mt-1 h-6" />
       </div>
 
       <Separator className="my-4" orientation="horizontal" />
 
       {/* Registration Info */}
       <div>
-        <Skeleton className="h-6 mt-1" />
-        <Skeleton className="h-6 mt-1" />
+        <Skeleton className="mt-1 h-6" />
+        <Skeleton className="mt-1 h-6" />
       </div>
-      <div className="flex gap-4 mt-4">
+      <div className="mt-4 flex gap-4">
         <Skeleton className="h-6 w-40" />
         <Skeleton className="h-6 w-40" />
       </div>

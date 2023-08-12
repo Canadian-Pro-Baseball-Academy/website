@@ -281,6 +281,7 @@ export interface Page {
                   blockName?: string;
                   blockType: 'map';
                 }
+              | MediaBlock
             )[];
             id?: string;
           }[];
@@ -320,6 +321,7 @@ export interface Page {
         blockName?: string;
         blockType: 'map';
       }
+    | MediaBlock
   )[];
   meta?: {
     title?: string;
@@ -439,6 +441,28 @@ export interface TeamSnapForm {
   updatedAt: string;
   createdAt: string;
   _status?: 'draft' | 'published';
+}
+export interface MediaBlock {
+  mediaBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
+  mediaFields?: {
+    embed?: boolean;
+    embedVideo?: {
+      platform?: 'youtube' | 'vimeo';
+      videoID?: string;
+      aspectRatio?: '1.7778' | '1.3333' | '1.5' | '1' | '1.25' | '3' | '0.6667';
+      manualThumbnail?: string | Media;
+    };
+    internalMedia?: {
+      media?: string | Media;
+    };
+    size?: 'normal' | 'wide' | 'fullscreen';
+    caption?: {
+      [k: string]: unknown;
+    }[];
+  };
+  id?: string;
+  blockName?: string;
+  blockType: 'media';
 }
 export interface User {
   id: string;

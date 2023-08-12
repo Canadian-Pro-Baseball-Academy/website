@@ -8,17 +8,22 @@ import { RichText } from "../rich-text"
 import { Content } from "./content"
 import { GalleryImages } from "./gallery-images"
 import { Map } from "./map"
+import { Media } from "./media"
 
 const columnComponents = {
   map: Map,
   content: Content,
   galleryImages: GalleryImages,
+  media: Media,
 }
 
 type Layout = Exclude<Page["layout"], undefined>
 type Props = Extract<Layout[0], { blockType: "contentGrid" }>
 
-export const ContentGrid: React.FC<Props> = ({ contentGridFields }) => {
+export const ContentGrid: React.FC<Props> = ({
+  contentGridBackgroundColor,
+  contentGridFields,
+}) => {
   if (!contentGridFields) return null
 
   const { useLeadingHeader, leadingHeader, alignment, columns } =
@@ -29,7 +34,12 @@ export const ContentGrid: React.FC<Props> = ({ contentGridFields }) => {
   if (!hasColumns) return null
 
   return (
-    <section>
+    <section
+      className={cn({
+        "!text-primary-foreground": contentGridBackgroundColor === "primary",
+        "!text-shaded-foreground": contentGridBackgroundColor === "shaded",
+      })}
+    >
       <Gutter>
         {useLeadingHeader && leadingHeader && (
           <div className="mb-8 max-w-[65ch]">

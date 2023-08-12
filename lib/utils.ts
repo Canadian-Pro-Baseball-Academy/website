@@ -6,6 +6,20 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const darkBackgrounds = ["primary", "dark"]
+
+export const aspectRatios = {
+  _1_7778: 1.7778,
+  _1_3333: 1.3333,
+  _1_5: 1.5,
+  _1: 1,
+  _1_25: 1.25,
+  _3: 3,
+  _0_6667: 0.8,
+  _0_5625: 0.5625,
+  _2_3333: 2.3333,
+}
+
 export function GenerateHeroData(header: string, url?: string): Page["hero"] {
   return {
     type: "default",

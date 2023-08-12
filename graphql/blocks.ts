@@ -5,6 +5,29 @@ interface Props {
   hasBackgroundColor?: boolean
 }
 
+export const MEDIA_BLOCK = ({
+  hasBackgroundColor = true,
+}: Props = {}): string => `
+  ... on MediaBlock {
+    blockType
+    ${hasBackgroundColor ? "mediaBackgroundColor" : ""}
+    mediaFields {
+      embed
+      embedVideo {
+        platform
+        videoID
+        aspectRatio
+        manualThumbnail ${MEDIA_FIELDS}
+      }
+      internalMedia {
+        media ${MEDIA_FIELDS}
+      }
+      size
+      caption
+    }
+  }
+`
+
 export const MAP = ({ hasBackgroundColor = true }: Props = {}): string => `
   ... on Map {
     id
@@ -29,6 +52,7 @@ export const GALLERY_IMAGES = ({
     blockType
     ${hasBackgroundColor ? "galleryImagesBackgroundColor" : ""}
     imagesFields {
+      useLeadingHeader
       leadingHeader
       columns
       images ${MEDIA_FIELDS}
@@ -101,6 +125,7 @@ export const CONTENT_GRID = ({
             singleColumn: true,
           })}
           ${GALLERY_IMAGES({ hasBackgroundColor: false })}
+          ${MEDIA_BLOCK({ hasBackgroundColor: false })}
         }
       }
     }

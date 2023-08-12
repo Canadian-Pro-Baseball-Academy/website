@@ -1,4 +1,10 @@
-import { CONTENT, CONTENT_GRID, GALLERY_IMAGES, MAP } from "./blocks"
+import {
+  CONTENT,
+  CONTENT_GRID,
+  GALLERY_IMAGES,
+  MAP,
+  MEDIA_BLOCK,
+} from "./blocks"
 import { LINK_FIELDS } from "./links"
 import { MEDIA_FIELDS } from "./media"
 
@@ -44,6 +50,7 @@ export const PAGE = `
           ${MAP()}
           ${CONTENT()}
           ${GALLERY_IMAGES()}
+          ${MEDIA_BLOCK()}
         }
         meta {
           title
