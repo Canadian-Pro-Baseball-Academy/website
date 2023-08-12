@@ -20,7 +20,7 @@ export const SiteHeader: React.FC<Header> = ({ mainMenu, topBar }) => {
       className={cn(
         "fixed top-0 z-40 flex w-full justify-between bg-transparent py-2 transition-colors duration-300",
         "px-5 md:px-10 lg:px-20 2xl:px-32 3xl:px-48",
-        scrollPosition > 50 ? "bg-shaded/90 backdrop-blur-md" : "bg-transparent"
+        scrollPosition > 80 ? "bg-shaded/90 backdrop-blur-md" : "bg-transparent"
       )}
     >
       <div className="flex items-center gap-4 xl:gap-10">

@@ -9,6 +9,7 @@ import { BackgroundColor } from "./background-color"
 import { ContentGrid, GalleryImages } from "./blocks"
 import { Content } from "./blocks/content"
 import { Map } from "./blocks/map"
+import { Media } from "./blocks/media"
 import { VerticalPaddingOptions } from "./vertical-padding"
 
 const blockComponents = {
@@ -16,6 +17,7 @@ const blockComponents = {
   map: Map,
   contentGrid: ContentGrid,
   content: Content,
+  media: Media,
 }
 
 const blockTranslation = {

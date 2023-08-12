@@ -1,21 +1,12 @@
 import React from "react"
-import { Media as MediaType, Page, PageSetting } from "@/payload-types"
+import { Media as MediaType, Page } from "@/payload-types"
+
+import { aspectRatios } from "@/lib/utils"
 
 import { Gutter as GutterOriginal } from "../gutter"
 import { Media } from "../media"
+import { RichText } from "../rich-text"
 import { AspectRatio } from "../ui/aspect-ratio"
-
-const aspectRatios = {
-  _1_7778: 1.7778,
-  _1_3333: 1.3333,
-  _1_5: 1.5,
-  _1: 1,
-  _1_25: 1.25,
-  _3: 3,
-  _0_6667: 0.6667,
-  _0_5625: 0.5625,
-  _2_3333: 2.3333,
-}
 
 const flexLayout = {
   _1: 1,
@@ -42,28 +33,33 @@ function splitArrayIntoSubarrays(num: number, arr: any) {
 }
 
 type Layout = Exclude<Page["layout"], undefined>
-type Props = Extract<Layout, { blockType: "galleryImages" }>
+type Props = Extract<Layout[0], { blockType: "galleryImages" }>
 
 // TODO: Add leading header
 export const GalleryImages: React.FC<Props & { disableGutter?: boolean }> = ({
   imagesFields,
   disableGutter = false,
 }) => {
-  const { leadingHeader, columns, images: imagesFromProps } = imagesFields
+  const { useLeadingHeader, leadingHeader, columns, images } = imagesFields
 
   if (!columns) return null
 
   const imageColumns = splitArrayIntoSubarrays(
     // @ts-ignore
     flexLayout[columns],
-    imagesFromProps
+    images
   )
 
   const Gutter = disableGutter ? "div" : GutterOriginal
 
   return (
     <section>
-      <Gutter className="flex flex-col gap-0 sm:flex-row sm:gap-2">
+      <Gutter className="flex flex-col flex-wrap gap-0 sm:flex-row sm:gap-2">
+        {useLeadingHeader && leadingHeader && (
+          <div className="mb-8 w-full">
+            <RichText content={leadingHeader} />
+          </div>
+        )}
         {imageColumns.map((images) => {
           return (
             <div className="grow">

@@ -1,6 +1,8 @@
 import React from "react"
 import { Page, PageSetting, Team } from "@/payload-types"
 
+import { cn } from "@/lib/utils"
+
 import { Gutter as GutterOriginal } from "../gutter"
 import { RichText } from "../rich-text"
 
@@ -8,6 +10,7 @@ type Layout = Exclude<Page["layout"], undefined>
 type Props = Extract<Layout[0], { blockType: "content" }>
 
 export const Content: React.FC<Props & { disableGutter?: boolean }> = ({
+  contentBackgroundColor,
   contentFields,
   disableGutter = false,
 }) => {
@@ -18,7 +21,13 @@ export const Content: React.FC<Props & { disableGutter?: boolean }> = ({
   const Gutter = disableGutter ? "div" : GutterOriginal
 
   return (
-    <Gutter>
+    <Gutter
+      className={cn({
+        "!text-primary-foreground": contentBackgroundColor === "primary",
+        "text-secondary-foreground": contentBackgroundColor === "secondary",
+        "!text-shaded-foreground": contentBackgroundColor === "shaded",
+      })}
+    >
       {columns &&
         columns.map((column) => {
           return (

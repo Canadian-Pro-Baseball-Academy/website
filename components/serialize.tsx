@@ -93,7 +93,9 @@ export const Serialize: React.FC<{
 
         switch (node.type) {
           case "br":
-            return <br key={i} />
+            return <br key={i} className="" />
+          case "hr":
+            return <hr key={i} className="[&:not(:first-child)]:mt-4" />
           case "h1":
             return (
               <h1
@@ -112,12 +114,14 @@ export const Serialize: React.FC<{
             return (
               <h2
                 key={i}
-                className="scroll-m-20 text-3xl font-semibold tracking-tight transition-colors mt-4 first:mt-0"
+                className="mt-4 scroll-m-20 text-3xl font-semibold tracking-tight transition-colors first:mt-0"
               >
-                <Serialize
-                  content={node.children}
-                  customRenderers={customRenderers}
-                />
+                <Balancer>
+                  <Serialize
+                    content={node.children}
+                    customRenderers={customRenderers}
+                  />
+                </Balancer>
               </h2>
             )
           case "h3":
@@ -126,10 +130,12 @@ export const Serialize: React.FC<{
                 key={i}
                 className="scroll-m-20 text-2xl font-semibold tracking-tight"
               >
-                <Serialize
-                  content={node.children}
-                  customRenderers={customRenderers}
-                />
+                <Balancer>
+                  <Serialize
+                    content={node.children}
+                    customRenderers={customRenderers}
+                  />
+                </Balancer>
               </h3>
             )
           case "h4":
@@ -138,10 +144,12 @@ export const Serialize: React.FC<{
                 key={i}
                 className="scroll-m-20 text-xl font-semibold tracking-tight"
               >
-                <Serialize
-                  content={node.children}
-                  customRenderers={customRenderers}
-                />
+                <Balancer>
+                  <Serialize
+                    content={node.children}
+                    customRenderers={customRenderers}
+                  />
+                </Balancer>
               </h4>
             )
           case "h5":
