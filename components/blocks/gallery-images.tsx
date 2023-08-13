@@ -54,7 +54,7 @@ export const GalleryImages: React.FC<Props & { disableGutter?: boolean }> = ({
 
   return (
     <section>
-      <Gutter className="flex flex-col flex-wrap gap-0 sm:flex-row sm:gap-2">
+      <Gutter className="flex flex-col sm:flex-wrap gap-0 sm:flex-row sm:gap-2">
         {useLeadingHeader && leadingHeader && (
           <div className="mb-8 w-full">
             <RichText content={leadingHeader} />

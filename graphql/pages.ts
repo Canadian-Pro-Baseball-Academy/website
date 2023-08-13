@@ -4,6 +4,7 @@ import {
   GALLERY_IMAGES,
   MAP,
   MEDIA_BLOCK,
+  SLIDER,
 } from "./blocks"
 import { LINK_FIELDS } from "./links"
 import { MEDIA_FIELDS } from "./media"
@@ -51,6 +52,7 @@ export const PAGE = `
           ${CONTENT()}
           ${GALLERY_IMAGES()}
           ${MEDIA_BLOCK()}
+          ${SLIDER()}
         }
         meta {
           title

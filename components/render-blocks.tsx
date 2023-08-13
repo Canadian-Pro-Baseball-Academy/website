@@ -10,6 +10,7 @@ import { ContentGrid, GalleryImages } from "./blocks"
 import { Content } from "./blocks/content"
 import { Map } from "./blocks/map"
 import { Media } from "./blocks/media"
+import { Slider } from "./blocks/slider"
 import { VerticalPaddingOptions } from "./vertical-padding"
 
 const blockComponents = {
@@ -18,14 +19,7 @@ const blockComponents = {
   contentGrid: ContentGrid,
   content: Content,
   media: Media,
-}
-
-const blockTranslation = {
-  "gallery-slider": "slider",
-  "gallery-images": "images",
-  map: "map",
-  "content-grid": "contentGrid",
-  content: "content",
+  slider: Slider,
 }
 
 type PageType = Page["layout"]
