@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 
 import { PayloadLink, Reference } from "./cms-link"
 import { Highlight } from "./highlight"
+import RichTextUpload from "./rich-text-upload"
 
 export type Node = {
   type: string
@@ -210,6 +211,10 @@ export const Serialize: React.FC<{
                 />
               </li>
             )
+
+          case "upload": {
+            return <RichTextUpload key={i} node={node} />
+          }
 
           case "label":
             return (
