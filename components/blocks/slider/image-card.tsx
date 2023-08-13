@@ -23,6 +23,7 @@ export const widths = {
   _2_3333: "min-w-[1166px] max-w-[1166px]",
 }
 
+// TODO: Add support for other image sizes
 export const ImageCard: React.FC<Props> = ({ image }) => {
   if (typeof image === "string" || !image.aspectRatio) return null
 

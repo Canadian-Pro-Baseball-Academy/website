@@ -101,7 +101,7 @@ export const SliderBlock: React.FC<Props> = ({
 
 export const Slider: React.FC<Props> = (props) => {
   return (
-    <SliderProvider slidesToShow={2.5}>
+    <SliderProvider slidesToShow={1.5}>
       <SliderBlock {...props} />
     </SliderProvider>
   )
