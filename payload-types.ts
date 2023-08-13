@@ -55,7 +55,7 @@ export interface Coach {
 export interface Media {
   id: string;
   alt: string;
-  aspectRatio?: '1.7778' | '1.3333' | '1.5' | '1' | '1.25' | '3' | '0.6667';
+  aspectRatio?: '1.7778' | '1.3333' | '1.5' | '1' | '1.25' | '3' | '0.8';
   blurURL?: string;
   darkModeFallback?: string | Media;
   updatedAt: string;
@@ -322,6 +322,68 @@ export interface Page {
         blockType: 'map';
       }
     | MediaBlock
+    | {
+        sliderBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
+        sliderFields: {
+          useLeadingHeader?: boolean;
+          leadingHeader?: {
+            [k: string]: unknown;
+          }[];
+          sliderType: 'contentSlider' | 'imageSlider' | 'relationshipSlider';
+          imageSlides: {
+            image: string | Media;
+            id?: string;
+          }[];
+          contentSlides: {
+            richText: {
+              [k: string]: unknown;
+            }[];
+            isQuote?: boolean;
+            quoteDate: string;
+            id?: string;
+          }[];
+          relationshipSlides:
+            | (
+                | {
+                    value: string;
+                    relationTo: 'pages';
+                  }
+                | {
+                    value: string;
+                    relationTo: 'pageSettings';
+                  }
+                | {
+                    value: string;
+                    relationTo: 'coaches';
+                  }
+                | {
+                    value: string;
+                    relationTo: 'teams';
+                  }
+              )[]
+            | (
+                | {
+                    value: Page;
+                    relationTo: 'pages';
+                  }
+                | {
+                    value: PageSetting;
+                    relationTo: 'pageSettings';
+                  }
+                | {
+                    value: Coach;
+                    relationTo: 'coaches';
+                  }
+                | {
+                    value: Team;
+                    relationTo: 'teams';
+                  }
+              )[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'slider';
+      }
   )[];
   meta?: {
     title?: string;
@@ -449,7 +511,7 @@ export interface MediaBlock {
     embedVideo?: {
       platform?: 'youtube' | 'vimeo';
       videoID?: string;
-      aspectRatio?: '1.7778' | '1.3333' | '1.5' | '1' | '1.25' | '3' | '0.6667';
+      aspectRatio?: '1.7778' | '1.3333' | '1.5' | '1' | '1.25' | '3' | '0.8';
       manualThumbnail?: string | Media;
     };
     internalMedia?: {

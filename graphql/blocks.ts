@@ -5,6 +5,27 @@ interface Props {
   hasBackgroundColor?: boolean
 }
 
+export const SLIDER = ({ hasBackgroundColor = true }: Props = {}): string => `
+... on Slider {
+  blockName
+  blockType
+  ${hasBackgroundColor ? "sliderBackgroundColor" : ""}
+  sliderFields {
+    useLeadingHeader
+    leadingHeader
+    sliderType
+    imageSlides {
+      image ${MEDIA_FIELDS}
+    }
+    contentSlides {
+      richText
+      isQuote
+      quoteDate
+    }
+  }
+}
+`
+
 export const MEDIA_BLOCK = ({
   hasBackgroundColor = true,
 }: Props = {}): string => `

@@ -60,6 +60,7 @@
     "escape-html": "^1.0.3",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.33.0",
-    "eslint-plugin-tailwindcss": "^3.13.0"
+    "eslint-plugin-tailwindcss": "^3.13.0",
+    "tailwind-scrollbar": "^3.0.5"
   }
 }

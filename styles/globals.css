@@ -82,3 +82,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .scrollbar::-webkit-scrollbar-track {
+    @apply ml-5 md:ml-10 lg:ml-20 2xl:ml-60 3xl:ml-96
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    background-color: transparent;
+    height: 4px;
+    cursor: pointer;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary;
+    border-radius: 0px;
+    cursor: pointer;
+  }
+}
