@@ -13,7 +13,6 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Gutter } from "@/components/gutter"
 import { RichText } from "@/components/rich-text"
-import ApiTest from "@/app/api-test"
 
 import { ContentCard } from "./content-card"
 import { ImageCard } from "./image-card"

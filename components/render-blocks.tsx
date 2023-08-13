@@ -10,6 +10,7 @@ import { ContentGrid, GalleryImages } from "./blocks"
 import { Content } from "./blocks/content"
 import { Map } from "./blocks/map"
 import { Media } from "./blocks/media"
+import { PostHighlight } from "./blocks/post-highlight"
 import { Slider } from "./blocks/slider"
 import { VerticalPaddingOptions } from "./vertical-padding"
 
@@ -20,6 +21,7 @@ const blockComponents = {
   content: Content,
   media: Media,
   slider: Slider,
+  postsHighlight: PostHighlight,
 }
 
 type PageType = Page["layout"]
