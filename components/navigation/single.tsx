@@ -9,16 +9,20 @@ import {
 } from "@/components/ui/navigation-menu"
 import { PayloadLink } from "@/components/cms-link"
 
-export const DesktopSingle: React.FC<Header["mainMenu"]["items"][0]> = ({
-  label,
-  link,
-}) => {
+export const DesktopSingle: React.FC<
+  Header["mainMenu"]["items"][0] & { lightNav: boolean }
+> = ({ label, link, lightNav }) => {
   if (!link) return null
 
   return (
     <NavigationMenuItem>
       <NavigationMenuLink asChild>
-        <PayloadLink className={cn(navigationMenuTriggerStyle())} {...link}>
+        <PayloadLink
+          className={cn(navigationMenuTriggerStyle(), {
+            "text-foreground": lightNav,
+          })}
+          {...link}
+        >
           {label}
         </PayloadLink>
       </NavigationMenuLink>

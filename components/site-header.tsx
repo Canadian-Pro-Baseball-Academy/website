@@ -2,6 +2,7 @@
 
 import React from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Header } from "@/payload-types"
 
 import { cn } from "@/lib/utils"
@@ -14,6 +15,9 @@ import { MobileNav } from "./navigation/mobile"
 
 export const SiteHeader: React.FC<Header> = ({ mainMenu, topBar }) => {
   const scrollPosition = useScrollPosition()
+  const pathname = usePathname().split("/")
+
+  const lightNav = pathname.includes("news")
 
   return (
     <header
@@ -26,15 +30,20 @@ export const SiteHeader: React.FC<Header> = ({ mainMenu, topBar }) => {
       <div className="flex items-center gap-4 xl:gap-10">
         <Link href="/" className="flex items-center gap-2">
           <Icons.logo className="h-16 w-16" />
-          <div className="text-background lg:hidden xl:block">
+          <div
+            className={cn(
+              "lg:hidden xl:block",
+              lightNav ? "text-foreground" : "text-background"
+            )}
+          >
             <h1 className="text-xs font-bold">THE CALGARY</h1>
             <h2 className="font-heading text-3xl font-black">BISONS</h2>
           </div>
         </Link>
-        <MainNavLeft {...mainMenu} />
+        <MainNavLeft {...mainMenu} lightNav={lightNav} />
       </div>
       <div className="flex items-center gap-10">
-        <MainNavRight />
+        <MainNavRight lightNav={lightNav} />
         {/* <SecondaryNav /> */}
         <div className="lg:hidden">
           <MobileNav {...mainMenu} />
