@@ -20,9 +20,9 @@ export const PostHighlight: React.FC<Props> = ({ postHighlightFields }) => {
     <div>
       <Gutter>
         {useLeadingHeader && leadingHeader && (
-          <RichText content={leadingHeader} className="max-w-[900px] mb-8" />
+          <RichText content={leadingHeader} className="mb-8 max-w-[900px]" />
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, index) => {
             if (typeof post !== "object") return null
             return (

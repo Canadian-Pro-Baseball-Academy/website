@@ -17,7 +17,7 @@ type Props = {
 export const ContentMediaCard: React.FC<Props> = (props) => {
   const { title, description, className, media, href, orientation } = props
   return (
-    <div className="flex flex-col gap-6 group">
+    <div className="group flex flex-col gap-6">
       {typeof media !== "string" && (
         <Link className="relative shrink-0 grow-0" href={href} prefetch={false}>
           <AspectRatio className="shadow-md" ratio={3 / 2}>
@@ -30,7 +30,7 @@ export const ContentMediaCard: React.FC<Props> = (props) => {
           </AspectRatio>
         </Link>
       )}
-      <div className="grow flex flex-col gap-3">
+      <div className="flex grow flex-col gap-3">
         <Link
           className="scroll-m-20 text-xl font-medium tracking-tight group-hover:underline"
           href={href}

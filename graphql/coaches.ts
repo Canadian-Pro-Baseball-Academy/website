@@ -1,5 +1,6 @@
 import { LINK_FIELDS } from "./links"
 import { MEDIA_FIELDS } from "./media"
+import { META_FIELDS } from "./meta"
 
 export const COACHES = `
   query Coaches {
@@ -16,6 +17,9 @@ export const COACHES = `
             value
           }
           previewTest
+        }
+        meta {
+          ${META_FIELDS}
         }
         coachingStaff {
           mainCoaches {

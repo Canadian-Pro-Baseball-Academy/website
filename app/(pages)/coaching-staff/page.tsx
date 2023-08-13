@@ -1,5 +1,6 @@
 import React from "react"
 import { Metadata } from "next"
+import { draftMode } from "next/headers"
 import { notFound } from "next/navigation"
 import { COACHES } from "@/graphql/coaches"
 import { PageSetting } from "@/payload-types"
@@ -12,15 +13,25 @@ import { DefaultHero } from "@/components/hero/default"
 import { mergeMetadata } from "@/components/seo"
 import ApiTest from "@/app/api-test"
 
-const CoachingStaffPage = async () => {
-  const {
-    PageSettings: { docs: res },
-  } = await request<{ PageSettings: { docs: PageSetting[] } }>({
-    collection: "page-settings=coaching-staff",
+const fetchPage = async (): Promise<PageSetting | null> => {
+  const { isEnabled } = draftMode()
+
+  const collection = `page-settings=coaching-staff`
+  const data = await request<{ PageSettings: { docs: PageSetting[] } }>({
+    collection,
     query: COACHES,
+    draft: isEnabled,
   })
 
-  const page = res[0]
+  const page = data.PageSettings?.docs[0] || null
+
+  if (!page) return null
+
+  return page
+}
+
+const CoachingStaffPage = async () => {
+  const page = await fetchPage()
 
   if (!page) return notFound()
 
@@ -59,10 +70,27 @@ const CoachingStaffPage = async () => {
 export default CoachingStaffPage
 
 export async function generateMetadata(): Promise<Metadata> {
+  const page = await fetchPage()
+
+  const ogImage =
+    typeof page?.meta?.image === "object" &&
+    page?.meta?.image !== null &&
+    "url" in page?.meta?.image &&
+    `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/media/${page.meta.image.filename}`
+
   const metadata = await mergeMetadata({
-    title: "Coaching Staff | Calgary Bisons Baseball",
-    description:
-      "Meet our exceptional coaching staff, guiding athletes to greatness with expertise and passion. Discover the mentors behind our exeptional teams.",
+    title: page?.meta?.title,
+    description: page?.meta?.description,
+    keywords: page?.meta?.keywords,
+    openGraph: {
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+            },
+          ]
+        : undefined,
+    },
   })
 
   return metadata

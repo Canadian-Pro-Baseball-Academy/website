@@ -78,7 +78,7 @@ export const SliderBlock: React.FC<Props> = ({
                 className={cn(
                   "relative mr-12",
                   "mb-8",
-                  "3xl:first:ml-96 first:ml-5 md:first:ml-10 lg:first:ml-20 2xl:first:ml-60",
+                  "first:ml-5 md:first:ml-10 lg:first:ml-20 2xl:first:ml-60 3xl:first:ml-96",
                   "min-w-[300px] lg:min-w-[600px]",
                   {
                     "max-w-[625px]": sliderType === "contentSlider",

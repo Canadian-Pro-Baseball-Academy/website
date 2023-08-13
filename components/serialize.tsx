@@ -4,6 +4,7 @@ import { Balancer } from "react-wrap-balancer"
 
 import { cn } from "@/lib/utils"
 
+import { PayloadLink, Reference } from "./cms-link"
 import { Highlight } from "./highlight"
 
 export type Node = {
@@ -223,6 +224,23 @@ export const Serialize: React.FC<{
                   customRenderers={customRenderers}
                 />
               </p>
+            )
+
+          case "link":
+            return (
+              <PayloadLink
+                key={i}
+                type={node.linkType === "internal" ? "reference" : "custom"}
+                url={node.url}
+                reference={node.doc as Reference}
+                newTab={node?.newTab}
+                className="underline decoration-1 underline-offset-[6px] hover:font-medium"
+              >
+                <Serialize
+                  content={node.children}
+                  customRenderers={customRenderers}
+                />
+              </PayloadLink>
             )
 
           case "large-body": {

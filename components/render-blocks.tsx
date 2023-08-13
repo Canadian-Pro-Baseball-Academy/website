@@ -1,12 +1,13 @@
 // @ts-nocheck
 
 import React from "react"
-import { Page, PageSetting } from "@/payload-types"
+import { Page, PageSetting, Post } from "@/payload-types"
 
 import ApiTest from "@/app/api-test"
 
 import { BackgroundColor } from "./background-color"
 import { ContentGrid, GalleryImages } from "./blocks"
+import { BlogContent } from "./blocks/blog-content"
 import { Content } from "./blocks/content"
 import { Map } from "./blocks/map"
 import { Media } from "./blocks/media"
@@ -22,12 +23,14 @@ const blockComponents = {
   media: Media,
   slider: Slider,
   postsHighlight: PostHighlight,
+  blogContent: BlogContent,
 }
 
 type PageType = Page["layout"]
+type PostType = Post["content"]
 
 type Props = {
-  blocks: PageType
+  blocks: PageType | PostType
 }
 
 export const RenderBlocks: React.FC<Props> = ({ blocks }) => {

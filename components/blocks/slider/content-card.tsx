@@ -18,21 +18,21 @@ export const ContentCard: React.FC<Props> = ({
   quoteDate,
 }) => {
   return (
-    <div className="bg-shaded p-8 lg:p-11 text-shaded-foreground flex flex-col h-full">
+    <div className="flex h-full flex-col bg-shaded p-8 text-shaded-foreground lg:p-11">
       {isQuote && (
         <QuoteIcon
           fill="currentColor"
           strokeWidth={0}
-          className="w-6 h-6 lg:w-8 lg:h-8 mb-2 scale-[-1] text-shaded-foreground"
+          className="mb-2 h-6 w-6 scale-[-1] text-shaded-foreground lg:h-8 lg:w-8"
         />
       )}
       <RichText
         content={richText}
-        className="font-sans text-xl lg:text-4xl font-medium flex-1"
+        className="flex-1 font-sans text-xl font-medium lg:text-4xl"
       />
       {isQuote && quoteDate && (
         <time
-          className="mt-8 tracking-wider text-xs lg:text-base"
+          className="mt-8 text-xs tracking-wider lg:text-base"
           dateTime={quoteDate}
         >
           {format(new Date(quoteDate), "MMM d, yyyy")}

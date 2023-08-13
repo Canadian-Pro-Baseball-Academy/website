@@ -1,4 +1,5 @@
 import { MEDIA_BLOCK } from "./blocks"
+import { LINK_FIELDS } from "./links"
 import { MEDIA_FIELDS } from "./media"
 import { META_FIELDS } from "./meta"
 
@@ -10,11 +11,35 @@ export const POSTS = `
         title
         image ${MEDIA_FIELDS}
         meta {
-            ${META_FIELDS}
+          ${META_FIELDS}
         }
         createdAt
         publishedOn
         slug
+      }
+    }
+  }
+`
+
+export const POSTS_SUMMARY = `
+  query PostsPage {
+    PageSettings(where: { type: { equals: news } }) {
+      docs {
+        hero {
+          type
+          richText
+          links {
+            link ${LINK_FIELDS()}
+          }
+          media ${MEDIA_FIELDS}
+          values {
+            value
+          }
+          previewTest
+        }
+        meta {
+          ${META_FIELDS}
+        }
       }
     }
   }

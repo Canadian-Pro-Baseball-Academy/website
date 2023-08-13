@@ -1,5 +1,6 @@
 "use client"
 
+import path from "path"
 import React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -17,14 +18,16 @@ export const SiteHeader: React.FC<Header> = ({ mainMenu, topBar }) => {
   const scrollPosition = useScrollPosition()
   const pathname = usePathname().split("/")
 
-  const lightNav = pathname.includes("news")
+  const lightNav = pathname.includes("news") && pathname.length > 2
 
   return (
     <header
       className={cn(
         "fixed top-0 z-40 flex w-full justify-between bg-transparent py-2 transition-colors duration-300",
         "px-5 md:px-10 lg:px-20 2xl:px-32 3xl:px-48",
-        scrollPosition > 80 ? "bg-shaded/90 backdrop-blur-md" : "bg-transparent"
+        scrollPosition > 80 && lightNav && "bg-background/90 backdrop-blur-md",
+        scrollPosition > 80 && !lightNav && "bg-shaded/90 backdrop-blur-md",
+        scrollPosition < 80 && "bg-transparent"
       )}
     >
       <div className="flex items-center gap-4 xl:gap-10">
