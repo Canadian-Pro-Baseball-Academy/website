@@ -16,10 +16,11 @@ import { RichText } from "@/components/rich-text"
 import ApiTest from "@/app/api-test"
 
 import { ContentCard } from "./content-card"
+import { ImageCard } from "./image-card"
 
 const cardTypes = {
   contentSlider: ContentCard,
-  imageSlider: () => <div>Image Slider</div>,
+  imageSlider: ImageCard,
   relationshipSlider: () => <div>Relationship Slider</div>,
 }
 
@@ -76,7 +77,7 @@ export const SliderBlock: React.FC<Props> = ({
                 key={index}
                 index={index}
                 className={cn(
-                  "mr-12",
+                  "relative mr-12",
                   "mb-8",
                   "3xl:first:ml-96 first:ml-5 md:first:ml-10 lg:first:ml-20 2xl:first:ml-60",
                   "min-w-[300px] lg:min-w-[600px]",
@@ -100,7 +101,7 @@ export const SliderBlock: React.FC<Props> = ({
 
 export const Slider: React.FC<Props> = (props) => {
   return (
-    <SliderProvider slidesToShow={1.5}>
+    <SliderProvider slidesToShow={2.5}>
       <SliderBlock {...props} />
     </SliderProvider>
   )
