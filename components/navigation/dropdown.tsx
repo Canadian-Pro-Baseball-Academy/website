@@ -80,10 +80,9 @@ const dropdowns = {
   menuColumn: ColumnItem,
 }
 
-export const DesktopDropdown: React.FC<Header["mainMenu"]["items"][0]> = ({
-  label,
-  menu,
-}) => {
+export const DesktopDropdown: React.FC<
+  Header["mainMenu"]["items"][0] & { lightNav: boolean }
+> = ({ label, menu, lightNav }) => {
   if (!menu) return null
 
   const { blocks } = menu
@@ -94,7 +93,13 @@ export const DesktopDropdown: React.FC<Header["mainMenu"]["items"][0]> = ({
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger>{label}</NavigationMenuTrigger>
+      <NavigationMenuTrigger
+        className={cn({
+          "text-foreground": lightNav,
+        })}
+      >
+        {label}
+      </NavigationMenuTrigger>
       <NavigationMenuContent>
         <ul className="grid grid-cols-8 gap-1 p-4 md:w-[600px] lg:w-[700px]">
           {blocks.map((block, index) => {
