@@ -20,7 +20,9 @@ const menuItems = {
   dropdown: DesktopDropdown,
 }
 
-export const MainNavLeft: React.FC<Header["mainMenu"]> = ({ items }) => {
+export const MainNavLeft: React.FC<
+  Header["mainMenu"] & { lightNav: boolean }
+> = ({ items, lightNav }) => {
   if (!items) return null
 
   return (
@@ -32,7 +34,7 @@ export const MainNavLeft: React.FC<Header["mainMenu"]> = ({ items }) => {
           const ItemToRender = menuItems[item.type] as any
 
           if (ItemToRender) {
-            return <ItemToRender key={index} {...item} />
+            return <ItemToRender key={index} {...item} lightNav={lightNav} />
           }
         })}
       </NavigationMenuList>
@@ -40,12 +42,16 @@ export const MainNavLeft: React.FC<Header["mainMenu"]> = ({ items }) => {
   )
 }
 
-export const MainNavRight = () => (
+export const MainNavRight: React.FC<{ lightNav: boolean }> = ({ lightNav }) => (
   <NavigationMenu className="hidden lg:block">
     <NavigationMenuList>
       <NavigationMenuItem>
         <Link href="/game-schedule" legacyBehavior passHref>
-          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+          <NavigationMenuLink
+            className={cn(navigationMenuTriggerStyle(), {
+              "text-foreground": lightNav,
+            })}
+          >
             Game Schedule
           </NavigationMenuLink>
         </Link>

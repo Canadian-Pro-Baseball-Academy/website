@@ -5,6 +5,28 @@ interface Props {
   hasBackgroundColor?: boolean
 }
 
+export const POSTS_HIGHLIGHT = ({
+  hasBackgroundColor = true,
+}: Props = {}): string => `
+  ... on PostsHighlight {
+    blockName
+    blockType
+    ${hasBackgroundColor ? "postsHighlightBackgroundColor" : ""}
+    postHighlightFields {
+      useLeadingHeader
+      leadingHeader
+      posts {
+        title
+        meta {
+          description
+        }
+        slug
+        image ${MEDIA_FIELDS}
+      }
+    }
+  }
+`
+
 export const SLIDER = ({ hasBackgroundColor = true }: Props = {}): string => `
 ... on Slider {
   blockName

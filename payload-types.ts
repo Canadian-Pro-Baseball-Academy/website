@@ -12,6 +12,7 @@ export interface Config {
     media: Media;
     pages: Page;
     pageSettings: PageSetting;
+    posts: Post;
     teams: Team;
     teamSnapForms: TeamSnapForm;
     users: User;
@@ -323,6 +324,19 @@ export interface Page {
       }
     | MediaBlock
     | {
+        postsHighlightBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
+        postHighlightFields: {
+          useLeadingHeader?: boolean;
+          leadingHeader?: {
+            [k: string]: unknown;
+          }[];
+          posts: string[] | Post[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'postsHighlight';
+      }
+    | {
         sliderBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
         sliderFields: {
           useLeadingHeader?: boolean;
@@ -505,7 +519,6 @@ export interface TeamSnapForm {
   _status?: 'draft' | 'published';
 }
 export interface MediaBlock {
-  mediaBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
   mediaFields?: {
     embed?: boolean;
     embedVideo?: {
@@ -525,6 +538,40 @@ export interface MediaBlock {
   id?: string;
   blockName?: string;
   blockType: 'media';
+}
+export interface Post {
+  id: string;
+  title: string;
+  image: string | Media;
+  excerpt?: {
+    [k: string]: unknown;
+  }[];
+  content: (
+    | {
+        blogContentFields?: {
+          richText?: {
+            [k: string]: unknown;
+          }[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'blogContent';
+      }
+    | MediaBlock
+  )[];
+  relatedPosts?: string[] | Post[];
+  meta?: {
+    title?: string;
+    description?: string;
+    image?: string | Media;
+    keywords?: string;
+  };
+  slug?: string;
+  authors: string[] | User[];
+  publishedOn: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: 'draft' | 'published';
 }
 export interface User {
   id: string;

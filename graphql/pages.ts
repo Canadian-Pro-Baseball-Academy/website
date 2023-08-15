@@ -4,10 +4,12 @@ import {
   GALLERY_IMAGES,
   MAP,
   MEDIA_BLOCK,
+  POSTS_HIGHLIGHT,
   SLIDER,
 } from "./blocks"
 import { LINK_FIELDS } from "./links"
 import { MEDIA_FIELDS } from "./media"
+import { META_FIELDS } from "./meta"
 
 export const PAGES = `
   query Pages {
@@ -53,12 +55,10 @@ export const PAGE = `
           ${GALLERY_IMAGES()}
           ${MEDIA_BLOCK()}
           ${SLIDER()}
+          ${POSTS_HIGHLIGHT()}
         }
         meta {
-          title
-          description
-          image ${MEDIA_FIELDS}
-          keywords
+          ${META_FIELDS}
         }
         breadcrumbs {
           url
