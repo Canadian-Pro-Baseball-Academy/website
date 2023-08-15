@@ -8,6 +8,7 @@ import ApiTest from "@/app/api-test"
 import { BackgroundColor } from "./background-color"
 import { ContentGrid, GalleryImages } from "./blocks"
 import { BlogContent } from "./blocks/blog-content"
+import { CallToAction } from "./blocks/call-to-action"
 import { Content } from "./blocks/content"
 import { Map } from "./blocks/map"
 import { Media } from "./blocks/media"
@@ -24,6 +25,7 @@ const blockComponents = {
   slider: Slider,
   postsHighlight: PostHighlight,
   blogContent: BlogContent,
+  cta: CallToAction,
 }
 
 type PageType = Page["layout"]

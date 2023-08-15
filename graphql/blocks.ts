@@ -146,6 +146,20 @@ export const CONTENT = ({
   }
 `
 
+export const CTA = `
+  ... on Cta {
+    blockName
+    blockType
+    ctaBackgroundColor
+    ctaFields {
+      richText
+      links {
+        link ${LINK_FIELDS()}
+      }
+    }
+  }
+`
+
 export const CONTENT_GRID = ({
   hasBackgroundColor = true,
 }: Props = {}): string => `
