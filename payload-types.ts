@@ -108,6 +108,40 @@ export interface Page {
   };
   layout?: (
     | {
+        ctaBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
+        ctaFields?: {
+          richText?: {
+            [k: string]: unknown;
+          }[];
+          links?: {
+            link: {
+              type?: 'reference' | 'custom';
+              newTab?: boolean;
+              reference:
+                | {
+                    value: string | Page;
+                    relationTo: 'pages';
+                  }
+                | {
+                    value: string | PageSetting;
+                    relationTo: 'pageSettings';
+                  }
+                | {
+                    value: string | Team;
+                    relationTo: 'teams';
+                  };
+              url: string;
+              label: string;
+              appearance?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link';
+            };
+            id?: string;
+          }[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'cta';
+      }
+    | {
         contentBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
         contentFields: {
           columns?: {

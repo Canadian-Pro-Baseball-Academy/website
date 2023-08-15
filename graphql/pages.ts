@@ -1,6 +1,7 @@
 import {
   CONTENT,
   CONTENT_GRID,
+  CTA,
   GALLERY_IMAGES,
   MAP,
   MEDIA_BLOCK,
@@ -56,6 +57,7 @@ export const PAGE = `
           ${MEDIA_BLOCK()}
           ${SLIDER()}
           ${POSTS_HIGHLIGHT()}
+          ${CTA}
         }
         meta {
           ${META_FIELDS}
