@@ -663,6 +663,10 @@ export interface SiteSetting {
 }
 export interface Footer {
   id: string;
+  logo: string | Media;
+  summary?: {
+    [k: string]: unknown;
+  }[];
   columns?: {
     label?: string;
     navItems?: {
