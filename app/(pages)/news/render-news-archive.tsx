@@ -1,5 +1,6 @@
 import React from "react"
 import { PageSetting, Post } from "@/payload-types"
+import { format } from "date-fns"
 
 import { GenerateHeroData } from "@/lib/utils"
 import { ContentMediaCard } from "@/components/content-media-card"
@@ -21,6 +22,7 @@ export const RenderNewsArchive: React.FC<{
               <div key={post.id}>
                 <ContentMediaCard
                   title={post.title}
+                  date={post.publishedOn}
                   description={post?.meta?.description}
                   href={`/news/${post.slug}`}
                   media={post.image}
