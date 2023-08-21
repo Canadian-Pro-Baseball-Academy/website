@@ -5,6 +5,7 @@ import { Page } from "@/payload-types"
 import { QueryClient, QueryClientProvider } from "react-query"
 
 import { cn } from "@/lib/utils"
+import { PayloadLink } from "@/components/cms-link"
 import { Gutter } from "@/components/gutter"
 import { Media } from "@/components/media"
 import { RichText } from "@/components/rich-text"
@@ -14,6 +15,7 @@ import { FormCard } from "./form-card"
 export const RegistrationHero: React.FC<Page["hero"]> = ({
   richText,
   forms,
+  links,
   media,
 }) => {
   const queryClient = new QueryClient()
@@ -60,6 +62,17 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
               )}
               content={richText}
             />
+            {Array.isArray(links) && (
+              <div className="mt-8">
+                <ul className="flex gap-4 flex-wrap md:flex-nowrap">
+                  {links.map(({ link }, i) => (
+                    <li key={i} className="w-full md:w-fit">
+                      <PayloadLink {...link} size="lg" />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </Gutter>
       </div>

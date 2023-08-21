@@ -10,6 +10,7 @@ import { PayloadLink } from "@/components/cms-link"
 import { Gutter } from "@/components/gutter"
 import { Media } from "@/components/media"
 import { RichText } from "@/components/rich-text"
+import { VerticalPadding } from "@/components/vertical-padding"
 
 export const HomeHero: React.FC<Page["hero"]> = ({
   richText,
@@ -70,6 +71,29 @@ export const HomeHero: React.FC<Page["hero"]> = ({
             </div>
           </Gutter>
         </div>
+      </div>
+      <div className="bg-muted">
+        <VerticalPadding>
+          <Gutter>
+            {Array.isArray(values) && (
+              <div className="flex flex-col sm:flex-row justify-between items-center">
+                {values.map(({ value }, i) => (
+                  <div
+                    key={i}
+                    className={cn(
+                      "flex flex-col justify-center items-center leading-snug overflow-hidden text-muted-foreground font-semibold tracking-tight mx-3"
+                    )}
+                  >
+                    <p className="text-7xl md:text-8xl font-black">
+                      {value.charAt(0)}
+                    </p>
+                    <p className="text-lg">{value}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </Gutter>
+        </VerticalPadding>
       </div>
 
       {/* Values Marquee */}
