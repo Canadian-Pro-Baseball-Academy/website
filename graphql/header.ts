@@ -4,6 +4,12 @@ import { MEDIA_FIELDS } from "./media"
 export const HEADER = `
   query Header {
     Header {
+      topBar {
+        announcement {
+          desktop
+          mobile
+        }
+      }
       mainMenu {
         items {
           id

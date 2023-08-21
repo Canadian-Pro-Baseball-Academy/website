@@ -64,7 +64,7 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
             />
             {Array.isArray(links) && (
               <div className="mt-8">
-                <ul className="flex gap-4 flex-wrap md:flex-nowrap">
+                <ul className="flex flex-wrap gap-4 md:flex-nowrap">
                   {links.map(({ link }, i) => (
                     <li key={i} className="w-full md:w-fit">
                       <PayloadLink {...link} size="lg" />

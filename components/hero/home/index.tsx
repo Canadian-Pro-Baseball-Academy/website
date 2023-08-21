@@ -59,7 +59,7 @@ export const HomeHero: React.FC<Page["hero"]> = ({
               {/* Buttons */}
               {Array.isArray(links) && (
                 <div className="mt-8">
-                  <ul className="flex gap-4 flex-wrap md:flex-nowrap">
+                  <ul className="flex flex-wrap gap-4 md:flex-nowrap">
                     {links.map(({ link }, i) => (
                       <li key={i} className="w-full md:w-fit">
                         <PayloadLink {...link} size="lg" />
@@ -76,15 +76,15 @@ export const HomeHero: React.FC<Page["hero"]> = ({
         <VerticalPadding>
           <Gutter>
             {Array.isArray(values) && (
-              <div className="flex flex-col sm:flex-row justify-between items-center">
+              <div className="flex flex-col items-center justify-between sm:flex-row">
                 {values.map(({ value }, i) => (
                   <div
                     key={i}
                     className={cn(
-                      "flex flex-col justify-center items-center leading-snug overflow-hidden text-muted-foreground font-semibold tracking-tight mx-3"
+                      "mx-3 flex flex-col items-center justify-center overflow-hidden font-semibold leading-snug tracking-tight text-muted-foreground"
                     )}
                   >
-                    <p className="text-7xl md:text-8xl font-black">
+                    <p className="text-7xl font-black md:text-8xl">
                       {value.charAt(0)}
                     </p>
                     <p className="text-lg">{value}</p>
