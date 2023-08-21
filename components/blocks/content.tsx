@@ -3,6 +3,7 @@ import { Page, PageSetting, Team } from "@/payload-types"
 
 import { cn } from "@/lib/utils"
 
+import { PayloadLink } from "../cms-link"
 import { Gutter as GutterOriginal } from "../gutter"
 import { RichText } from "../rich-text"
 
@@ -29,16 +30,38 @@ export const Content: React.FC<Props & { disableGutter?: boolean }> = ({
       })}
     >
       {columns &&
-        columns.map((column) => {
+        columns.map(({ richText, links }) => {
           return (
             <div>
-              <RichText content={column.richText} />
+              <RichText content={richText} />
+              {Array.isArray(links) && (
+                <div className="mt-8">
+                  <ul className="flex gap-4 flex-wrap md:flex-nowrap">
+                    {links.map(({ link }, i) => (
+                      <li key={i} className="w-full md:w-fit">
+                        <PayloadLink {...link} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           )
         })}
       {singleColumn && (
         <div>
           <RichText content={singleColumn.richText} />
+          {Array.isArray(singleColumn.links) && (
+            <div className="mt-8">
+              <ul className="flex gap-4 flex-wrap md:flex-nowrap">
+                {singleColumn.links.map(({ link }, i) => (
+                  <li key={i} className="w-full md:w-fit">
+                    <PayloadLink {...link} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       )}
     </Gutter>

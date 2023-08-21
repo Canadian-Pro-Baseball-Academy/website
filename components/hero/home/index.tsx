@@ -19,12 +19,11 @@ export const HomeHero: React.FC<Page["hero"]> = ({
 }) => {
   return (
     <section>
-      {/* Hero Image */}
       <div className="relative">
         {/* Media Component */}
         <div
           className={cn(
-            "absolute inset-0 z-[1] h-3/4-screen overflow-hidden",
+            "absolute inset-0 z-[1] h-full overflow-hidden",
             "after:absolute after:inset-0 after:z-[1] after:bg-primary/75"
           )}
         >
@@ -33,46 +32,44 @@ export const HomeHero: React.FC<Page["hero"]> = ({
               priority
               fill
               resource={media}
-              className={cn(
-                "pointer-events-none relative h-3/4-screen saturate-0"
-              )}
+              className={cn("pointer-events-none relative h-full saturate-0")}
               style={{ objectFit: "cover" }}
             />
           )}
         </div>
-      </div>
 
-      {/* Hero Content Wrap*/}
-      <div className={cn("relative z-[2]")}>
-        {/* Hero Content */}
-        <Gutter>
-          <div
-            className={cn(
-              "flex h-3/4-screen flex-col justify-center text-background",
-              "w-full lg:w-4/5 xl:w-3/5",
-              "2xl:-mx-32 3xl:-mx-48"
-            )}
-          >
-            <RichText
+        {/* Hero Content Wrap*/}
+        <div className={cn("relative z-[2]")}>
+          {/* Hero Content */}
+          <Gutter>
+            <div
               className={cn(
-                "mt-4 [&>h1]:text-5xl md:[&>h1]:text-7xl [&>p]:max-w-[65ch]"
+                "flex min-h-3/4-screen flex-col justify-center pb-32 pt-40 text-background",
+                "w-full lg:w-4/5 xl:w-3/5",
+                "2xl:-mx-32 3xl:-mx-48"
               )}
-              content={richText}
-            />
-            {/* Buttons */}
-            {Array.isArray(links) && (
-              <div className="mt-8">
-                <ul className="flex gap-4">
-                  {links.map(({ link }, i) => (
-                    <li key={i}>
-                      <PayloadLink {...link} size="lg" />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        </Gutter>
+            >
+              <RichText
+                className={cn(
+                  "mt-4 [&>h1]:text-4xl md:[&>h1]:text-6xl [&>p]:max-w-[65ch]"
+                )}
+                content={richText}
+              />
+              {/* Buttons */}
+              {Array.isArray(links) && (
+                <div className="mt-8">
+                  <ul className="flex gap-4 flex-wrap md:flex-nowrap">
+                    {links.map(({ link }, i) => (
+                      <li key={i} className="w-full md:w-fit">
+                        <PayloadLink {...link} size="lg" />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </Gutter>
+        </div>
       </div>
 
       {/* Values Marquee */}
