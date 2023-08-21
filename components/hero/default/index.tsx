@@ -54,10 +54,10 @@ export const DefaultHero: React.FC<Page["hero"]> = ({
               {/* Buttons */}
               {Array.isArray(links) && (
                 <div className="mt-8">
-                  <ul className="flex gap-4">
+                  <ul className="flex flex-wrap gap-4 md:flex-nowrap">
                     {links.map(({ link }, i) => (
-                      <li key={i}>
-                        <PayloadLink {...link} />
+                      <li key={i} className="w-full md:w-fit">
+                        <PayloadLink {...link} size="lg" />
                       </li>
                     ))}
                   </ul>

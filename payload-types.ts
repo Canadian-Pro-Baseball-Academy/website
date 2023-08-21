@@ -700,9 +700,14 @@ export interface Footer {
 export interface Header {
   id: string;
   topBar: {
-    richText?: {
-      [k: string]: unknown;
-    }[];
+    announcement?: {
+      desktop?: {
+        [k: string]: unknown;
+      }[];
+      mobile?: {
+        [k: string]: unknown;
+      }[];
+    };
   };
   mainMenu: {
     items: {

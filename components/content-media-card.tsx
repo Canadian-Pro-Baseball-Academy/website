@@ -36,7 +36,7 @@ export const ContentMediaCard: React.FC<Props> = (props) => {
       )}
       <div className="flex grow flex-col gap-3">
         {date && (
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-2">
             <p className="text-sm text-muted-foreground">
               {format(new Date(date), "MMMM d, yyyy")}
             </p>

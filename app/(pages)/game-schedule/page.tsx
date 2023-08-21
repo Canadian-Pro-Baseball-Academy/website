@@ -7,6 +7,7 @@ import { request } from "@/lib/cms"
 import { GenerateHeroData } from "@/lib/utils"
 import { Gutter } from "@/components/gutter"
 import { DefaultHero } from "@/components/hero/default"
+import { VerticalPadding } from "@/components/vertical-padding"
 
 import { GameScheduleProvider } from "./table-provider"
 import { TeamButtons } from "./teams"
@@ -26,15 +27,20 @@ const GameSchedulePage = async () => {
   return (
     <React.Fragment>
       <DefaultHero {...hero} />
-      <section className="pb-12">
-        <Gutter>
-          <TeamButtons teams={teams} />
-          <div className="container">
-            {/* https://api.teamsnap.com/v3/teams_results/8495762 */}
-            <GameScheduleProvider />
-          </div>
-        </Gutter>
-      </section>
+      <VerticalPadding bottom="large">
+        <section>
+          <Gutter>
+            <p className="text-center text-sm text-muted-foreground">
+              Click one of the above buttons to see their current game schedule
+            </p>
+            <TeamButtons teams={teams} />
+            <div className="container mt-8">
+              {/* https://api.teamsnap.com/v3/teams_results/8495762 */}
+              <GameScheduleProvider />
+            </div>
+          </Gutter>
+        </section>
+      </VerticalPadding>
     </React.Fragment>
   )
 }

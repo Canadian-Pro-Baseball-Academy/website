@@ -72,8 +72,9 @@ export const Map: React.FC<Props> = ({ mapFields }) => {
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
-            "w-full cursor-pointer text-right text-sm",
-            buttonVariants({ variant: "link" })
+            "cursor-pointer text-right text-sm",
+            buttonVariants({ variant: "link" }),
+            "w-full md:w-full"
           )}
         >
           Click here for directions

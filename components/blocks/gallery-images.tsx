@@ -69,8 +69,10 @@ export const GalleryImages: React.FC<Props & { disableGutter?: boolean }> = ({
                 if (!image.aspectRatio) return null
                 return (
                   <div className="relative mb-2 overflow-hidden rounded-md">
-                    {/* @ts-ignore */}
-                    <AspectRatio ratio={aspectRatios[image.aspectRatio]}>
+                    <AspectRatio
+                      // @ts-ignore
+                      ratio={aspectRatios[image.aspectRatio || "1.7778"]}
+                    >
                       <Media
                         resource={image}
                         fill

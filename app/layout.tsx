@@ -14,6 +14,7 @@ import { PreviewBar } from "@/components/preview-bar"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
+import { TopBar } from "@/components/top-bar"
 
 import ApiTest from "./api-test"
 
