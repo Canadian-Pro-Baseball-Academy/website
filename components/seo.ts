@@ -76,7 +76,7 @@ export const mergeMetadata = async (metadata?: Metadata): Promise<Metadata> => {
       siteName: "The Calgary Bisons",
       title: metadata?.title || title,
       description: metadata?.description || description,
-      url: metadata.openGraph.url || '/',
+      url: metadata.openGraph?.url || '/',
       images: metadata?.openGraph?.images
         ? metadata?.openGraph?.images
         : openGraph?.images,
