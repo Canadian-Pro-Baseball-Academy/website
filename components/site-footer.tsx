@@ -26,10 +26,10 @@ export const SiteFooter: React.FC<{
       {/* Site Map */}
       <div className={cn("relative bg-muted py-12")}>
         <Gutter>
-          <div className="flex flex-col flex-wrap items-center justify-between gap-5 text-center md:flex-row md:items-start md:gap-0 md:py-0 md:text-left">
+          <div className="flex flex-col text-center flex-wrap items-center justify-between gap-5 text-center md:flex-row md:items-start md:gap-0 md:py-0 md:text-left">
             <div>
               {footer.logo && typeof footer.logo === "object" && (
-                <Media src={footer.logo.url} width={50} height={50} />
+                <Media src={footer.logo.url} width={50} height={50} className="[&>img]:mx-auto [&>img]:md:mx-0" />
               )}
               <div className="mt-4 max-w-[30ch]">
                 <RichText
@@ -47,7 +47,7 @@ export const SiteFooter: React.FC<{
                       column.navItems.map((program) => (
                         <PayloadLink
                           appearance="link"
-                          className="justify-start px-0"
+                          className="justify-center md:justify-start px-0"
                           {...program.link}
                         />
                       ))}
@@ -103,7 +103,7 @@ export const SiteFooter: React.FC<{
                   </div>
                 )}
                 {siteSetting.socialLinks && (
-                  <div className={cn("-ml-3 mt-1 flex space-x-1")}>
+                  <div className={cn("mt-1 flex justify-center md:justify-start space-x-3")}>
                     {siteSetting.socialLinks.facebook && (
                       <Link
                         href={siteSetting.socialLinks.facebook}
@@ -215,10 +215,10 @@ export const SiteFooter: React.FC<{
                 >
                   Vercel
                 </a>
-                .
+                .{" "}
                 {siteSetting.socialLinks?.github && (
                   <>
-                    The source code is available on
+                    The source code is available on{" "}
                     <a
                       href={siteSetting.socialLinks.github}
                       target="_blank"

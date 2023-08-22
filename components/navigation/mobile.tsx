@@ -36,7 +36,7 @@ export const MobileNav: React.FC<Header["mainMenu"]> = ({ items }) => {
         <Icons.menu className="h-6 w-6 text-background" />
         <span className="sr-only">Menu</span>
       </SheetTrigger>
-      <SheetContent side="top" className="flex h-4/5 flex-col pt-0">
+      <SheetContent side="top" className="flex h-[90%] flex-col pt-0">
         {/* Mobile Header */}
         <SheetHeader className="flex flex-row items-center justify-between gap-4 py-2 xl:gap-10">
           <Link href="/" className="flex items-center gap-2">

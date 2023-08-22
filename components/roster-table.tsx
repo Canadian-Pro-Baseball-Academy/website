@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Gutter } from "@/components/gutter"
+import { VerticalPadding } from "./vertical-padding"
 
 function cleanPositions(positions: string[]) {
   const cleanedPositions = positions.map((position) => {
@@ -49,7 +50,8 @@ export const RosterTable: React.FC<Team> = ({ name, roster }) => {
   if (!roster) return null
 
   return (
-    <section className="container py-16">
+    <VerticalPadding>
+      <Gutter>
       <h2 className="scroll-m-20 font-heading text-3xl font-bold tracking-tight transition-colors first:mt-0">
         Team Roster
       </h2>
@@ -92,7 +94,8 @@ export const RosterTable: React.FC<Team> = ({ name, roster }) => {
           })}
         </TableBody>
       </Table>
-    </section>
+    </Gutter>
+    </VerticalPadding>
   )
 }
 
