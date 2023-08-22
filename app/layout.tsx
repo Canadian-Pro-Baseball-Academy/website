@@ -1,5 +1,6 @@
 import "../styles/globals.css"
 
+import { Suspense } from "react"
 import { Metadata } from "next"
 import { draftMode } from "next/headers"
 import { FOOTER } from "@/graphql/footer"
@@ -14,10 +15,8 @@ import { PreviewBar } from "@/components/preview-bar"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { TopBar } from "@/components/top-bar"
 
 import ApiTest from "./api-test"
-import { Suspense } from "react"
 import Loading from "./loading"
 
 const fetchHeader = async () => {
@@ -44,8 +43,6 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-
-
 export default async function RootLayout({ children }: RootLayoutProps) {
   const data = await fetchHeader()
 
@@ -65,7 +62,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader {...data.header.Header} />
             <Suspense fallback={<Loading />}>
-            <main className="flex-1">{children}</main>
+              <main className="flex-1">{children}</main>
             </Suspense>
             <SiteFooter {...data.footer} />
           </div>

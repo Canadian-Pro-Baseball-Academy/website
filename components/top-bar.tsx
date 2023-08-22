@@ -7,7 +7,7 @@ export const TopBar: React.FC<Header["topBar"]> = ({ announcement }) => {
   return (
     <div>
       {announcement && (
-        <div className="flex justify-center text-center bg-shaded p-2">
+        <div className="flex justify-center bg-shaded p-2 text-center">
           <RichText
             content={announcement.desktop}
             className="hidden text-sm text-shaded-foreground sm:block [&>p>a]:!underline-offset-2 [&>p]:decoration-dotted"

@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Gutter } from "@/components/gutter"
+
 import { VerticalPadding } from "./vertical-padding"
 
 function cleanPositions(positions: string[]) {
@@ -52,49 +53,49 @@ export const RosterTable: React.FC<Team> = ({ name, roster }) => {
   return (
     <VerticalPadding>
       <Gutter>
-      <h2 className="scroll-m-20 font-heading text-3xl font-bold tracking-tight transition-colors first:mt-0">
-        Team Roster
-      </h2>
-      <Table className="mt-6">
-        <TableCaption>Complete Roster for the {name}</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Number</TableHead>
-            <TableHead className="w-[150px]">First Name</TableHead>
-            <TableHead>Last Name</TableHead>
-            <TableHead>Hometown</TableHead>
-            <TableHead className="text-right">Position</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {roster.map((player, index) => {
-            return (
-              <TableRow>
-                <TableCell className="font-medium">
-                  {player.number ? player.number : <EmptyPlaceholder />}
-                </TableCell>
-                <TableCell>{player.firstName}</TableCell>
-                <TableCell>{player.lastName}</TableCell>
-                <TableCell>
-                  {player.homeTown ? player.homeTown : <EmptyPlaceholder />}
-                </TableCell>
-                <TableCell className="text-right">
-                  {player.positions &&
-                  Array.isArray(player.positions) &&
-                  player.positions?.length > 0 ? (
-                    <React.Fragment>
-                      {cleanPositions(player.positions).join(" / ")}
-                    </React.Fragment>
-                  ) : (
-                    <EmptyPlaceholder />
-                  )}
-                </TableCell>
-              </TableRow>
-            )
-          })}
-        </TableBody>
-      </Table>
-    </Gutter>
+        <h2 className="scroll-m-20 font-heading text-3xl font-bold tracking-tight transition-colors first:mt-0">
+          Team Roster
+        </h2>
+        <Table className="mt-6">
+          <TableCaption>Complete Roster for the {name}</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Number</TableHead>
+              <TableHead className="w-[150px]">First Name</TableHead>
+              <TableHead>Last Name</TableHead>
+              <TableHead>Hometown</TableHead>
+              <TableHead className="text-right">Position</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {roster.map((player, index) => {
+              return (
+                <TableRow>
+                  <TableCell className="font-medium">
+                    {player.number ? player.number : <EmptyPlaceholder />}
+                  </TableCell>
+                  <TableCell>{player.firstName}</TableCell>
+                  <TableCell>{player.lastName}</TableCell>
+                  <TableCell>
+                    {player.homeTown ? player.homeTown : <EmptyPlaceholder />}
+                  </TableCell>
+                  <TableCell className="text-right">
+                    {player.positions &&
+                    Array.isArray(player.positions) &&
+                    player.positions?.length > 0 ? (
+                      <React.Fragment>
+                        {cleanPositions(player.positions).join(" / ")}
+                      </React.Fragment>
+                    ) : (
+                      <EmptyPlaceholder />
+                    )}
+                  </TableCell>
+                </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
+      </Gutter>
     </VerticalPadding>
   )
 }
