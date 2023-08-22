@@ -140,7 +140,7 @@ export const MobileDropdown: React.FC<Header["mainMenu"]["items"][0]> = ({
         {label}
       </AccordionTrigger>
       <AccordionContent>
-        <ul className="grid grid-cols-4 gap-1 p-4 sm:grid-cols-8 md:grid-cols-12">
+        <ul className="grid grid-cols-4 gap-1 sm:grid-cols-8 md:grid-cols-12">
           {blocks.map((block, index) => {
             const { blockType } = block
 
