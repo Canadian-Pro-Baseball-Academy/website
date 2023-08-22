@@ -29,17 +29,18 @@ const defaultSEO = async (): Promise<Metadata> => {
     keywords:
       meta?.keywords ||
       "calgary bisons baseball, calgary alberta, youth athletics, elite sports programs, baseball training, character development, athletic growth, life skills training, youth baseball league, baseball tryouts, teamwork and leadership, athlete development program, competitive sports training, year-round camps, coaching excellence, sportsmanship, player profiles, team roster, exceptional athletes, sports team, player statistics, talent showcase, dedication, passion for the game, calgary athletes",
-    applicationName: "The Calgary Bisons Website",
+    applicationName: "The Calgary Bisons",
     authors: [{ name: "Matt Dunn" }],
     creator: "Matt Dunn",
+    metadataBase: new URL(process.env.PAYLOAD_PUBLIC_SITE_URL || "https://www.calgarybisons.ca"),
     openGraph: {
       type: "website",
-      siteName: "The Calgary Bisons Website",
+      siteName: "The Calgary Bisons",
       title: meta?.title || "Calgary Bisons Baseball",
       description:
         meta?.description ||
         "The Calgary Bisons are an all-encompassing program fostering athletic and personal growth. Join us for elite training and life skills development.",
-      images: ogImage
+        images: ogImage
         ? [
             {
               url: ogImage,
@@ -72,9 +73,10 @@ export const mergeMetadata = async (metadata?: Metadata): Promise<Metadata> => {
     keywords: metadata?.keywords || keywords,
     openGraph: {
       type: "website",
-      siteName: "The Calgary Bisons Website",
+      siteName: "The Calgary Bisons",
       title: metadata?.title || title,
       description: metadata?.description || description,
+      url: metadata.openGraph.url || '/',
       images: metadata?.openGraph?.images
         ? metadata?.openGraph?.images
         : openGraph?.images,
