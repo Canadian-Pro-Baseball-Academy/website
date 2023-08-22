@@ -20,7 +20,6 @@ export const SiteFooter: React.FC<{
   SiteSetting: SiteSetting
 }> = (props) => {
   const { Footer: footer, SiteSetting: siteSetting } = props
-  console.log(footer)
   return (
     <footer className={cn("relative")}>
       {/* Site Map */}

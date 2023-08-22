@@ -22,8 +22,6 @@ module.exports = async () => {
     `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/redirects?limit=1000&depth=1`,
   )
 
-  console.log('redirectsRes', redirectsRes)
-
   const redirectsData = await redirectsRes.json()
 
   const { docs } = redirectsData
@@ -65,8 +63,6 @@ module.exports = async () => {
       return
     })
   }
-
-  console.log('dynamicRedirects', dynamicRedirects)
 
   const redirects = [...staticRedirects, internetExplorerRedirect, ...dynamicRedirects]
 
