@@ -16,13 +16,13 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-accent font-medium text-accent-foreground hover:bg-accent/90",
+          "bg-accent font-semibold text-accent-foreground hover:bg-accent/90",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "bg-secondary font-semibold text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-muted hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
