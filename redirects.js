@@ -49,7 +49,7 @@ module.exports = async () => {
         typeof reference.value === 'object' &&
         reference?.value?._status === 'published'
       ) {
-        destination = `${process.env.PAYLOAD_PUBLIC_SITE_URL}/${formatPermalink(reference)}`
+        destination = `${process.env.PAYLOAD_PUBLIC_SITE_URL}${formatPermalink(reference)}`
       }
 
       const redirect = {
