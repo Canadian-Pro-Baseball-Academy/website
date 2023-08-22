@@ -36,8 +36,6 @@ export async function request<T = any>({
         }),
   }
 
-  console.log(query)
-
   const { data, errors } = await fetch(
     `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/graphql?${collection}`,
     {

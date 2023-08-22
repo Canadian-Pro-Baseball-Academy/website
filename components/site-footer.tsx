@@ -26,10 +26,15 @@ export const SiteFooter: React.FC<{
       {/* Site Map */}
       <div className={cn("relative bg-muted py-12")}>
         <Gutter>
-          <div className="flex flex-col text-center flex-wrap items-center justify-between gap-5 text-center md:flex-row md:items-start md:gap-0 md:py-0 md:text-left">
+          <div className="flex flex-col flex-wrap items-center justify-between gap-5 text-center md:flex-row md:items-start md:gap-0 md:py-0 md:text-left">
             <div>
               {footer.logo && typeof footer.logo === "object" && (
-                <Media src={footer.logo.url} width={50} height={50} className="[&>img]:mx-auto [&>img]:md:mx-0" />
+                <Media
+                  src={footer.logo.url}
+                  width={50}
+                  height={50}
+                  className="[&>img]:mx-auto [&>img]:md:mx-0"
+                />
               )}
               <div className="mt-4 max-w-[30ch]">
                 <RichText
@@ -47,7 +52,7 @@ export const SiteFooter: React.FC<{
                       column.navItems.map((program) => (
                         <PayloadLink
                           appearance="link"
-                          className="justify-center md:justify-start px-0"
+                          className="justify-center px-0 md:justify-start"
                           {...program.link}
                         />
                       ))}
@@ -103,7 +108,11 @@ export const SiteFooter: React.FC<{
                   </div>
                 )}
                 {siteSetting.socialLinks && (
-                  <div className={cn("mt-1 flex justify-center md:justify-start space-x-3")}>
+                  <div
+                    className={cn(
+                      "mt-1 flex justify-center space-x-3 md:justify-start"
+                    )}
+                  >
                     {siteSetting.socialLinks.facebook && (
                       <Link
                         href={siteSetting.socialLinks.facebook}

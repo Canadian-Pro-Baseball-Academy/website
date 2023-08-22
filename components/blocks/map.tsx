@@ -30,7 +30,7 @@ const MapStyle: StyleSpecification = {
   ],
 }
 
-const CalgaryCenter = [-114.062019, 51.04427]
+const CalgaryCenter = [-114.062019, 51.04427] as [number, number]
 const defaultZoom = 13
 
 type Layout = Exclude<Page["layout"], undefined>
