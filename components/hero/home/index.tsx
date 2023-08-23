@@ -99,5 +99,3 @@ export const HomeHero: React.FC<Page["hero"]> = ({
     </section>
   )
 }
-
-

@@ -32,7 +32,9 @@ const defaultSEO = async (): Promise<Metadata> => {
     applicationName: "The Calgary Bisons",
     authors: [{ name: "Matt Dunn" }],
     creator: "Matt Dunn",
-    metadataBase: new URL(process.env.PAYLOAD_PUBLIC_SITE_URL || "https://www.calgarybisons.ca"),
+    metadataBase: new URL(
+      process.env.PAYLOAD_PUBLIC_SITE_URL || "https://www.calgarybisons.ca"
+    ),
     openGraph: {
       type: "website",
       siteName: "The Calgary Bisons",
@@ -40,7 +42,7 @@ const defaultSEO = async (): Promise<Metadata> => {
       description:
         meta?.description ||
         "The Calgary Bisons are an all-encompassing program fostering athletic and personal growth. Join us for elite training and life skills development.",
-        images: ogImage
+      images: ogImage
         ? [
             {
               url: ogImage,
@@ -76,7 +78,7 @@ export const mergeMetadata = async (metadata?: Metadata): Promise<Metadata> => {
       siteName: "The Calgary Bisons",
       title: metadata?.title || title,
       description: metadata?.description || description,
-      url: metadata.openGraph?.url || '/',
+      url: metadata.openGraph?.url || "/",
       images: metadata?.openGraph?.images
         ? metadata?.openGraph?.images
         : openGraph?.images,
