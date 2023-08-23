@@ -20,6 +20,7 @@ export const HomeHero: React.FC<Page["hero"]> = ({
 }) => {
   return (
     <section>
+      {/* Hero Image */}
       <div className="relative">
         {/* Media Component */}
         <div
@@ -45,7 +46,7 @@ export const HomeHero: React.FC<Page["hero"]> = ({
           <Gutter>
             <div
               className={cn(
-                "flex min-h-3/4-screen flex-col justify-center pb-32 pt-40 text-background",
+                "flex flex-col justify-center pb-28 pt-40 text-background",
                 "w-full lg:w-4/5 xl:w-3/5",
                 "2xl:-mx-32 3xl:-mx-48"
               )}
@@ -58,7 +59,7 @@ export const HomeHero: React.FC<Page["hero"]> = ({
               />
               {/* Buttons */}
               {Array.isArray(links) && (
-                <div className="mt-8">
+                <div className="mt-6">
                   <ul className="flex flex-wrap gap-4 md:flex-nowrap">
                     {links.map(({ link }, i) => (
                       <li key={i} className="w-full md:w-fit">
@@ -95,23 +96,6 @@ export const HomeHero: React.FC<Page["hero"]> = ({
           </Gutter>
         </VerticalPadding>
       </div>
-
-      {/* Values Marquee */}
-      {/* {Array.isArray(values) && (
-        <Marquee gradient={false} speed={70} className="py-6 bg-muted">
-          {values.map(({ value }, i) => (
-            <span
-              key={i}
-              className={cn(
-                "block text-8xl leading-snug overflow-hidden text-muted-foreground/25 font-semibold tracking-tight mx-3",
-                "after:content-['_—']"
-              )}
-            >
-              {value}
-            </span>
-          ))}
-        </Marquee>
-      )} */}
     </section>
   )
 }

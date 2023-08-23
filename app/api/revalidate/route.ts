@@ -23,7 +23,6 @@ export async function GET(request: NextRequest): Promise<unknown> {
     // - https://github.com/vercel/next.js/issues/49778#issuecomment-1547028830
     // revalidatePath(path)
     revalidateTag(tag)
-    console.log(JSON.stringify({ revalidated: true, now: Date.now(), tag }))
     return NextResponse.json({
       revalidated: true,
       now: Date.now(),

@@ -1,4 +1,5 @@
 import React from "react"
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { ROSTERS } from "@/graphql/rosters"
 import { Team } from "@/payload-types"
@@ -7,6 +8,7 @@ import { request } from "@/lib/cms"
 import { GenerateHeroData } from "@/lib/utils"
 import { Gutter } from "@/components/gutter"
 import { DefaultHero } from "@/components/hero/default"
+import { mergeMetadata } from "@/components/seo"
 import { VerticalPadding } from "@/components/vertical-padding"
 
 import { GameScheduleProvider } from "./table-provider"
@@ -46,3 +48,15 @@ const GameSchedulePage = async () => {
 }
 
 export default GameSchedulePage
+
+export async function generateMetadata(): Promise<Metadata> {
+  const metadata = await mergeMetadata({
+    title: `Game Schedule | Calgary Bisons Baseball`,
+    description:
+      "Explore the upcoming game schedule of Calgary Bisons. Get ready for thrilling matchups and support our team's journey in the world of baseball.",
+    keywords:
+      "Calgary Bisons game schedule, upcoming matches, exciting matchups, team journey, baseball season, support our team",
+  })
+
+  return metadata
+}

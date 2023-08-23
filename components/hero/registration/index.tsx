@@ -63,7 +63,7 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
               content={richText}
             />
             {Array.isArray(links) && (
-              <div className="mt-8">
+              <div className="mt-6">
                 <ul className="flex flex-wrap gap-4 md:flex-nowrap">
                   {links.map(({ link }, i) => (
                     <li key={i} className="w-full md:w-fit">

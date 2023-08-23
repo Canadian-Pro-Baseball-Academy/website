@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.calgarybisons.ca
+
+# Sitemaps
+Sitemap: https://www.calgarybisons.ca/sitemap.xml

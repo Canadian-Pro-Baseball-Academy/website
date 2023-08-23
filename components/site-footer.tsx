@@ -20,7 +20,6 @@ export const SiteFooter: React.FC<{
   SiteSetting: SiteSetting
 }> = (props) => {
   const { Footer: footer, SiteSetting: siteSetting } = props
-  console.log(footer)
   return (
     <footer className={cn("relative")}>
       {/* Site Map */}
@@ -45,12 +44,13 @@ export const SiteFooter: React.FC<{
             </div>
             {footer.columns &&
               footer.columns.map((column, index) => (
-                <div>
-                  <h3>{column.label}</h3>
+                <div key={index}>
+                  <h1>{column.label}</h1>
                   <div className={cn("flex flex-col")}>
                     {column.navItems &&
                       column.navItems.map((program) => (
                         <PayloadLink
+                          key={program.id}
                           appearance="link"
                           className="justify-center px-0 md:justify-start"
                           {...program.link}
@@ -60,7 +60,7 @@ export const SiteFooter: React.FC<{
                 </div>
               ))}
             <div>
-              <h3>Contact</h3>
+              <h1>Contact</h1>
               <div className={cn("flex flex-col")}>
                 {siteSetting.province && siteSetting.city && (
                   <div

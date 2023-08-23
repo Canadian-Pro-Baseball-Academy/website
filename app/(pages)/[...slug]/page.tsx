@@ -89,6 +89,7 @@ export async function generateMetadata({
     description: page?.meta?.description,
     keywords: page?.meta?.keywords,
     openGraph: {
+      url: Array.isArray(slug) ? slug.join("/") : "/",
       images: ogImage
         ? [
             {
