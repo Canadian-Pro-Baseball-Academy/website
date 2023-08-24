@@ -1,10 +1,8 @@
 import "../styles/globals.css"
 
 import { Suspense } from "react"
-import { Metadata } from "next"
 import { draftMode } from "next/headers"
 import { FOOTER } from "@/graphql/footer"
-import { GLOBALS } from "@/graphql/globals"
 import { HEADER } from "@/graphql/header"
 import { Footer, Header, SiteSetting } from "@/payload-types"
 
@@ -18,6 +16,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 
 import ApiTest from "./api-test"
 import Loading from "./loading"
+import { Analytics } from "@/components/analytics"
 
 const fetchHeader = async () => {
   const { isEnabled } = draftMode()
@@ -49,7 +48,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <head />
+        <head>
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="dns-prefetch" href={process.env.PAYLOAD_PUBLIC_SERVER_URL} />
+        </head>
         <body
           suppressHydrationWarning={true}
           className={cn(
@@ -66,6 +68,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             </Suspense>
             <SiteFooter {...data.footer} />
           </div>
+          <Analytics />
           <TailwindIndicator />
           <PreviewBar />
         </body>
