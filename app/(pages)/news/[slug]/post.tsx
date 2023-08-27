@@ -27,7 +27,10 @@ export const NewsPost: React.FC<Post> = (props) => {
 
         <div className="mt-4 flex gap-2">
           <Avatar className="h-12 w-12">
-            {/* <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" /> */}
+            <AvatarImage
+              src="https://admin.calgarybisons.ca/media/Calgary%20Bisons%20option%202.png"
+              alt="@calgarybisons"
+            />
             <AvatarFallback className="font-medium">CP</AvatarFallback>
           </Avatar>
           <div>

@@ -45,7 +45,9 @@ export const SiteFooter: React.FC<{
             {footer.columns &&
               footer.columns.map((column, index) => (
                 <div key={index}>
-                  <h1>{column.label}</h1>
+                  <h2 className="font-medium text-muted-foreground text-sm">
+                    {column.label}
+                  </h2>
                   <div className={cn("flex flex-col")}>
                     {column.navItems &&
                       column.navItems.map((program) => (
@@ -60,7 +62,9 @@ export const SiteFooter: React.FC<{
                 </div>
               ))}
             <div>
-              <h1>Contact</h1>
+              <h2 className="font-medium text-muted-foreground text-sm">
+                Contact
+              </h2>
               <div className={cn("flex flex-col")}>
                 {siteSetting.province && siteSetting.city && (
                   <div
@@ -204,7 +208,7 @@ export const SiteFooter: React.FC<{
       <div className="bg-shaded text-shaded-foreground">
         <Gutter>
           <div className="flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
-            <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+            <div className="flex flex-col justify-between w-full items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
               <p className="!mt-0 text-center text-sm leading-loose md:text-left">
                 &copy; 2023 All rights reserved{" "}
                 <a
@@ -224,7 +228,17 @@ export const SiteFooter: React.FC<{
                 >
                   Vercel
                 </a>
-                .{" "}
+                . CMS provided by{" "}
+                <a
+                  href="https://payloadcms.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium underline underline-offset-4"
+                >
+                  Payload
+                </a>
+                .
+                {/* .{" "}
                 {siteSetting.socialLinks?.github && (
                   <>
                     The source code is available on{" "}
@@ -238,7 +252,10 @@ export const SiteFooter: React.FC<{
                     </a>
                     .{" "}
                   </>
-                )}
+                )} */}
+              </p>
+              <p className="!mt-0 text-center text-sm leading-loose md:text-left">
+                v1.0
               </p>
             </div>
             {/* <ThemeToggle /> */}
