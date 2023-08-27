@@ -16,7 +16,7 @@ export const RenderNewsArchive: React.FC<{
     <React.Fragment>
       <Hero page={page} />
       <Gutter>
-        <div className="grid grid-cols-3 gap-8 py-16">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 py-16">
           {(posts || []).map((post) => {
             return (
               <div key={post.id}>

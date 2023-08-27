@@ -44,8 +44,10 @@ export const SiteHeader: React.FC<Header> = ({ mainMenu, topBar }) => {
                 lightNav ? "text-foreground" : "text-background"
               )}
             >
-              <h1 className="text-xs font-bold">THE CALGARY</h1>
-              <h2 className="font-heading text-3xl font-black">BISONS</h2>
+              <h1 className="text-sm font-bold">CALGARY</h1>
+              <h2 className="font-heading leading-none text-3xl font-black">
+                BISONS
+              </h2>
             </div>
           </Link>
           <MainNavLeft {...mainMenu} lightNav={lightNav} />

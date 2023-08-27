@@ -162,6 +162,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               buttonVariants({ variant: appearance, size: size }),
               className
             )}
+            {...props.onClick}
             {...newTabProps}
           >
             <ButtonContent {...props} />

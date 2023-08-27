@@ -1,5 +1,6 @@
 import React from "react"
 import { Header } from "@/payload-types"
+import { useMobileMenuStore } from "@/stores"
 
 import { cn } from "@/lib/utils"
 import {
@@ -34,6 +35,8 @@ export const MobileSingle: React.FC<Header["mainMenu"]["items"][0]> = ({
   label,
   link,
 }) => {
+  const setIsOpen = useMobileMenuStore((state) => state.setIsOpen)
+
   if (!link) return null
 
   return (
@@ -44,6 +47,7 @@ export const MobileSingle: React.FC<Header["mainMenu"]["items"][0]> = ({
             "flex w-full items-center justify-between border-b py-4 font-heading font-bold tracking-wider",
             "text-2xl sm:text-3xl"
           )}
+          onClick={() => setIsOpen(false)}
           {...link}
         >
           {label}

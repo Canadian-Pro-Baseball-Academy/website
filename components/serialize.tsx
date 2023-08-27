@@ -97,7 +97,11 @@ export const Serialize: React.FC<{
           case "br":
             return <br key={i} className="" />
           case "hr":
-            return <hr key={i} className="[&:not(:first-child)]:mt-4" />
+            return (
+              <div className="[&:not(:first-child)]:mt-8 pb-4 w-full md:w-4/5 mx-auto">
+                <hr key={i} />
+              </div>
+            )
           case "h1":
             return (
               <h1
