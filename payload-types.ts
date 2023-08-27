@@ -8,342 +8,299 @@
 
 export interface Config {
   collections: {
-    coaches: Coach
-    media: Media
-    pages: Page
-    pageSettings: PageSetting
-    posts: Post
-    teams: Team
-    teamSnapForms: TeamSnapForm
-    users: User
-    redirects: Redirect
-  }
+    coaches: Coach;
+    media: Media;
+    pages: Page;
+    pageSettings: PageSetting;
+    posts: Post;
+    teams: Team;
+    teamSnapForms: TeamSnapForm;
+    users: User;
+    redirects: Redirect;
+  };
   globals: {
-    "site-settings": SiteSetting
-    footer: Footer
-    header: Header
-  }
+    'site-settings': SiteSetting;
+    footer: Footer;
+    header: Header;
+  };
 }
 export interface Coach {
-  id: string
-  name: string
-  headshot: string | Media
+  id: string;
+  name: string;
+  headshot: string | Media;
   role?: {
-    title?: string
+    title?: string;
     roles?: {
-      role: string
-      id?: string
-    }[]
-    joinDate?: number
-  }
+      role: string;
+      id?: string;
+    }[];
+    joinDate?: number;
+  };
   socials?: {
-    twitter?: string
-    instagram?: string
-    facebook?: string
-    youtube?: string
-  }
+    twitter?: string;
+    instagram?: string;
+    facebook?: string;
+    youtube?: string;
+  };
   biography?: {
-    [k: string]: unknown
-  }[]
+    [k: string]: unknown;
+  }[];
   career?: {
-    achievement: string
-    id?: string
-  }[]
-  updatedAt: string
-  createdAt: string
-  _status?: "draft" | "published"
+    achievement: string;
+    id?: string;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+  _status?: 'draft' | 'published';
 }
 export interface Media {
-  id: string
-  alt: string
-  aspectRatio?: "1.7778" | "1.3333" | "1.5" | "1" | "1.25" | "3" | "0.8"
-  blurURL?: string
-  darkModeFallback?: string | Media
-  updatedAt: string
-  createdAt: string
-  url?: string
-  filename?: string
-  mimeType?: string
-  filesize?: number
-  width?: number
-  height?: number
+  id: string;
+  alt: string;
+  aspectRatio?: '1.7778' | '1.3333' | '1.5' | '1' | '1.25' | '3' | '0.8';
+  blurURL?: string;
+  darkModeFallback?: string | Media;
+  updatedAt: string;
+  createdAt: string;
+  url?: string;
+  filename?: string;
+  mimeType?: string;
+  filesize?: number;
+  width?: number;
+  height?: number;
 }
 export interface Page {
-  id: string
+  id: string;
   hero: {
-    type: "default" | "contentMedia" | "form" | "home" | "registration"
+    type: 'default' | 'contentMedia' | 'form' | 'home' | 'registration';
     richText?: {
-      [k: string]: unknown
-    }[]
+      [k: string]: unknown;
+    }[];
     links?: {
       link: {
-        type?: "reference" | "custom"
-        newTab?: boolean
+        type?: 'reference' | 'custom';
+        newTab?: boolean;
         reference:
           | {
-              value: string | Page
-              relationTo: "pages"
+              value: string | Page;
+              relationTo: 'pages';
             }
           | {
-              value: string | PageSetting
-              relationTo: "pageSettings"
+              value: string | PageSetting;
+              relationTo: 'pageSettings';
             }
           | {
-              value: string | Team
-              relationTo: "teams"
-            }
-        url: string
-        label: string
-        appearance?: "primary" | "secondary"
-      }
-      id?: string
-    }[]
-    media: string | Media
+              value: string | Team;
+              relationTo: 'teams';
+            };
+        url: string;
+        label: string;
+        appearance?: 'primary' | 'secondary';
+      };
+      id?: string;
+    }[];
+    media: string | Media;
     values?: {
-      value: string
-      id?: string
-    }[]
-    forms?: string[] | TeamSnapForm[]
-    previewTest?: string
-  }
+      value: string;
+      id?: string;
+    }[];
+    forms?: string[] | TeamSnapForm[];
+    previewTest?: string;
+  };
   layout?: (
     | {
-        ctaBackgroundColor?:
-          | "white"
-          | "primary"
-          | "shaded"
-          | "secondary"
-          | "muted"
+        ctaBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
         ctaFields?: {
+          logo?: 'primary' | 'alternate';
+          alignment?: 'left' | 'center' | 'right';
           richText?: {
-            [k: string]: unknown
-          }[]
+            [k: string]: unknown;
+          }[];
           links?: {
             link: {
-              type?: "reference" | "custom"
-              newTab?: boolean
+              type?: 'reference' | 'custom';
+              newTab?: boolean;
               reference:
                 | {
-                    value: string | Page
-                    relationTo: "pages"
+                    value: string | Page;
+                    relationTo: 'pages';
                   }
                 | {
-                    value: string | PageSetting
-                    relationTo: "pageSettings"
+                    value: string | PageSetting;
+                    relationTo: 'pageSettings';
                   }
                 | {
-                    value: string | Team
-                    relationTo: "teams"
-                  }
-              url: string
-              label: string
-              appearance?:
-                | "primary"
-                | "secondary"
-                | "destructive"
-                | "outline"
-                | "ghost"
-                | "link"
-            }
-            id?: string
-          }[]
-        }
-        id?: string
-        blockName?: string
-        blockType: "cta"
+                    value: string | Team;
+                    relationTo: 'teams';
+                  };
+              url: string;
+              label: string;
+              appearance?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link';
+            };
+            id?: string;
+          }[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'cta';
       }
     | {
-        contentBackgroundColor?:
-          | "white"
-          | "primary"
-          | "shaded"
-          | "secondary"
-          | "muted"
+        contentBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
         contentFields: {
           columns?: {
-            alignment: "left" | "center" | "right"
-            width: "oneThird" | "half" | "twoThirds" | "full"
+            alignment: 'left' | 'center' | 'right';
+            width: 'oneThird' | 'half' | 'twoThirds' | 'full';
             richText?: {
-              [k: string]: unknown
-            }[]
+              [k: string]: unknown;
+            }[];
             links?: {
               link: {
-                type?: "reference" | "custom"
-                newTab?: boolean
+                type?: 'reference' | 'custom';
+                newTab?: boolean;
                 reference:
                   | {
-                      value: string | Page
-                      relationTo: "pages"
+                      value: string | Page;
+                      relationTo: 'pages';
                     }
                   | {
-                      value: string | PageSetting
-                      relationTo: "pageSettings"
+                      value: string | PageSetting;
+                      relationTo: 'pageSettings';
                     }
                   | {
-                      value: string | Team
-                      relationTo: "teams"
-                    }
-                url: string
-                label: string
-                appearance?:
-                  | "primary"
-                  | "secondary"
-                  | "destructive"
-                  | "outline"
-                  | "ghost"
-                  | "link"
-              }
-              id?: string
-            }[]
-            id?: string
-          }[]
+                      value: string | Team;
+                      relationTo: 'teams';
+                    };
+                url: string;
+                label: string;
+                appearance?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link';
+              };
+              id?: string;
+            }[];
+            id?: string;
+          }[];
           singleColumn: {
-            alignment: "left" | "center" | "right"
-            width: "oneThird" | "half" | "twoThirds" | "full"
+            alignment: 'left' | 'center' | 'right';
+            width: 'oneThird' | 'half' | 'twoThirds' | 'full';
             richText?: {
-              [k: string]: unknown
-            }[]
+              [k: string]: unknown;
+            }[];
             links?: {
               link: {
-                type?: "reference" | "custom"
-                newTab?: boolean
+                type?: 'reference' | 'custom';
+                newTab?: boolean;
                 reference:
                   | {
-                      value: string | Page
-                      relationTo: "pages"
+                      value: string | Page;
+                      relationTo: 'pages';
                     }
                   | {
-                      value: string | PageSetting
-                      relationTo: "pageSettings"
+                      value: string | PageSetting;
+                      relationTo: 'pageSettings';
                     }
                   | {
-                      value: string | Team
-                      relationTo: "teams"
-                    }
-                url: string
-                label: string
-                appearance?:
-                  | "primary"
-                  | "secondary"
-                  | "destructive"
-                  | "outline"
-                  | "ghost"
-                  | "link"
-              }
-              id?: string
-            }[]
-            id?: string
-          }
-        }
-        id?: string
-        blockName?: string
-        blockType: "content"
+                      value: string | Team;
+                      relationTo: 'teams';
+                    };
+                url: string;
+                label: string;
+                appearance?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link';
+              };
+              id?: string;
+            }[];
+            id?: string;
+          };
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'content';
       }
     | {
-        contentGridBackgroundColor?:
-          | "white"
-          | "primary"
-          | "shaded"
-          | "secondary"
-          | "muted"
+        contentGridBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
         contentGridFields: {
-          useLeadingHeader?: boolean
+          useLeadingHeader?: boolean;
           leadingHeader?: {
-            [k: string]: unknown
-          }[]
-          alignment: "start" | "center" | "end"
+            [k: string]: unknown;
+          }[];
+          alignment: 'start' | 'center' | 'end';
           columns?: {
-            width: "oneThird" | "half" | "twoThirds" | "full"
+            width: 'oneThird' | 'half' | 'twoThirds' | 'full';
             content?: (
               | {
                   contentFields?: {
                     columns?: {
                       richText?: {
-                        [k: string]: unknown
-                      }[]
+                        [k: string]: unknown;
+                      }[];
                       links?: {
                         link: {
-                          type?: "reference" | "custom"
-                          newTab?: boolean
+                          type?: 'reference' | 'custom';
+                          newTab?: boolean;
                           reference:
                             | {
-                                value: string | Page
-                                relationTo: "pages"
+                                value: string | Page;
+                                relationTo: 'pages';
                               }
                             | {
-                                value: string | PageSetting
-                                relationTo: "pageSettings"
+                                value: string | PageSetting;
+                                relationTo: 'pageSettings';
                               }
                             | {
-                                value: string | Team
-                                relationTo: "teams"
-                              }
-                          url: string
-                          label: string
-                          appearance?:
-                            | "primary"
-                            | "secondary"
-                            | "destructive"
-                            | "outline"
-                            | "ghost"
-                            | "link"
-                        }
-                        id?: string
-                      }[]
-                      id?: string
-                    }[]
+                                value: string | Team;
+                                relationTo: 'teams';
+                              };
+                          url: string;
+                          label: string;
+                          appearance?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link';
+                        };
+                        id?: string;
+                      }[];
+                      id?: string;
+                    }[];
                     singleColumn?: {
                       richText?: {
-                        [k: string]: unknown
-                      }[]
+                        [k: string]: unknown;
+                      }[];
                       links?: {
                         link: {
-                          type?: "reference" | "custom"
-                          newTab?: boolean
+                          type?: 'reference' | 'custom';
+                          newTab?: boolean;
                           reference:
                             | {
-                                value: string | Page
-                                relationTo: "pages"
+                                value: string | Page;
+                                relationTo: 'pages';
                               }
                             | {
-                                value: string | PageSetting
-                                relationTo: "pageSettings"
+                                value: string | PageSetting;
+                                relationTo: 'pageSettings';
                               }
                             | {
-                                value: string | Team
-                                relationTo: "teams"
-                              }
-                          url: string
-                          label: string
-                          appearance?:
-                            | "primary"
-                            | "secondary"
-                            | "destructive"
-                            | "outline"
-                            | "ghost"
-                            | "link"
-                        }
-                        id?: string
-                      }[]
-                      id?: string
-                    }
-                  }
-                  id?: string
-                  blockName?: string
-                  blockType: "content"
+                                value: string | Team;
+                                relationTo: 'teams';
+                              };
+                          url: string;
+                          label: string;
+                          appearance?: 'primary' | 'secondary' | 'destructive' | 'outline' | 'ghost' | 'link';
+                        };
+                        id?: string;
+                      }[];
+                      id?: string;
+                    };
+                  };
+                  id?: string;
+                  blockName?: string;
+                  blockType: 'content';
                 }
               | {
                   imagesFields: {
-                    useLeadingHeader?: boolean
+                    useLeadingHeader?: boolean;
                     leadingHeader?: {
-                      [k: string]: unknown
-                    }[]
-                    columns?: "1" | "2" | "3" | "4" | "5"
-                    images: string[] | Media[]
-                  }
-                  id?: string
-                  blockName?: string
-                  blockType: "galleryImages"
+                      [k: string]: unknown;
+                    }[];
+                    columns?: '1' | '2' | '3' | '4' | '5';
+                    images: string[] | Media[];
+                  };
+                  id?: string;
+                  blockName?: string;
+                  blockType: 'galleryImages';
                 }
               | {
                   mapFields: {
@@ -351,538 +308,531 @@ export interface Page {
                      * @minItems 2
                      * @maxItems 2
                      */
-                    map?: [number, number]
+                    map?: [number, number];
                     options: {
-                      zoom: number
-                      animation: "none" | "rotate"
-                    }
-                  }
-                  id?: string
-                  blockName?: string
-                  blockType: "map"
+                      zoom: number;
+                      animation: 'none' | 'rotate';
+                    };
+                  };
+                  id?: string;
+                  blockName?: string;
+                  blockType: 'map';
                 }
               | MediaBlock
-            )[]
-            id?: string
-          }[]
-        }
-        id?: string
-        blockName?: string
-        blockType: "contentGrid"
+            )[];
+            id?: string;
+          }[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'contentGrid';
       }
     | {
-        galleryImagesBackgroundColor?:
-          | "white"
-          | "primary"
-          | "shaded"
-          | "secondary"
-          | "muted"
+        galleryImagesBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
         imagesFields: {
-          useLeadingHeader?: boolean
+          useLeadingHeader?: boolean;
           leadingHeader?: {
-            [k: string]: unknown
-          }[]
-          columns?: "1" | "2" | "3" | "4" | "5"
-          images: string[] | Media[]
-        }
-        id?: string
-        blockName?: string
-        blockType: "galleryImages"
+            [k: string]: unknown;
+          }[];
+          columns?: '1' | '2' | '3' | '4' | '5';
+          images: string[] | Media[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'galleryImages';
       }
     | {
-        mapBackgroundColor?:
-          | "white"
-          | "primary"
-          | "shaded"
-          | "secondary"
-          | "muted"
+        mapBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
         mapFields: {
           /**
            * @minItems 2
            * @maxItems 2
            */
-          map?: [number, number]
+          map?: [number, number];
           options: {
-            zoom: number
-            animation: "none" | "rotate"
-          }
-        }
-        id?: string
-        blockName?: string
-        blockType: "map"
+            zoom: number;
+            animation: 'none' | 'rotate';
+          };
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'map';
       }
     | MediaBlock
     | {
-        postsHighlightBackgroundColor?:
-          | "white"
-          | "primary"
-          | "shaded"
-          | "secondary"
-          | "muted"
+        postsHighlightBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
         postHighlightFields: {
-          useLeadingHeader?: boolean
+          useLeadingHeader?: boolean;
           leadingHeader?: {
-            [k: string]: unknown
-          }[]
-          posts: string[] | Post[]
-        }
-        id?: string
-        blockName?: string
-        blockType: "postsHighlight"
+            [k: string]: unknown;
+          }[];
+          posts: string[] | Post[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'postsHighlight';
       }
     | {
-        sliderBackgroundColor?:
-          | "white"
-          | "primary"
-          | "shaded"
-          | "secondary"
-          | "muted"
+        sliderBackgroundColor?: 'white' | 'primary' | 'shaded' | 'secondary' | 'muted';
         sliderFields: {
-          useLeadingHeader?: boolean
+          useLeadingHeader?: boolean;
           leadingHeader?: {
-            [k: string]: unknown
-          }[]
-          sliderType: "contentSlider" | "imageSlider" | "relationshipSlider"
+            [k: string]: unknown;
+          }[];
+          sliderType: 'contentSlider' | 'imageSlider' | 'relationshipSlider';
           imageSlides: {
-            image: string | Media
-            id?: string
-          }[]
+            image: string | Media;
+            id?: string;
+          }[];
           contentSlides: {
             richText: {
-              [k: string]: unknown
-            }[]
-            isQuote?: boolean
-            quoteDate: string
-            id?: string
-          }[]
+              [k: string]: unknown;
+            }[];
+            isQuote?: boolean;
+            quoteDate: string;
+            id?: string;
+          }[];
           relationshipSlides:
             | (
                 | {
-                    value: string
-                    relationTo: "pages"
+                    value: string;
+                    relationTo: 'pages';
                   }
                 | {
-                    value: string
-                    relationTo: "pageSettings"
+                    value: string;
+                    relationTo: 'pageSettings';
                   }
                 | {
-                    value: string
-                    relationTo: "coaches"
+                    value: string;
+                    relationTo: 'coaches';
                   }
                 | {
-                    value: string
-                    relationTo: "teams"
+                    value: string;
+                    relationTo: 'teams';
                   }
               )[]
             | (
                 | {
-                    value: Page
-                    relationTo: "pages"
+                    value: Page;
+                    relationTo: 'pages';
                   }
                 | {
-                    value: PageSetting
-                    relationTo: "pageSettings"
+                    value: PageSetting;
+                    relationTo: 'pageSettings';
                   }
                 | {
-                    value: Coach
-                    relationTo: "coaches"
+                    value: Coach;
+                    relationTo: 'coaches';
                   }
                 | {
-                    value: Team
-                    relationTo: "teams"
+                    value: Team;
+                    relationTo: 'teams';
                   }
-              )[]
-        }
-        id?: string
-        blockName?: string
-        blockType: "slider"
+              )[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'slider';
       }
-  )[]
+  )[];
   meta?: {
-    title?: string
-    description?: string
-    image?: string | Media
-    keywords?: string
-  }
-  title: string
-  slug?: string
-  parent?: string | Page
+    title?: string;
+    description?: string;
+    image?: string | Media;
+    keywords?: string;
+  };
+  title: string;
+  slug?: string;
+  parent?: string | Page;
   breadcrumbs?: {
-    doc?: string | Page
-    url?: string
-    label?: string
-    id?: string
-  }[]
-  updatedAt: string
-  createdAt: string
-  _status?: "draft" | "published"
+    doc?: string | Page;
+    url?: string;
+    label?: string;
+    id?: string;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+  _status?: 'draft' | 'published';
 }
 export interface PageSetting {
-  id: string
+  id: string;
   hero: {
-    type: "default" | "contentMedia" | "form" | "home" | "registration"
+    type: 'default' | 'contentMedia' | 'form' | 'home' | 'registration';
     richText?: {
-      [k: string]: unknown
-    }[]
+      [k: string]: unknown;
+    }[];
     links?: {
       link: {
-        type?: "reference" | "custom"
-        newTab?: boolean
+        type?: 'reference' | 'custom';
+        newTab?: boolean;
         reference:
           | {
-              value: string | Page
-              relationTo: "pages"
+              value: string | Page;
+              relationTo: 'pages';
             }
           | {
-              value: string | PageSetting
-              relationTo: "pageSettings"
+              value: string | PageSetting;
+              relationTo: 'pageSettings';
             }
           | {
-              value: string | Team
-              relationTo: "teams"
-            }
-        url: string
-        label: string
-        appearance?: "primary" | "secondary"
-      }
-      id?: string
-    }[]
-    media: string | Media
+              value: string | Team;
+              relationTo: 'teams';
+            };
+        url: string;
+        label: string;
+        appearance?: 'primary' | 'secondary';
+      };
+      id?: string;
+    }[];
+    media: string | Media;
     values?: {
-      value: string
-      id?: string
-    }[]
-    forms?: string[] | TeamSnapForm[]
-    previewTest?: string
-  }
+      value: string;
+      id?: string;
+    }[];
+    forms?: string[] | TeamSnapForm[];
+    previewTest?: string;
+  };
   coachingStaff?: {
-    mainCoaches?: string[] | Coach[]
-    subsidaryCoaches?: string[] | Coach[]
-  }
+    mainCoaches?: string[] | Coach[];
+    subsidaryCoaches?: string[] | Coach[];
+  };
   news?: {
-    test?: string
-  }
+    test?: string;
+  };
   meta?: {
-    title?: string
-    description?: string
-    image?: string | Media
-    keywords?: string
-  }
-  type: "coachingStaff" | "news"
-  title: string
-  slug?: string
-  updatedAt: string
-  createdAt: string
-  _status?: "draft" | "published"
+    title?: string;
+    description?: string;
+    image?: string | Media;
+    keywords?: string;
+  };
+  type: 'coachingStaff' | 'news';
+  title: string;
+  slug?: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: 'draft' | 'published';
 }
 export interface Team {
-  id: string
-  name: string
-  coaches?: string[] | Coach[]
-  teamPhoto?: string | Media
-  teamsnapId: string
-  webCalendar?: string
+  id: string;
+  name: string;
+  coaches?: string[] | Coach[];
+  teamPhoto?: string | Media;
+  teamsnapId: string;
+  webCalendar?: string;
   roster?: {
-    firstName: string
-    lastName: string
-    number?: string
+    firstName: string;
+    lastName: string;
+    number?: string;
     positions?: (
-      | "pitcher"
-      | "catcher"
-      | "firstBase"
-      | "secondBase"
-      | "thirdBase"
-      | "shortstop"
-      | "middleInfield"
-      | "cornerInfield"
-      | "infield"
-      | "outfield"
-      | "utility"
-    )[]
-    homeTown?: string
-    id?: string
-  }[]
-  updatedAt: string
-  createdAt: string
-  _status?: "draft" | "published"
+      | 'pitcher'
+      | 'catcher'
+      | 'firstBase'
+      | 'secondBase'
+      | 'thirdBase'
+      | 'shortstop'
+      | 'middleInfield'
+      | 'cornerInfield'
+      | 'infield'
+      | 'outfield'
+      | 'utility'
+    )[];
+    homeTown?: string;
+    id?: string;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+  _status?: 'draft' | 'published';
 }
 export interface TeamSnapForm {
-  id: string
-  title: string
-  teamSnapId: string
+  id: string;
+  title: string;
+  teamSnapId: string;
   description?: {
-    [k: string]: unknown
-  }[]
-  updatedAt: string
-  createdAt: string
-  _status?: "draft" | "published"
+    [k: string]: unknown;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+  _status?: 'draft' | 'published';
 }
 export interface MediaBlock {
   mediaFields?: {
-    embed?: boolean
+    embed?: boolean;
     embedVideo?: {
-      platform?: "youtube" | "vimeo"
-      videoID?: string
-      aspectRatio?: "1.7778" | "1.3333" | "1.5" | "1" | "1.25" | "3" | "0.8"
-      manualThumbnail?: string | Media
-    }
+      platform?: 'youtube' | 'vimeo';
+      videoID?: string;
+      aspectRatio?: '1.7778' | '1.3333' | '1.5' | '1' | '1.25' | '3' | '0.8';
+      manualThumbnail?: string | Media;
+    };
     internalMedia?: {
-      media?: string | Media
-    }
-    size?: "normal" | "wide" | "fullscreen"
+      media?: string | Media;
+    };
+    size?: 'normal' | 'wide' | 'fullscreen';
     caption?: {
-      [k: string]: unknown
-    }[]
-  }
-  id?: string
-  blockName?: string
-  blockType: "media"
+      [k: string]: unknown;
+    }[];
+  };
+  id?: string;
+  blockName?: string;
+  blockType: 'media';
 }
 export interface Post {
-  id: string
-  title: string
-  image: string | Media
+  id: string;
+  title: string;
+  image: string | Media;
   excerpt?: {
-    [k: string]: unknown
-  }[]
+    [k: string]: unknown;
+  }[];
   content: (
     | {
         blogContentFields?: {
           richText?: {
-            [k: string]: unknown
-          }[]
-        }
-        id?: string
-        blockName?: string
-        blockType: "blogContent"
+            [k: string]: unknown;
+          }[];
+        };
+        id?: string;
+        blockName?: string;
+        blockType: 'blogContent';
       }
     | MediaBlock
-  )[]
-  relatedPosts?: string[] | Post[]
+  )[];
+  relatedPosts?: string[] | Post[];
   meta?: {
-    title?: string
-    description?: string
-    image?: string | Media
-    keywords?: string
-  }
-  slug?: string
-  authors: string[] | User[]
-  publishedOn: string
-  updatedAt: string
-  createdAt: string
-  _status?: "draft" | "published"
+    title?: string;
+    description?: string;
+    image?: string | Media;
+    keywords?: string;
+  };
+  slug?: string;
+  authors: string[] | User[];
+  publishedOn: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: 'draft' | 'published';
 }
 export interface User {
-  id: string
-  name?: string
-  roles?: ("admin" | "editor")[]
-  updatedAt: string
-  createdAt: string
-  email: string
-  resetPasswordToken?: string
-  resetPasswordExpiration?: string
-  salt?: string
-  hash?: string
-  loginAttempts?: number
-  lockUntil?: string
-  password?: string
+  id: string;
+  name?: string;
+  roles?: ('admin' | 'editor')[];
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string;
+  resetPasswordExpiration?: string;
+  salt?: string;
+  hash?: string;
+  loginAttempts?: number;
+  lockUntil?: string;
+  password?: string;
 }
 export interface Redirect {
-  id: string
-  from: string
+  id: string;
+  from: string;
   to: {
-    type?: "reference" | "custom"
-    reference: {
-      value: string | Page
-      relationTo: "pages"
-    }
-    url: string
-  }
-  updatedAt: string
-  createdAt: string
+    type?: 'reference' | 'custom';
+    reference:
+      | {
+          value: string | Page;
+          relationTo: 'pages';
+        }
+      | {
+          value: string | PageSetting;
+          relationTo: 'pageSettings';
+        }
+      | {
+          value: string | Team;
+          relationTo: 'teams';
+        }
+      | {
+          value: string | Post;
+          relationTo: 'posts';
+        };
+    url: string;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 export interface SiteSetting {
-  id: string
+  id: string;
   socialLinks?: {
-    facebook?: string
-    instagram?: string
-    twitter?: string
-    github?: string
-  }
-  streetAddress?: string
-  city?: string
-  province?: string
-  postalCode?: string
-  country?: string
-  email?: string
-  phoneNumber?: string
+    facebook?: string;
+    instagram?: string;
+    twitter?: string;
+    github?: string;
+  };
+  streetAddress?: string;
+  city?: string;
+  province?: string;
+  postalCode?: string;
+  country?: string;
+  email?: string;
+  phoneNumber?: string;
   meta?: {
-    title?: string
-    description?: string
-    image?: string | Media
-    keywords?: string
-  }
-  _status?: "draft" | "published"
-  updatedAt?: string
-  createdAt?: string
+    title?: string;
+    description?: string;
+    image?: string | Media;
+    keywords?: string;
+  };
+  _status?: 'draft' | 'published';
+  updatedAt?: string;
+  createdAt?: string;
 }
 export interface Footer {
-  id: string
-  logo: string | Media
+  id: string;
+  logo: string | Media;
   summary?: {
-    [k: string]: unknown
-  }[]
+    [k: string]: unknown;
+  }[];
   columns?: {
-    label?: string
+    label?: string;
     navItems?: {
       link: {
-        type?: "reference" | "custom"
-        newTab?: boolean
+        type?: 'reference' | 'custom';
+        newTab?: boolean;
         reference:
           | {
-              value: string | Page
-              relationTo: "pages"
+              value: string | Page;
+              relationTo: 'pages';
             }
           | {
-              value: string | PageSetting
-              relationTo: "pageSettings"
+              value: string | PageSetting;
+              relationTo: 'pageSettings';
             }
           | {
-              value: string | Team
-              relationTo: "teams"
-            }
-        url: string
-        label: string
-      }
-      id?: string
-    }[]
-    id?: string
-  }[]
-  _status?: "draft" | "published"
-  updatedAt?: string
-  createdAt?: string
+              value: string | Team;
+              relationTo: 'teams';
+            };
+        url: string;
+        label: string;
+      };
+      id?: string;
+    }[];
+    id?: string;
+  }[];
+  _status?: 'draft' | 'published';
+  updatedAt?: string;
+  createdAt?: string;
 }
 export interface Header {
-  id: string
+  id: string;
   topBar: {
     announcement?: {
       desktop?: {
-        [k: string]: unknown
-      }[]
+        [k: string]: unknown;
+      }[];
       mobile?: {
-        [k: string]: unknown
-      }[]
-    }
-  }
+        [k: string]: unknown;
+      }[];
+    };
+  };
   mainMenu: {
     items: {
-      type?: "single" | "dropdown"
-      label: string
+      type?: 'single' | 'dropdown';
+      label: string;
       link?: {
-        type?: "reference" | "custom"
-        newTab?: boolean
+        type?: 'reference' | 'custom';
+        newTab?: boolean;
         reference:
           | {
-              value: string | Page
-              relationTo: "pages"
+              value: string | Page;
+              relationTo: 'pages';
             }
           | {
-              value: string | PageSetting
-              relationTo: "pageSettings"
+              value: string | PageSetting;
+              relationTo: 'pageSettings';
             }
           | {
-              value: string | Team
-              relationTo: "teams"
-            }
-        url: string
-      }
+              value: string | Team;
+              relationTo: 'teams';
+            };
+        url: string;
+      };
       menu?: {
         blocks?: (
           | {
-              menuHighlightMedia?: string | Media
+              menuHighlightMedia?: string | Media;
               link: {
-                type?: "reference" | "custom"
-                newTab?: boolean
+                type?: 'reference' | 'custom';
+                newTab?: boolean;
                 reference:
                   | {
-                      value: string | Page
-                      relationTo: "pages"
+                      value: string | Page;
+                      relationTo: 'pages';
                     }
                   | {
-                      value: string | PageSetting
-                      relationTo: "pageSettings"
+                      value: string | PageSetting;
+                      relationTo: 'pageSettings';
                     }
                   | {
-                      value: string | Team
-                      relationTo: "teams"
-                    }
-                url: string
-                label: string
-                description?: string
-              }
-              id?: string
-              blockName?: string
-              blockType: "menuHighlight"
+                      value: string | Team;
+                      relationTo: 'teams';
+                    };
+                url: string;
+                label: string;
+                description?: string;
+              };
+              id?: string;
+              blockName?: string;
+              blockType: 'menuHighlight';
             }
           | {
               link: {
-                type?: "reference" | "custom"
-                newTab?: boolean
+                type?: 'reference' | 'custom';
+                newTab?: boolean;
                 reference:
                   | {
-                      value: string | Page
-                      relationTo: "pages"
+                      value: string | Page;
+                      relationTo: 'pages';
                     }
                   | {
-                      value: string | PageSetting
-                      relationTo: "pageSettings"
+                      value: string | PageSetting;
+                      relationTo: 'pageSettings';
                     }
                   | {
-                      value: string | Team
-                      relationTo: "teams"
-                    }
-                url: string
-                label: string
-                description?: string
-              }
-              id?: string
-              blockName?: string
-              blockType: "menuLink"
+                      value: string | Team;
+                      relationTo: 'teams';
+                    };
+                url: string;
+                label: string;
+                description?: string;
+              };
+              id?: string;
+              blockName?: string;
+              blockType: 'menuLink';
             }
           | {
-              name?: string
+              name?: string;
               links?: {
                 link: {
-                  type?: "reference" | "custom"
-                  newTab?: boolean
+                  type?: 'reference' | 'custom';
+                  newTab?: boolean;
                   reference:
                     | {
-                        value: string | Page
-                        relationTo: "pages"
+                        value: string | Page;
+                        relationTo: 'pages';
                       }
                     | {
-                        value: string | PageSetting
-                        relationTo: "pageSettings"
+                        value: string | PageSetting;
+                        relationTo: 'pageSettings';
                       }
                     | {
-                        value: string | Team
-                        relationTo: "teams"
-                      }
-                  url: string
-                  label: string
-                }
-                id?: string
-              }[]
-              id?: string
-              blockName?: string
-              blockType: "menuColumn"
+                        value: string | Team;
+                        relationTo: 'teams';
+                      };
+                  url: string;
+                  label: string;
+                };
+                id?: string;
+              }[];
+              id?: string;
+              blockName?: string;
+              blockType: 'menuColumn';
             }
-        )[]
-      }
-      id?: string
-    }[]
-  }
-  _status?: "draft" | "published"
-  updatedAt?: string
-  createdAt?: string
+        )[];
+      };
+      id?: string;
+    }[];
+  };
+  _status?: 'draft' | 'published';
+  updatedAt?: string;
+  createdAt?: string;
 }

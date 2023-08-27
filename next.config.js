@@ -1,11 +1,16 @@
-const redirects = require('./redirects')
+const redirects = require("./redirects")
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["localhost", "calgarybisons.payloadcms.app", "app.calgarybisons.ca"],
+    domains: [
+      "localhost",
+      "calgarybisons.payloadcms.app",
+      "app.calgarybisons.ca",
+      "admin.calgarybisons.ca",
+    ],
   },
-  redirects
-};
+  redirects,
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

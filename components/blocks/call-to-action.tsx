@@ -18,15 +18,20 @@ export const CallToAction: React.FC<CallToActionProps> = ({
 }) => {
   if (!ctaFields) return null
 
-  const { richText, links } = ctaFields
+  const { logo, alignment, richText, links } = ctaFields
   const hasLinks = links && links.length > 0
+
+  const logoUrl =
+    logo === "alternate"
+      ? "https://admin.calgarybisons.ca/media/Calgary%20Bisons%20option%202.png"
+      : "https://calgarybisons.payloadcms.app/media/bisons-logo.svg"
 
   return (
     <Gutter>
       <div
         className={cn(
           "relative border bg-primary py-12 text-center text-primary-foreground",
-          "mx-auto w-full px-6"
+          "mx-auto w-full px-6 overflow-hidden"
         )}
       >
         <RichText
@@ -44,13 +49,23 @@ export const CallToAction: React.FC<CallToActionProps> = ({
             </ul>
           </div>
         )}
-        <div className="pointer-events-none absolute left-0 top-0 z-0 h-full w-full overflow-hidden">
+        <div
+          className={cn(
+            "pointer-events-none absolute flex z-0 w-full overflow-hidden top-0 left-0",
+            {
+              "justify-end": alignment === "right",
+              "justify-center": alignment === "center",
+            }
+          )}
+        >
           <Image
-            src="https://calgarybisons.payloadcms.app/media/bisons-logo.svg"
+            src={logoUrl}
             alt=""
-            width={500}
-            height={500}
-            className="opacity-20"
+            width={logo === "alternate" ? 300 : 500}
+            height={logo === "alternate" ? 300 : 500}
+            className={cn("opacity-20 overflow-hidden", {
+              "sm:mr-10 mt-4": alignment === "right",
+            })}
           />
         </div>
       </div>

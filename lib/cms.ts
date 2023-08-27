@@ -46,7 +46,7 @@ export async function request<T = any>({
         "Content-Type": "application/json",
       },
       next: {
-        revalidate: 60 * 60 * 24,
+        revalidate: 60 * 60 * 24 * 28,
         tags: ["pages"],
       },
       body: JSON.stringify({
