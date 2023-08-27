@@ -152,6 +152,8 @@ export const CTA = `
     blockType
     ctaBackgroundColor
     ctaFields {
+      logo
+      alignment
       richText
       links {
         link ${LINK_FIELDS()}
