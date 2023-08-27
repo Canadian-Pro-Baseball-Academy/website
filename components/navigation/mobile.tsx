@@ -3,6 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { Header } from "@/payload-types"
+import { useMobileMenuStore } from "@/stores"
 
 import { cn } from "@/lib/utils"
 import { Accordion } from "@/components/ui/accordion"
@@ -23,13 +24,14 @@ import { MobileDropdown } from "./dropdown"
 import { MobileSingle } from "./single"
 
 export const MobileNav: React.FC<Header["mainMenu"]> = ({ items }) => {
-  const [open, setOpen] = React.useState(false)
+  const isOpen = useMobileMenuStore((state) => state.isOpen)
+  const setIsOpen = useMobileMenuStore((state) => state.setIsOpen)
 
   const accordianItems = items.filter((item) => item.type === "dropdown")
   const singleItems = items.filter((item) => item.type === "single")
 
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger
         className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
       >
@@ -74,10 +76,10 @@ export const MobileNav: React.FC<Header["mainMenu"]> = ({ items }) => {
 
         <SheetFooter className="flex items-center justify-end gap-2 py-2">
           <Link
-            href="/schedule"
+            href="/game-schedule"
             className={buttonVariants({ variant: "ghost", size: "lg" })}
             onClick={() => {
-              setOpen?.(false)
+              setIsOpen?.(false)
             }}
           >
             Game Schedule
@@ -86,7 +88,7 @@ export const MobileNav: React.FC<Header["mainMenu"]> = ({ items }) => {
             href="/registration"
             className={buttonVariants({ variant: "primary", size: "lg" })}
             onClick={() => {
-              setOpen?.(false)
+              setIsOpen?.(false)
             }}
           >
             Join the Herd

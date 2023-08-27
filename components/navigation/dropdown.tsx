@@ -1,5 +1,6 @@
 import React from "react"
 import { Header } from "@/payload-types"
+import { useMobileMenuStore } from "@/stores"
 
 import { cn } from "@/lib/utils"
 import {
@@ -26,11 +27,14 @@ type ColumnItem = Extract<Blocks[0], { blockType: "menuColumn" }>
 
 // @ts-expect-error
 const HighlightItem: React.FC<HighlightItem> = ({ highlightLink }) => {
+  const setIsOpen = useMobileMenuStore((state) => state.setIsOpen)
+
   return (
     <li className="col-span-4 row-span-3">
       <NavigationMenuLink asChild>
         <PayloadLink
           className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 font-semibold no-underline outline-none focus:shadow-md"
+          onClick={() => setIsOpen(false)}
           {...highlightLink}
         />
       </NavigationMenuLink>
@@ -39,16 +43,20 @@ const HighlightItem: React.FC<HighlightItem> = ({ highlightLink }) => {
 }
 
 const LinkItem: React.FC<LinkItem> = ({ link }) => {
+  const setIsOpen = useMobileMenuStore((state) => state.setIsOpen)
+
   return (
     <li className="col-span-4 block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted focus:bg-muted">
       <NavigationMenuLink asChild>
-        <PayloadLink {...link} />
+        <PayloadLink onClick={() => setIsOpen(false)} {...link} />
       </NavigationMenuLink>
     </li>
   )
 }
 
 const ColumnItem: React.FC<ColumnItem> = ({ name, links }) => {
+  const setIsOpen = useMobileMenuStore((state) => state.setIsOpen)
+
   return (
     <li className="col-span-2">
       <h2 className="px-3 pb-2 text-xs font-medium text-muted-foreground">
@@ -64,7 +72,7 @@ const ColumnItem: React.FC<ColumnItem> = ({ name, links }) => {
               )}
             >
               <NavigationMenuLink asChild>
-                <PayloadLink {...link} />
+                <PayloadLink onClick={() => setIsOpen(false)} {...link} />
               </NavigationMenuLink>
             </li>
           )

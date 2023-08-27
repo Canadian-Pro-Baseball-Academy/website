@@ -46,6 +46,7 @@ export type PayloadLinkType = {
   fullWidth?: boolean
   mobileFullWidth?: boolean
   className?: string
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
   onMouseEnter?: () => void
   onMouseLeave?: () => void
   buttonProps?: any // TODO: type this
@@ -107,6 +108,7 @@ export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
       size = "default",
       children,
       className,
+      onClick,
       onMouseEnter,
       onMouseLeave,
       fullWidth = false,
@@ -159,9 +161,7 @@ export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
             href={href}
             {...newTabProps}
             // TODO: Should be removed, find better way to reset page
-            onClick={() => {
-              // router.reload()
-            }}
+            onClick={onClick}
             className={className}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
@@ -183,6 +183,7 @@ export const PayloadLink = React.forwardRef<PayloadLinkType, PayloadLinkType>(
         <a
           href={url}
           {...newTabProps}
+          onClick={onClick}
           className={className}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
