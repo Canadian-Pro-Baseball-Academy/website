@@ -13,8 +13,8 @@ export const ROSTERS = `
 `
 
 export const ROSTER = `
-  query Teams($slug: String, $draft: Boolean) {
-    Teams(where: { teamsnapId: { equals: $slug} }, draft: $draft) {
+  query Teams($slug: String) {
+    Teams(where: { teamsnapId: { equals: $slug} }, draft: true) {
       docs {
         id
       name

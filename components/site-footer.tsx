@@ -96,7 +96,7 @@ export const SiteFooter: React.FC<{
                     {siteSetting.email}
                   </div>
                 )}
-                {siteSetting.phoneNumber && (
+                {/* {siteSetting.phoneNumber && (
                   <div
                     className={cn(
                       buttonVariants({
@@ -110,7 +110,7 @@ export const SiteFooter: React.FC<{
                     <PhoneIcon className="h-h mr-2 w-4" />
                     {siteSetting.phoneNumber}
                   </div>
-                )}
+                )} */}
                 {siteSetting.socialLinks && (
                   <div
                     className={cn(
