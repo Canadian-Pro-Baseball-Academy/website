@@ -49,7 +49,6 @@ const Page = async ({ params: { slug } }: { params: { slug: string[] } }) => {
 
   return (
     <React.Fragment>
-      <ApiTest data={page} />
       <Hero page={page} />
       <RenderBlocks blocks={page.layout} />
     </React.Fragment>
