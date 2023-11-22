@@ -78,7 +78,7 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
       </div>
 
       {/* Registration Forms */}
-      {forms && (
+      {/* {forms && (
         <Gutter>
           <QueryClientProvider client={queryClient}>
             <div
@@ -100,7 +100,7 @@ export const RegistrationHero: React.FC<Page["hero"]> = ({
             </div>
           </QueryClientProvider>
         </Gutter>
-      )}
+      )} */}
     </section>
   )
 }
