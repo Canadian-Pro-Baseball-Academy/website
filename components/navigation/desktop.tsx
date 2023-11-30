@@ -57,7 +57,7 @@ export const MainNavRight: React.FC<{ lightNav: boolean }> = ({ lightNav }) => (
         </Link>
       </NavigationMenuItem>
       <NavigationMenuItem>
-        <Link href="/registration" legacyBehavior passHref>
+        <Link href="/register" legacyBehavior passHref>
           <NavigationMenuLink
             className={cn(
               navigationMenuTriggerStyle(),
